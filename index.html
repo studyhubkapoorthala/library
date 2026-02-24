@@ -750,20 +750,134 @@ footer{background:var(--surface);border-top:1px solid var(--border);padding:64px
   <!-- MEMBERSHIP CTA -->
   <section class="section" style="padding-top:0">
     <div class="section-inner">
-      <div style="background:linear-gradient(135deg,var(--surface) 0%,#1a2040 100%);border:1px solid var(--border);border-radius:24px;padding:60px 48px;display:grid;grid-template-columns:1fr auto;gap:40px;align-items:center;position:relative;overflow:hidden;">
-        <div style="position:absolute;right:0;top:0;bottom:0;width:300px;background:radial-gradient(circle at 80% 50%,rgba(232,184,75,0.08),transparent 70%);pointer-events:none;"></div>
-        <div>
-          <p class="sec-tag">Membership 2026</p>
-          <h2 style="font-family:'DM Serif Display',serif;font-size:clamp(1.6rem,3vw,2.2rem);margin-bottom:12px;color:var(--white)">Join Study Hub Today — <span style="color:var(--gold)">Just ₹499/year</span></h2>
-          <p style="color:var(--muted);max-width:480px;font-size:15px">Unlimited library access, free event entry, digital resources, book lending privileges, study hall priority booking and much more.</p>
+      <div class="membership-cta">
+        <!-- glows -->
+        <div class="mc-glow mc-glow1"></div>
+        <div class="mc-glow mc-glow2"></div>
+
+        <div class="mc-left">
+          <span class="mc-tag">🔥 Membership 2026</span>
+          <h2 class="mc-title">
+            Join Study Hub Today —
+            <span class="mc-price">Just ₹499<small>/year</small></span>
+          </h2>
+          <p class="mc-desc">Unlimited library access, free event entry, digital resources, book lending privileges, study hall priority booking and much more.</p>
+
+          <div class="mc-perks">
+            <div class="mc-perk"><span class="mc-perk-dot"></span>Unlimited Book Borrowing</div>
+            <div class="mc-perk"><span class="mc-perk-dot"></span>Free Seminar Entry</div>
+            <div class="mc-perk"><span class="mc-perk-dot"></span>Digital Resources Access</div>
+            <div class="mc-perk"><span class="mc-perk-dot"></span>Priority Study Hall Booking</div>
+          </div>
         </div>
-        <div style="flex-shrink:0;display:flex;flex-direction:column;gap:12px;align-items:flex-end;">
-          <a class="btn-gold" href="#" onclick="showPage('suggest')">Register Now →</a>
-          <a class="btn-ghost" href="#" onclick="showPage('contact')" style="text-align:center">Learn More</a>
+
+        <div class="mc-right">
+          <div class="mc-card">
+            <div class="mc-card-label">Annual Plan</div>
+            <div class="mc-card-price">₹499</div>
+            <div class="mc-card-per">per year · all inclusive</div>
+            <a class="mc-btn-primary" href="#" onclick="showPage('suggest')">Register Now →</a>
+            <a class="mc-btn-secondary" href="#" onclick="showPage('contact')">Know More</a>
+            <div class="mc-note">✓ No hidden charges &nbsp;·&nbsp; Cancel anytime</div>
+          </div>
         </div>
       </div>
     </div>
   </section>
+
+  <style>
+  .membership-cta{
+    background:linear-gradient(135deg,#1a0a04 0%,#2a1208 40%,#1a0f1f 100%);
+    border:1px solid rgba(208,77,12,0.35);
+    border-radius:24px;padding:56px 52px;
+    display:grid;grid-template-columns:1fr 300px;gap:48px;align-items:center;
+    position:relative;overflow:hidden;
+  }
+  .mc-glow{position:absolute;border-radius:50%;pointer-events:none;filter:blur(60px)}
+  .mc-glow1{width:320px;height:320px;top:-80px;left:-60px;background:rgba(208,77,12,0.18)}
+  .mc-glow2{width:260px;height:260px;bottom:-60px;right:260px;background:rgba(208,77,12,0.10)}
+
+  .mc-tag{
+    display:inline-block;
+    background:rgba(208,77,12,0.18);
+    border:1px solid rgba(208,77,12,0.5);
+    color:#ff7a3c;
+    font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;
+    padding:6px 16px;border-radius:100px;margin-bottom:20px;
+    font-family:'Space Mono',monospace;
+  }
+  .mc-title{
+    font-family:'DM Serif Display',serif;
+    font-size:clamp(1.6rem,3vw,2.3rem);
+    color:var(--white);line-height:1.25;margin-bottom:14px;
+  }
+  .mc-price{
+    display:block;color:#D04D0C;
+    font-size:clamp(1.8rem,3.5vw,2.6rem);margin-top:4px;
+  }
+  .mc-price small{font-size:0.55em;color:#e87845;font-family:'DM Sans',sans-serif;font-weight:500}
+  .mc-desc{color:var(--muted);font-size:15px;line-height:1.75;max-width:440px;margin-bottom:28px}
+  .mc-perks{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .mc-perk{
+    display:flex;align-items:center;gap:9px;
+    font-size:13px;font-weight:600;color:rgba(240,242,247,0.85);
+  }
+  .mc-perk-dot{
+    width:8px;height:8px;border-radius:50%;flex-shrink:0;
+    background:#D04D0C;box-shadow:0 0 8px rgba(208,77,12,0.7);
+  }
+
+  /* Right card */
+  .mc-right{position:relative;z-index:2}
+  .mc-card{
+    background:rgba(255,255,255,0.04);
+    border:1px solid rgba(208,77,12,0.3);
+    border-radius:18px;padding:36px 28px;text-align:center;
+    backdrop-filter:blur(12px);
+    box-shadow:0 8px 48px rgba(208,77,12,0.12),inset 0 1px 0 rgba(255,255,255,0.06);
+  }
+  .mc-card-label{
+    font-family:'Space Mono',monospace;font-size:10px;font-weight:700;
+    letter-spacing:2.5px;text-transform:uppercase;color:#ff7a3c;margin-bottom:12px;
+  }
+  .mc-card-price{
+    font-family:'DM Serif Display',serif;font-size:3.4rem;
+    color:#D04D0C;line-height:1;margin-bottom:4px;
+    text-shadow:0 0 30px rgba(208,77,12,0.4);
+  }
+  .mc-card-per{font-size:12px;color:var(--muted);margin-bottom:28px;font-weight:500}
+  .mc-btn-primary{
+    display:block;background:#D04D0C;color:#fff;
+    padding:14px 20px;border-radius:10px;font-weight:700;font-size:15px;
+    text-decoration:none;margin-bottom:10px;transition:all 0.2s;
+    box-shadow:0 4px 20px rgba(208,77,12,0.45);
+  }
+  .mc-btn-primary:hover{background:#e85e20;transform:translateY(-2px);box-shadow:0 8px 28px rgba(208,77,12,0.55)}
+  .mc-btn-secondary{
+    display:block;background:transparent;color:rgba(240,242,247,0.7);
+    padding:12px 20px;border-radius:10px;font-weight:600;font-size:14px;
+    text-decoration:none;border:1px solid var(--border);transition:all 0.2s;margin-bottom:18px;
+  }
+  .mc-btn-secondary:hover{border-color:rgba(208,77,12,0.4);color:#ff7a3c}
+  .mc-note{font-size:11px;color:var(--muted);font-family:'Space Mono',monospace}
+
+  /* Responsive */
+  @media(max-width:900px){
+    .membership-cta{grid-template-columns:1fr;gap:32px;padding:40px 32px}
+    .mc-right{display:flex;justify-content:center}
+    .mc-card{max-width:360px;width:100%}
+    .mc-price{display:inline;font-size:2rem}
+  }
+  @media(max-width:600px){
+    .membership-cta{padding:28px 20px;border-radius:16px}
+    .mc-perks{grid-template-columns:1fr}
+    .mc-title{font-size:1.5rem}
+    .mc-card{padding:28px 20px}
+    .mc-card-price{font-size:2.8rem}
+    .mc-right{width:100%}
+    .mc-card{max-width:100%}
+  }
+  </style>
 
 </div>
 
@@ -1023,7 +1137,7 @@ footer{background:var(--surface);border-top:1px solid var(--border);padding:64px
             <div class="cc-icon">✉️</div>
             <div>
               <div class="cc-label">Email</div>
-              <div class="cc-val">hello@studyhublko.in<br>membership@studyhublko.in</div>
+              <div class="cc-val"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="48202d242427083b3c3d2c31203d2a242327662126">[email&#160;protected]</a><br><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="14797179767166677c7d6454676061706d7c6176787f7b3a7d7a">[email&#160;protected]</a></div>
             </div>
           </div>
           <div class="hours-row">
@@ -1123,7 +1237,7 @@ footer{background:var(--surface);border-top:1px solid var(--border);padding:64px
         <h4>Contact</h4>
         <a href="#">📍 Indira Nagar, Lucknow</a>
         <a href="#">📞 +91-98390-45678</a>
-        <a href="#">✉️ hello@studyhublko.in</a>
+        <a href="#">✉️ <span class="__cf_email__" data-cfemail="8be3eee7e7e4cbf8fffeeff2e3fee9e7e0e4a5e2e5">[email&#160;protected]</span></a>
         <a href="#">🕐 Mon–Sat: 6AM–10PM</a>
         <a href="#">🌐 www.studyhublko.in</a>
       </div>
@@ -1135,7 +1249,7 @@ footer{background:var(--surface);border-top:1px solid var(--border);padding:64px
   </div>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 // Navigation
 function showPage(name){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
@@ -1189,23 +1303,4 @@ function submitForm(formId,okId,e){
   e.preventDefault();
   const ok=document.getElementById(okId);
   ok.style.display='block';
-  toast(okId==='suggest-ok'?'📚 Book suggestion submitted!':'✅ Message sent successfully!');
-  setTimeout(()=>ok.style.display='none',6000);
-  e.target.reset();
-}
-
-// Intersection observer for animations
-const io=new IntersectionObserver((entries)=>{
-  entries.forEach(entry=>{
-    if(entry.isIntersecting){
-      entry.target.style.animationPlayState='running';
-    }
-  });
-},{threshold:0.1});
-document.querySelectorAll('.fu').forEach(el=>{
-  el.style.animationPlayState='paused';
-  io.observe(el);
-});
-</script>
-</body>
-</html>
+  toast(okId==='suggest-ok'?'📚 Book suggestion submitted!':'✅ Message sent s
