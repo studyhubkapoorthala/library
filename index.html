@@ -3,954 +3,1080 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Nawabi Granth Sadan – Lucknow City Library</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Cormorant+Garamond:wght@300;400;500;600&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<title>Study Hub Library — Lucknow 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --cream: #f5f0e8;
-    --parchment: #ede4d0;
-    --ink: #1a1209;
-    --gold: #b8860b;
-    --gold-light: #d4a017;
-    --rust: #8b3a0f;
-    --deep-green: #1e3a2f;
-    --warm-gray: #6b5e4e;
-    --border: rgba(184,134,11,0.3);
-    --shadow: rgba(26,18,9,0.15);
-  }
+/* ══════════════════════════════════════
+   DESIGN SYSTEM
+══════════════════════════════════════ */
+:root {
+  --bg:        #0d0f14;
+  --surface:   #141720;
+  --surface2:  #1c2030;
+  --border:    rgba(255,255,255,0.07);
+  --gold:      #e8b84b;
+  --gold2:     #f5d07a;
+  --teal:      #3ecfb2;
+  --red:       #e85c4b;
+  --white:     #f0f2f7;
+  --muted:     #8890a4;
+  --accent:    #5b7eff;
+  --shadow:    rgba(0,0,0,0.5);
+}
 
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'DM Sans',sans-serif;
+  background:var(--bg);
+  color:var(--white);
+  font-size:16px;
+  line-height:1.7;
+  overflow-x:hidden;
+}
 
-  html { scroll-behavior: smooth; }
+/* ══ SCROLLBAR ══ */
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--gold);border-radius:3px}
 
-  body {
-    font-family: 'Cormorant Garamond', serif;
-    background: var(--cream);
-    color: var(--ink);
-    font-size: 18px;
-    line-height: 1.7;
-    overflow-x: hidden;
-  }
+/* ══ TICKER ══ */
+#ticker-bar{
+  background:linear-gradient(90deg,var(--gold),var(--gold2));
+  color:#0d0f14;
+  font-family:'Space Mono',monospace;
+  font-size:12px;
+  font-weight:700;
+  letter-spacing:0.5px;
+  padding:8px 48px 8px 16px;
+  position:relative;
+  overflow:hidden;
+}
+#ticker-text{display:inline-block;white-space:nowrap;animation:scroll-left 30s linear infinite}
+@keyframes scroll-left{
+  0%  {transform:translateX(100vw)}
+  100%{transform:translateX(-100%)}
+}
+#close-ticker{
+  position:absolute;right:12px;top:50%;transform:translateY(-50%);
+  background:rgba(0,0,0,0.2);border:none;color:#0d0f14;
+  width:22px;height:22px;border-radius:50%;cursor:pointer;
+  font-size:13px;display:flex;align-items:center;justify-content:center;
+  font-weight:700;
+}
 
-  /* ─── NOTIFICATION BANNER ─── */
-  #notification-bar {
-    background: var(--rust);
-    color: #fff;
-    font-family: 'Libre Baskerville', serif;
-    font-size: 13px;
-    text-align: center;
-    padding: 9px 50px 9px 20px;
-    position: relative;
-    overflow: hidden;
-  }
-  #notif-ticker { display: inline-block; white-space: nowrap; }
-  #notif-ticker.animate { animation: ticker 25s linear infinite; }
-  @keyframes ticker {
-    0%   { transform: translateX(100vw); }
-    100% { transform: translateX(-100%); }
-  }
-  #close-notif {
-    position: absolute; right: 14px; top: 50%; transform: translateY(-50%);
-    background: none; border: none; color: #fff; font-size: 18px; cursor: pointer;
-  }
+/* ══ NAVBAR ══ */
+nav{
+  background:rgba(13,15,20,0.95);
+  backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+  position:sticky;top:0;z-index:1000;
+}
+.nav-wrap{
+  max-width:1280px;margin:auto;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 28px;height:70px;
+}
+.logo{display:flex;align-items:center;gap:14px;text-decoration:none;cursor:pointer}
+.logo-mark{
+  width:40px;height:40px;border-radius:10px;
+  background:linear-gradient(135deg,var(--gold),var(--teal));
+  display:flex;align-items:center;justify-content:center;
+  font-size:20px;flex-shrink:0;
+}
+.logo-name{
+  font-family:'DM Serif Display',serif;
+  font-size:20px;color:var(--white);letter-spacing:0.3px;
+}
+.logo-sub{
+  font-family:'Space Mono',monospace;
+  font-size:10px;color:var(--gold);letter-spacing:2px;
+  text-transform:uppercase;display:block;margin-top:1px;
+}
+.nav-links{display:flex;align-items:center;gap:2px;list-style:none}
+.nav-links a{
+  color:var(--muted);text-decoration:none;
+  font-size:14px;font-weight:500;padding:8px 16px;
+  border-radius:8px;transition:all 0.2s;position:relative;
+}
+.nav-links a:hover,.nav-links a.active{
+  color:var(--white);background:var(--surface2);
+}
+.nav-links a.active::before{
+  content:'';position:absolute;bottom:4px;left:50%;transform:translateX(-50%);
+  width:4px;height:4px;border-radius:50%;background:var(--gold);
+}
+.nav-cta{
+  background:var(--gold);color:var(--bg);
+  padding:9px 22px;border-radius:8px;font-weight:700;
+  font-size:13px;text-decoration:none;transition:all 0.2s;
+  flex-shrink:0;
+}
+.nav-cta:hover{background:var(--gold2);transform:translateY(-1px)}
+.hamburger{
+  display:none;background:var(--surface2);border:1px solid var(--border);
+  color:var(--white);padding:8px 12px;border-radius:8px;cursor:pointer;font-size:16px;
+}
+.mob-menu{
+  display:none;background:var(--surface);
+  border-bottom:1px solid var(--border);padding:16px 28px 20px;
+}
+.mob-menu.open{display:block}
+.mob-menu a{
+  display:block;color:var(--muted);text-decoration:none;
+  padding:12px 0;border-bottom:1px solid var(--border);
+  font-weight:500;font-size:15px;transition:color 0.2s;
+}
+.mob-menu a:hover{color:var(--gold)}
 
-  /* ─── NAVBAR ─── */
-  nav {
-    background: var(--ink);
-    border-bottom: 2px solid var(--gold);
-    position: sticky; top: 0; z-index: 1000;
-    box-shadow: 0 4px 24px var(--shadow);
-  }
-  .nav-inner {
-    max-width: 1200px; margin: auto;
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 0 24px; height: 68px;
-  }
-  .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
-  .logo-icon {
-    width: 42px; height: 42px;
-    background: linear-gradient(135deg, var(--gold), var(--gold-light));
-    border-radius: 4px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 22px; color: var(--ink); flex-shrink: 0;
-  }
-  .logo-text { line-height: 1.2; }
-  .logo-text .name {
-    font-family: 'Playfair Display', serif; font-size: 18px;
-    color: var(--cream); font-weight: 700; letter-spacing: 0.5px;
-  }
-  .logo-text .tagline {
-    font-size: 11px; color: var(--gold); letter-spacing: 1.5px; text-transform: uppercase;
-  }
-  .nav-links {
-    display: flex; align-items: center; gap: 4px; list-style: none;
-  }
-  .nav-links a {
-    color: #ccc; text-decoration: none; font-family: 'Libre Baskerville', serif;
-    font-size: 13px; letter-spacing: 0.5px; padding: 8px 14px; border-radius: 3px;
-    transition: all 0.2s; position: relative;
-  }
-  .nav-links a:hover, .nav-links a.active {
-    color: var(--gold-light); background: rgba(184,134,11,0.1);
-  }
-  .nav-links a::after {
-    content: ''; position: absolute; bottom: 4px; left: 14px; right: 14px;
-    height: 1px; background: var(--gold); transform: scaleX(0); transition: transform 0.2s;
-  }
-  .nav-links a:hover::after, .nav-links a.active::after { transform: scaleX(1); }
-  .hamburger {
-    display: none; background: none; border: 1px solid var(--gold); color: var(--gold);
-    padding: 6px 10px; border-radius: 3px; cursor: pointer; font-size: 18px;
-  }
-  .mobile-menu {
-    display: none; background: #111; border-top: 1px solid var(--gold);
-    padding: 12px 24px 20px;
-  }
-  .mobile-menu.open { display: block; }
-  .mobile-menu a {
-    display: block; color: #ccc; text-decoration: none; padding: 10px 0;
-    border-bottom: 1px solid rgba(255,255,255,0.07); font-family: 'Libre Baskerville', serif;
-    font-size: 14px; transition: color 0.2s;
-  }
-  .mobile-menu a:hover { color: var(--gold-light); }
+/* ══ PAGES ══ */
+.page{display:none}
+.page.active{display:block}
 
-  /* ─── PAGE SECTIONS ─── */
-  .page { display: none; }
-  .page.active { display: block; }
+/* ══ PAGE HERO BANNER ══ */
+.page-banner{
+  background:linear-gradient(135deg,var(--surface) 0%,var(--bg) 100%);
+  border-bottom:1px solid var(--border);
+  padding:64px 28px 56px;text-align:center;
+  position:relative;overflow:hidden;
+}
+.page-banner::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 60% 80% at 50% 0%, rgba(232,184,75,0.08),transparent 70%);
+}
+.page-banner h1{
+  font-family:'DM Serif Display',serif;
+  font-size:clamp(2rem,4vw,3rem);color:var(--white);
+  margin-bottom:10px;position:relative;z-index:1;
+}
+.page-banner p{color:var(--muted);position:relative;z-index:1;font-size:1.05rem}
 
-  /* ─── HERO ─── */
-  .hero {
-    background: var(--deep-green);
-    min-height: 92vh;
-    display: flex; align-items: center;
-    position: relative; overflow: hidden;
-  }
-  .hero-pattern {
-    position: absolute; inset: 0;
-    background-image:
-      radial-gradient(circle at 20% 50%, rgba(184,134,11,0.08) 0%, transparent 50%),
-      radial-gradient(circle at 80% 20%, rgba(184,134,11,0.05) 0%, transparent 40%),
-      repeating-linear-gradient(45deg, transparent, transparent 40px, rgba(255,255,255,0.01) 40px, rgba(255,255,255,0.01) 41px);
-  }
-  .hero-content {
-    max-width: 1200px; margin: auto; padding: 60px 24px;
-    display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
-    position: relative; z-index: 2;
-  }
-  .hero-badge {
-    display: inline-block; background: rgba(184,134,11,0.15); border: 1px solid var(--gold);
-    color: var(--gold); font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
-    padding: 6px 16px; margin-bottom: 20px; border-radius: 2px;
-    font-family: 'Libre Baskerville', serif;
-  }
-  .hero h1 {
-    font-family: 'Playfair Display', serif; font-size: clamp(2.4rem, 5vw, 4rem);
-    color: var(--cream); line-height: 1.15; margin-bottom: 20px; font-weight: 900;
-  }
-  .hero h1 em { color: var(--gold-light); font-style: italic; }
-  .hero p { color: rgba(255,255,255,0.7); font-size: 1.1rem; margin-bottom: 36px; line-height: 1.8; }
-  .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
-  .btn-primary {
-    background: var(--gold); color: var(--ink); padding: 14px 32px;
-    font-family: 'Libre Baskerville', serif; font-size: 13px; font-weight: 700;
-    letter-spacing: 1px; text-transform: uppercase; border: none; cursor: pointer;
-    border-radius: 2px; transition: all 0.25s; text-decoration: none;
-  }
-  .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(184,134,11,0.4); }
-  .btn-outline {
-    border: 1px solid rgba(255,255,255,0.4); color: #fff; padding: 14px 32px;
-    background: none; font-family: 'Libre Baskerville', serif; font-size: 13px;
-    letter-spacing: 1px; text-transform: uppercase; cursor: pointer;
-    border-radius: 2px; transition: all 0.25s; text-decoration: none;
-  }
-  .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
-  .hero-visual {
-    display: flex; flex-direction: column; gap: 16px;
-  }
-  .stat-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-  .stat-card {
-    background: rgba(255,255,255,0.05); border: 1px solid rgba(184,134,11,0.2);
-    padding: 24px 20px; border-radius: 4px; text-align: center;
-    backdrop-filter: blur(10px);
-    transition: transform 0.3s;
-  }
-  .stat-card:hover { transform: translateY(-4px); border-color: var(--gold); }
-  .stat-number {
-    font-family: 'Playfair Display', serif; font-size: 2.2rem; color: var(--gold);
-    font-weight: 900; line-height: 1;
-  }
-  .stat-label { color: rgba(255,255,255,0.6); font-size: 13px; margin-top: 6px; letter-spacing: 0.5px; }
-  .hero-quote {
-    background: rgba(184,134,11,0.1); border-left: 3px solid var(--gold);
-    padding: 20px 24px; border-radius: 0 4px 4px 0;
-  }
-  .hero-quote p { color: rgba(255,255,255,0.8); font-style: italic; font-size: 1rem; }
-  .hero-quote cite { color: var(--gold); font-size: 13px; display: block; margin-top: 8px; font-style: normal; }
+/* ══ HERO ══ */
+.hero{
+  min-height:100vh;display:flex;align-items:center;
+  background:var(--bg);position:relative;overflow:hidden;
+}
+.hero-bg{
+  position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 50% 70% at 80% 50%, rgba(62,207,178,0.06) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 60% at 10% 30%, rgba(232,184,75,0.07) 0%, transparent 50%),
+    radial-gradient(ellipse 60% 40% at 50% 100%, rgba(91,126,255,0.05) 0%, transparent 60%);
+}
+.hero-grid-line{
+  position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+  background-size:60px 60px;
+}
+.hero-inner{
+  max-width:1280px;margin:auto;padding:80px 28px;
+  display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;
+  position:relative;z-index:2;
+}
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(232,184,75,0.1);border:1px solid rgba(232,184,75,0.3);
+  color:var(--gold);font-size:11px;font-weight:700;letter-spacing:2.5px;
+  text-transform:uppercase;padding:6px 14px;border-radius:100px;
+  margin-bottom:24px;font-family:'Space Mono',monospace;
+}
+.hero-eyebrow span{
+  width:6px;height:6px;border-radius:50%;background:var(--gold);
+  animation:pulse 2s ease-in-out infinite;
+}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.4;transform:scale(0.7)}}
+.hero h1{
+  font-family:'DM Serif Display',serif;
+  font-size:clamp(2.5rem,5.5vw,4.2rem);
+  line-height:1.1;color:var(--white);margin-bottom:20px;
+}
+.hero h1 .accent{color:var(--gold);font-style:italic}
+.hero h1 .line2{display:block}
+.hero-desc{color:var(--muted);font-size:1.05rem;max-width:480px;margin-bottom:36px;line-height:1.8}
+.hero-actions{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:44px}
+.btn-gold{
+  background:var(--gold);color:var(--bg);padding:14px 30px;
+  border-radius:10px;font-weight:700;font-size:14px;
+  border:none;cursor:pointer;transition:all 0.2s;text-decoration:none;
+  letter-spacing:0.3px;
+}
+.btn-gold:hover{background:var(--gold2);transform:translateY(-2px);box-shadow:0 8px 28px rgba(232,184,75,0.35)}
+.btn-ghost{
+  background:transparent;color:var(--white);padding:14px 30px;
+  border-radius:10px;font-weight:600;font-size:14px;
+  border:1px solid var(--border);cursor:pointer;transition:all 0.2s;text-decoration:none;
+}
+.btn-ghost:hover{border-color:var(--gold);color:var(--gold)}
+.hero-tags{display:flex;gap:10px;flex-wrap:wrap}
+.tag{
+  background:var(--surface2);border:1px solid var(--border);
+  color:var(--muted);font-size:12px;font-weight:600;
+  padding:6px 14px;border-radius:6px;font-family:'Space Mono',monospace;
+}
 
-  /* ─── SECTION STYLES ─── */
-  .section { padding: 80px 24px; }
-  .section-inner { max-width: 1200px; margin: auto; }
-  .section-header { text-align: center; margin-bottom: 56px; }
-  .section-label {
-    display: inline-block; color: var(--rust); font-size: 11px; letter-spacing: 3px;
-    text-transform: uppercase; font-family: 'Libre Baskerville', serif;
-    border-bottom: 1px solid var(--rust); padding-bottom: 4px; margin-bottom: 16px;
-  }
-  .section-title {
-    font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 3.5vw, 2.8rem);
-    color: var(--ink); font-weight: 700; margin-bottom: 16px;
-  }
-  .section-sub { color: var(--warm-gray); max-width: 560px; margin: auto; font-size: 1rem; }
-  .divider {
-    width: 60px; height: 2px; background: linear-gradient(90deg, var(--gold), var(--gold-light));
-    margin: 20px auto 0;
-  }
+/* Hero right side */
+.hero-right{display:flex;flex-direction:column;gap:16px}
+.stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.stat-box{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:14px;padding:24px 20px;
+  transition:all 0.3s;position:relative;overflow:hidden;
+}
+.stat-box::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,var(--gold),transparent);
+  opacity:0;transition:opacity 0.3s;
+}
+.stat-box:hover{border-color:rgba(232,184,75,0.3);transform:translateY(-3px)}
+.stat-box:hover::before{opacity:1}
+.stat-num{
+  font-family:'DM Serif Display',serif;font-size:2.2rem;
+  color:var(--gold);line-height:1;margin-bottom:4px;
+}
+.stat-lbl{color:var(--muted);font-size:13px;font-weight:500}
 
-  /* ─── NEWS ─── */
-  .news-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 28px; }
-  .news-card {
-    background: #fff; border: 1px solid var(--border); border-radius: 4px;
-    overflow: hidden; transition: all 0.3s; box-shadow: 0 2px 12px var(--shadow);
-  }
-  .news-card:hover { transform: translateY(-6px); box-shadow: 0 16px 40px var(--shadow); border-color: var(--gold); }
-  .news-img {
-    height: 180px; overflow: hidden;
-  }
-  .news-img-placeholder {
-    width: 100%; height: 100%;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 3rem;
-  }
-  .news-body { padding: 24px; }
-  .news-tag {
-    display: inline-block; background: var(--parchment); color: var(--rust);
-    font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
-    padding: 3px 10px; border-radius: 2px; margin-bottom: 10px;
-    font-family: 'Libre Baskerville', serif;
-  }
-  .news-title { font-family: 'Playfair Display', serif; font-size: 1.15rem; margin-bottom: 10px; line-height: 1.4; }
-  .news-excerpt { color: var(--warm-gray); font-size: 0.92rem; line-height: 1.6; margin-bottom: 16px; }
-  .news-meta { display: flex; justify-content: space-between; align-items: center; }
-  .news-date { font-size: 12px; color: #999; font-family: 'Libre Baskerville', serif; }
-  .read-more { font-size: 12px; color: var(--gold); text-decoration: none; font-weight: 700; letter-spacing: 0.5px; }
-  .read-more:hover { color: var(--rust); }
+.feature-card{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:14px;padding:22px 24px;
+  display:flex;align-items:center;gap:16px;
+}
+.feature-icon{
+  width:46px;height:46px;border-radius:10px;
+  background:linear-gradient(135deg,rgba(232,184,75,0.15),rgba(62,207,178,0.1));
+  display:flex;align-items:center;justify-content:center;
+  font-size:22px;flex-shrink:0;
+}
+.feature-text h4{font-size:15px;font-weight:600;margin-bottom:2px}
+.feature-text p{font-size:13px;color:var(--muted)}
 
-  /* ─── GALLERY ─── */
-  .gallery-filters {
-    display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; margin-bottom: 40px;
-  }
-  .filter-btn {
-    background: none; border: 1px solid var(--border); color: var(--warm-gray);
-    padding: 8px 22px; font-family: 'Libre Baskerville', serif; font-size: 13px;
-    cursor: pointer; border-radius: 2px; transition: all 0.2s;
-  }
-  .filter-btn:hover, .filter-btn.active {
-    background: var(--gold); border-color: var(--gold); color: var(--ink);
-  }
-  .gallery-grid {
-    display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-    gap: 20px;
-  }
-  .gallery-item {
-    border-radius: 4px; overflow: hidden; position: relative;
-    aspect-ratio: 4/3; cursor: pointer;
-    border: 1px solid var(--border); background: var(--parchment);
-    transition: transform 0.3s, box-shadow 0.3s;
-  }
-  .gallery-item:hover { transform: scale(1.03); box-shadow: 0 12px 32px var(--shadow); z-index: 2; }
-  .gallery-placeholder {
-    width: 100%; height: 100%;
-    display: flex; flex-direction: column; align-items: center; justify-content: center;
-    gap: 10px; font-size: 2.8rem;
-  }
-  .gallery-overlay {
-    position: absolute; inset: 0;
-    background: linear-gradient(to top, rgba(26,18,9,0.85) 0%, transparent 60%);
-    opacity: 0; transition: opacity 0.3s;
-    display: flex; align-items: flex-end; padding: 18px;
-  }
-  .gallery-item:hover .gallery-overlay { opacity: 1; }
-  .gallery-caption { color: #fff; font-size: 14px; line-height: 1.4; }
-  .gallery-caption strong { font-family: 'Playfair Display', serif; font-size: 16px; display: block; }
+/* ══ SECTIONS ══ */
+.section{padding:80px 28px}
+.section-inner{max-width:1280px;margin:auto}
+.sec-header{margin-bottom:52px}
+.sec-tag{
+  display:inline-block;
+  font-family:'Space Mono',monospace;font-size:11px;font-weight:700;
+  letter-spacing:2px;text-transform:uppercase;color:var(--teal);
+  margin-bottom:12px;
+}
+.sec-title{
+  font-family:'DM Serif Display',serif;
+  font-size:clamp(1.8rem,3.5vw,2.6rem);color:var(--white);
+  margin-bottom:12px;
+}
+.sec-sub{color:var(--muted);max-width:520px;font-size:1rem}
+.sec-header.center{text-align:center}
+.sec-header.center .sec-sub{margin:0 auto}
 
-  /* ─── SUGGEST ─── */
-  .suggest-section { background: var(--parchment); }
-  .suggest-form-wrap {
-    max-width: 720px; margin: auto;
-    background: #fff; border: 1px solid var(--border); border-radius: 6px;
-    padding: 48px; box-shadow: 0 8px 40px var(--shadow);
-  }
-  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px; }
-  .form-group { display: flex; flex-direction: column; gap: 6px; margin-bottom: 20px; }
-  .form-group label {
-    font-family: 'Libre Baskerville', serif; font-size: 12px; letter-spacing: 1px;
-    text-transform: uppercase; color: var(--warm-gray);
-  }
-  .form-group input, .form-group select, .form-group textarea {
-    border: 1px solid #ddd; border-radius: 3px; padding: 12px 16px;
-    font-family: 'Cormorant Garamond', serif; font-size: 16px; color: var(--ink);
-    background: var(--cream); transition: border-color 0.2s;
-    outline: none;
-  }
-  .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
-    border-color: var(--gold); box-shadow: 0 0 0 3px rgba(184,134,11,0.1);
-  }
-  .form-group textarea { resize: vertical; min-height: 120px; }
-  .form-submit {
-    width: 100%; background: var(--ink); color: var(--cream);
-    border: none; padding: 16px; font-family: 'Libre Baskerville', serif;
-    font-size: 14px; letter-spacing: 2px; text-transform: uppercase;
-    cursor: pointer; border-radius: 3px; transition: all 0.25s;
-  }
-  .form-submit:hover { background: var(--rust); }
-  .success-msg {
-    display: none; background: #e8f5e9; border: 1px solid #4caf50;
-    color: #2e7d32; padding: 14px 20px; border-radius: 4px;
-    margin-top: 16px; text-align: center; font-family: 'Libre Baskerville', serif; font-size: 14px;
-  }
+/* ══ SERVICES GRID ══ */
+.services-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:20px;
+}
+.service-card{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:16px;padding:32px 28px;
+  transition:all 0.3s;cursor:default;position:relative;overflow:hidden;
+}
+.service-card::after{
+  content:'';position:absolute;bottom:0;left:0;right:0;height:2px;
+  background:var(--ccolor,var(--gold));transform:scaleX(0);
+  transform-origin:left;transition:transform 0.3s;
+}
+.service-card:hover{border-color:rgba(255,255,255,0.12);transform:translateY(-4px);
+  box-shadow:0 20px 48px var(--shadow)}
+.service-card:hover::after{transform:scaleX(1)}
+.s-icon{
+  width:52px;height:52px;border-radius:12px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:24px;margin-bottom:20px;
+}
+.service-card h3{font-size:18px;font-weight:600;margin-bottom:10px;color:var(--white)}
+.service-card p{color:var(--muted);font-size:14px;line-height:1.7}
 
-  /* ─── CONTACT ─── */
-  .contact-grid { display: grid; grid-template-columns: 1fr 1.4fr; gap: 60px; align-items: start; }
-  .contact-info h3 {
-    font-family: 'Playfair Display', serif; font-size: 1.6rem; margin-bottom: 20px;
-  }
-  .info-block { display: flex; gap: 16px; margin-bottom: 28px; }
-  .info-icon {
-    width: 44px; height: 44px; background: var(--parchment); border: 1px solid var(--border);
-    border-radius: 4px; display: flex; align-items: center; justify-content: center;
-    font-size: 20px; flex-shrink: 0;
-  }
-  .info-label { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--warm-gray); margin-bottom: 4px; font-family: 'Libre Baskerville', serif; }
-  .info-value { font-size: 1rem; color: var(--ink); }
-  .map-embed {
-    width: 100%; height: 280px; background: var(--parchment);
-    border: 1px solid var(--border); border-radius: 4px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 3rem; margin-top: 24px; color: var(--warm-gray);
-    font-family: 'Playfair Display', serif;
-    flex-direction: column; gap: 10px;
-  }
-  .map-embed small { font-size: 14px; }
+/* ══ GALLERY ══ */
+.gallery-filters{
+  display:flex;gap:10px;flex-wrap:wrap;margin-bottom:36px;
+}
+.gf-btn{
+  background:var(--surface);border:1px solid var(--border);
+  color:var(--muted);font-size:13px;font-weight:600;
+  padding:8px 20px;border-radius:8px;cursor:pointer;transition:all 0.2s;
+  font-family:'DM Sans',sans-serif;
+}
+.gf-btn:hover,.gf-btn.active{
+  background:var(--gold);border-color:var(--gold);color:var(--bg);
+}
+.gallery-masonry{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
+  gap:16px;
+}
+.g-item{
+  border-radius:12px;overflow:hidden;position:relative;
+  cursor:pointer;aspect-ratio:4/3;
+  transition:transform 0.3s,box-shadow 0.3s;
+}
+.g-item:hover{transform:scale(1.02);box-shadow:0 16px 40px var(--shadow);z-index:2}
+.g-bg{
+  width:100%;height:100%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:3.2rem;border:1px solid var(--border);
+}
+.g-over{
+  position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(13,15,20,0.92) 0%,transparent 55%);
+  opacity:0;transition:opacity 0.3s;
+  display:flex;align-items:flex-end;padding:18px;
+}
+.g-item:hover .g-over{opacity:1}
+.g-caption strong{display:block;font-size:15px;font-weight:600;margin-bottom:3px}
+.g-caption span{font-size:12px;color:var(--muted)}
 
-  /* ─── NOTIFICATION PAGE ─── */
-  .notif-list { display: flex; flex-direction: column; gap: 16px; max-width: 860px; margin: auto; }
-  .notif-item {
-    background: #fff; border: 1px solid var(--border); border-radius: 4px;
-    padding: 24px 28px; display: flex; gap: 20px; align-items: flex-start;
-    box-shadow: 0 2px 10px var(--shadow); transition: border-color 0.2s;
-  }
-  .notif-item:hover { border-color: var(--gold); }
-  .notif-item.unread { border-left: 4px solid var(--gold); }
-  .notif-icon { font-size: 26px; flex-shrink: 0; margin-top: 2px; }
-  .notif-title { font-family: 'Playfair Display', serif; font-size: 1.1rem; margin-bottom: 6px; }
-  .notif-body { color: var(--warm-gray); font-size: 0.94rem; margin-bottom: 8px; }
-  .notif-time { font-size: 12px; color: #aaa; font-family: 'Libre Baskerville', serif; }
+/* ══ SUGGEST FORM ══ */
+.form-wrap{
+  max-width:760px;margin:auto;
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:20px;padding:52px 48px;
+}
+.form-2col{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:20px}
+.fg{display:flex;flex-direction:column;gap:6px;margin-bottom:20px}
+.fg label{
+  font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;
+  color:var(--muted);font-family:'Space Mono',monospace;
+}
+.fg input,.fg select,.fg textarea{
+  background:var(--bg);border:1px solid var(--border);
+  border-radius:10px;padding:13px 16px;
+  font-family:'DM Sans',sans-serif;font-size:15px;color:var(--white);
+  outline:none;transition:border-color 0.2s,box-shadow 0.2s;
+  -webkit-appearance:none;
+}
+.fg input:focus,.fg select:focus,.fg textarea:focus{
+  border-color:var(--gold);box-shadow:0 0 0 3px rgba(232,184,75,0.1);
+}
+.fg select option{background:var(--bg)}
+.fg textarea{resize:vertical;min-height:120px}
+.form-btn{
+  width:100%;background:var(--gold);color:var(--bg);
+  border:none;padding:16px;border-radius:10px;font-weight:700;
+  font-size:15px;letter-spacing:0.5px;cursor:pointer;transition:all 0.2s;
+  font-family:'DM Sans',sans-serif;
+}
+.form-btn:hover{background:var(--gold2)}
+.ok-msg{
+  display:none;background:rgba(62,207,178,0.1);
+  border:1px solid rgba(62,207,178,0.3);color:var(--teal);
+  padding:14px 20px;border-radius:10px;margin-top:16px;
+  text-align:center;font-weight:600;font-size:14px;
+}
 
-  /* ─── FOOTER ─── */
-  footer {
-    background: var(--ink); color: rgba(255,255,255,0.7);
-    padding: 56px 24px 28px;
-  }
-  .footer-inner { max-width: 1200px; margin: auto; }
-  .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 40px; }
-  .footer-brand p { font-size: 0.93rem; margin-top: 14px; line-height: 1.8; color: rgba(255,255,255,0.55); }
-  .footer-col h4 {
-    font-family: 'Libre Baskerville', serif; font-size: 12px; letter-spacing: 2px;
-    text-transform: uppercase; color: var(--gold); margin-bottom: 18px;
-  }
-  .footer-col a {
-    display: block; color: rgba(255,255,255,0.55); text-decoration: none;
-    font-size: 14px; margin-bottom: 8px; transition: color 0.2s;
-  }
-  .footer-col a:hover { color: var(--gold-light); }
-  .footer-bottom {
-    border-top: 1px solid rgba(255,255,255,0.1); padding-top: 24px;
-    display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;
-  }
-  .footer-bottom p { font-size: 13px; }
+/* ══ NOTIFICATIONS ══ */
+.notif-stack{display:flex;flex-direction:column;gap:14px;max-width:900px;margin:auto}
+.notif-card{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:14px;padding:22px 26px;
+  display:flex;gap:18px;align-items:flex-start;
+  transition:border-color 0.2s;
+}
+.notif-card.new{border-left:3px solid var(--gold)}
+.notif-card:hover{border-color:rgba(232,184,75,0.3)}
+.ni{font-size:26px;flex-shrink:0;margin-top:2px}
+.nt{font-size:16px;font-weight:600;margin-bottom:5px}
+.nb{color:var(--muted);font-size:14px;line-height:1.6;margin-bottom:7px}
+.ntime{
+  font-size:11px;color:#555;font-family:'Space Mono',monospace;
+  display:inline-block;background:var(--surface2);padding:3px 10px;border-radius:4px;
+}
+.badge-new{
+  display:inline-block;background:var(--gold);color:var(--bg);
+  font-size:9px;font-weight:800;letter-spacing:1px;
+  padding:2px 8px;border-radius:4px;margin-left:10px;
+  vertical-align:middle;font-family:'Space Mono',monospace;
+}
 
-  /* ─── SCROLLBAR ─── */
-  ::-webkit-scrollbar { width: 7px; }
-  ::-webkit-scrollbar-track { background: var(--cream); }
-  ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 4px; }
+/* ══ CONTACT ══ */
+.contact-layout{display:grid;grid-template-columns:1fr 1.5fr;gap:56px;align-items:start}
+.contact-card{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:16px;padding:36px 32px;margin-bottom:16px;
+  display:flex;gap:18px;align-items:flex-start;transition:border-color 0.2s;
+}
+.contact-card:hover{border-color:rgba(232,184,75,0.2)}
+.cc-icon{
+  width:46px;height:46px;border-radius:10px;
+  background:linear-gradient(135deg,rgba(232,184,75,0.12),rgba(62,207,178,0.08));
+  display:flex;align-items:center;justify-content:center;
+  font-size:20px;flex-shrink:0;
+}
+.cc-label{font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;
+  letter-spacing:1.5px;margin-bottom:5px;font-family:'Space Mono',monospace}
+.cc-val{font-size:15px;color:var(--white);line-height:1.6}
+.hours-row{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:16px;padding:24px 28px;
+}
+.hours-row h4{font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;
+  color:var(--teal);margin-bottom:16px;font-family:'Space Mono',monospace}
+.hour-item{display:flex;justify-content:space-between;padding:8px 0;
+  border-bottom:1px solid var(--border);font-size:14px}
+.hour-item:last-child{border-bottom:none}
+.hour-item .day{color:var(--muted)}
+.hour-item .time{color:var(--white);font-weight:600}
+.hour-item .closed{color:var(--red)}
 
-  /* ─── RESPONSIVE ─── */
-  @media (max-width: 900px) {
-    .hero-content { grid-template-columns: 1fr; gap: 40px; }
-    .hero-visual { display: none; }
-    .contact-grid { grid-template-columns: 1fr; }
-    .footer-grid { grid-template-columns: 1fr 1fr; }
-  }
-  @media (max-width: 640px) {
-    .nav-links { display: none; }
-    .hamburger { display: block; }
-    .form-row { grid-template-columns: 1fr; }
-    .suggest-form-wrap { padding: 28px 20px; }
-    .footer-grid { grid-template-columns: 1fr; }
-    .footer-bottom { flex-direction: column; text-align: center; }
-    .gallery-grid { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); }
-    .stat-cards { grid-template-columns: 1fr 1fr; }
-  }
+/* ══ ABOUT STRIP ══ */
+.about-strip{
+  background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border);
+}
+.about-inner{
+  max-width:1280px;margin:auto;padding:80px 28px;
+  display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;
+}
+.about-inner h2{
+  font-family:'DM Serif Display',serif;
+  font-size:clamp(2rem,3.5vw,2.8rem);margin-bottom:20px;
+}
+.about-inner h2 em{color:var(--gold);font-style:italic}
+.about-inner p{color:var(--muted);margin-bottom:16px;line-height:1.8}
+.about-highlights{display:flex;flex-direction:column;gap:14px}
+.ah{
+  display:flex;gap:14px;align-items:flex-start;
+  background:var(--bg);border:1px solid var(--border);
+  border-radius:12px;padding:18px 20px;
+}
+.ah-num{
+  font-family:'DM Serif Display',serif;font-size:1.8rem;
+  color:var(--gold);line-height:1;flex-shrink:0;min-width:60px;
+}
+.ah-text h4{font-weight:600;font-size:15px;margin-bottom:3px}
+.ah-text p{color:var(--muted);font-size:13px;line-height:1.5}
 
-  /* ─── PAGE HEADER ─── */
-  .page-hero {
-    background: var(--deep-green); padding: 60px 24px;
-    text-align: center; position: relative; overflow: hidden;
-  }
-  .page-hero::after {
-    content: ''; position: absolute; inset: 0;
-    background: radial-gradient(circle at 50% 50%, rgba(184,134,11,0.1) 0%, transparent 60%);
-  }
-  .page-hero-content { position: relative; z-index: 1; }
-  .page-hero h1 {
-    font-family: 'Playfair Display', serif; color: var(--cream);
-    font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 10px;
-  }
-  .page-hero p { color: rgba(255,255,255,0.6); font-size: 1.05rem; }
+/* ══ FOOTER ══ */
+footer{background:var(--surface);border-top:1px solid var(--border);padding:64px 28px 28px}
+.footer-inner{max-width:1280px;margin:auto}
+.footer-grid{
+  display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:44px;
+  margin-bottom:48px;
+}
+.footer-about p{color:var(--muted);font-size:14px;margin-top:16px;line-height:1.8;max-width:300px}
+.footer-col h4{
+  font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;
+  color:var(--gold);margin-bottom:18px;font-family:'Space Mono',monospace;
+}
+.footer-col a{
+  display:block;color:var(--muted);text-decoration:none;
+  font-size:14px;margin-bottom:10px;transition:color 0.2s;font-weight:500;
+}
+.footer-col a:hover{color:var(--white)}
+.footer-bottom{
+  border-top:1px solid var(--border);padding-top:24px;
+  display:flex;justify-content:space-between;align-items:center;
+  flex-wrap:wrap;gap:10px;
+}
+.footer-bottom p{font-size:13px;color:var(--muted)}
+.footer-bottom .motto{
+  font-family:'Space Mono',monospace;font-size:11px;color:var(--gold);
+  letter-spacing:0.5px;
+}
+.social-row{display:flex;gap:10px;margin-top:16px}
+.social-btn{
+  width:36px;height:36px;border-radius:8px;background:var(--bg);
+  border:1px solid var(--border);display:flex;align-items:center;justify-content:center;
+  font-size:16px;cursor:pointer;transition:all 0.2s;text-decoration:none;
+}
+.social-btn:hover{border-color:var(--gold);transform:translateY(-2px)}
 
-  /* Animate in */
-  @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
-  .fade-up { animation: fadeUp 0.6s ease forwards; opacity: 0; }
-  .delay-1 { animation-delay: 0.1s; }
-  .delay-2 { animation-delay: 0.2s; }
-  .delay-3 { animation-delay: 0.3s; }
-  .delay-4 { animation-delay: 0.4s; }
+/* ══ TOAST ══ */
+.toast{
+  position:fixed;bottom:24px;right:24px;z-index:9999;
+  background:var(--surface2);color:var(--white);
+  border:1px solid var(--border);border-left:3px solid var(--teal);
+  padding:14px 22px;border-radius:12px;
+  font-size:14px;font-weight:600;
+  box-shadow:0 10px 40px var(--shadow);
+  transform:translateY(80px);opacity:0;
+  transition:all 0.35s cubic-bezier(.17,.67,.35,1.1);
+  max-width:320px;
+}
+.toast.show{transform:translateY(0);opacity:1}
 
-  .toast {
-    position: fixed; bottom: 28px; right: 28px; z-index: 9999;
-    background: var(--deep-green); color: #fff; border-left: 4px solid var(--gold);
-    padding: 16px 24px; border-radius: 4px; font-family: 'Libre Baskerville', serif;
-    font-size: 14px; box-shadow: 0 8px 32px rgba(0,0,0,0.3);
-    transform: translateX(120%); transition: transform 0.4s cubic-bezier(.17,.67,.35,1.2);
-    max-width: 320px;
-  }
-  .toast.show { transform: translateX(0); }
+/* ══ ANIMATIONS ══ */
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(20px)}
+  to{opacity:1;transform:translateY(0)}
+}
+.fu{animation:fadeUp 0.6s ease forwards;opacity:0}
+.d1{animation-delay:0.1s}.d2{animation-delay:0.2s}
+.d3{animation-delay:0.3s}.d4{animation-delay:0.4s}
+
+/* ══ RESPONSIVE ══ */
+@media(max-width:1024px){
+  .hero-inner{grid-template-columns:1fr;gap:48px}
+  .hero-right{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .stat-grid{grid-template-columns:repeat(4,1fr)}
+  .about-inner{grid-template-columns:1fr;gap:40px}
+  .contact-layout{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:768px){
+  .nav-links,.nav-cta{display:none}
+  .hamburger{display:block}
+  .hero-right{grid-template-columns:1fr 1fr}
+  .form-2col{grid-template-columns:1fr}
+  .form-wrap{padding:28px 20px}
+  .stat-grid{grid-template-columns:1fr 1fr}
+  .footer-grid{grid-template-columns:1fr}
+  .footer-bottom{flex-direction:column;text-align:center}
+  .gallery-masonry{grid-template-columns:repeat(auto-fill,minmax(200px,1fr))}
+}
+@media(max-width:480px){
+  .hero-actions{flex-direction:column}
+  .hero-right{grid-template-columns:1fr}
+}
 </style>
 </head>
 <body>
 
-<!-- NOTIFICATION BAR -->
-<div id="notification-bar">
-  <span id="notif-ticker" class="animate">
-    📚 New arrivals: 500+ Urdu and Hindi books added this week &nbsp;|&nbsp; 🎭 Book reading event: 2nd March, 4PM &nbsp;|&nbsp; 🏛️ Library now open Sundays 10AM–4PM &nbsp;|&nbsp; 📖 Annual membership drive open — register today &nbsp;|&nbsp; 🌟 CBSE book collection updated for 2025–26
+<!-- TICKER -->
+<div id="ticker-bar">
+  <span id="ticker-text">
+    🔥 NEW: UPSC Study Zone launched — 200+ IAS books added &nbsp;|&nbsp; 
+    📅 Free Competitive Exam Seminar — 5 March 2026, 5PM &nbsp;|&nbsp; 
+    🎓 12th Board special reading hall open 7AM–10PM &nbsp;|&nbsp; 
+    💻 High-speed Wi-Fi upgraded across all floors &nbsp;|&nbsp; 
+    📚 Annual membership at just ₹499 — Register now!
   </span>
-  <button id="close-notif" onclick="closeNotif()">✕</button>
+  <button id="close-ticker" onclick="closeTicker()">✕</button>
 </div>
 
 <!-- NAVBAR -->
-<nav id="main-nav">
-  <div class="nav-inner">
-    <a class="logo" href="#" onclick="showPage('home')">
-      <div class="logo-icon">📚</div>
-      <div class="logo-text">
-        <div class="name">Nawabi Granth Sadan</div>
-        <div class="tagline">Lucknow City Library · Est. 1892</div>
+<nav>
+  <div class="nav-wrap">
+    <div class="logo" onclick="showPage('home')">
+      <div class="logo-mark">📚</div>
+      <div>
+        <div class="logo-name">Study Hub Library</div>
+        <span class="logo-sub">Lucknow · Est. 2016</span>
       </div>
-    </a>
+    </div>
     <ul class="nav-links" id="nav-links">
-      <li><a href="#" onclick="showPage('home')" class="active" id="nav-home">Home</a></li>
-      <li><a href="#" onclick="showPage('gallery')" id="nav-gallery">Gallery</a></li>
-      <li><a href="#" onclick="showPage('news')" id="nav-news">News</a></li>
-      <li><a href="#" onclick="showPage('suggest')" id="nav-suggest">Suggest a Book</a></li>
-      <li><a href="#" onclick="showPage('notifications')" id="nav-notifications">Notifications</a></li>
-      <li><a href="#" onclick="showPage('contact')" id="nav-contact">Contact</a></li>
+      <li><a href="#" id="nav-home" class="active" onclick="showPage('home')">Home</a></li>
+      <li><a href="#" id="nav-gallery" onclick="showPage('gallery')">Gallery</a></li>
+      <li><a href="#" id="nav-suggest" onclick="showPage('suggest')">Suggest a Book</a></li>
+      <li><a href="#" id="nav-notifications" onclick="showPage('notifications')">Notifications</a></li>
+      <li><a href="#" id="nav-contact" onclick="showPage('contact')">Contact</a></li>
     </ul>
-    <button class="hamburger" onclick="toggleMenu()">☰</button>
+    <a class="nav-cta" href="#" onclick="showPage('suggest')">Join Free</a>
+    <button class="hamburger" onclick="toggleMob()">☰</button>
   </div>
-  <div class="mobile-menu" id="mobile-menu">
-    <a href="#" onclick="showPage('home');toggleMenu()">🏠 Home</a>
-    <a href="#" onclick="showPage('gallery');toggleMenu()">🖼️ Gallery</a>
-    <a href="#" onclick="showPage('news');toggleMenu()">📰 News</a>
-    <a href="#" onclick="showPage('suggest');toggleMenu()">💡 Suggest a Book</a>
-    <a href="#" onclick="showPage('notifications');toggleMenu()">🔔 Notifications</a>
-    <a href="#" onclick="showPage('contact');toggleMenu()">📬 Contact</a>
+  <div class="mob-menu" id="mob-menu">
+    <a href="#" onclick="showPage('home');toggleMob()">🏠 Home</a>
+    <a href="#" onclick="showPage('gallery');toggleMob()">🖼️ Gallery</a>
+    <a href="#" onclick="showPage('suggest');toggleMob()">💡 Suggest a Book</a>
+    <a href="#" onclick="showPage('notifications');toggleMob()">🔔 Notifications</a>
+    <a href="#" onclick="showPage('contact');toggleMob()">📬 Contact</a>
   </div>
 </nav>
+
 <div id="toast" class="toast"></div>
 
-<!-- ════ HOME PAGE ════ -->
+<!-- ══════════════ HOME ══════════════ -->
 <div class="page active" id="page-home">
+
+  <!-- HERO -->
   <section class="hero">
-    <div class="hero-pattern"></div>
-    <div class="hero-content">
+    <div class="hero-bg"></div>
+    <div class="hero-grid-line"></div>
+    <div class="hero-inner">
+
       <div>
-        <div class="hero-badge fade-up">Lucknow's Premier Literary Heritage</div>
-        <h1 class="fade-up delay-1">Where Knowledge Meets <em>Nawabi Tehzeeb</em></h1>
-        <p class="fade-up delay-2">Step into a world of stories, wisdom, and culture at Nawabi Granth Sadan — Lucknow's most cherished library, serving the city since 1892 with over 1,20,000 books in Hindi, Urdu, English and Sanskrit.</p>
-        <div class="hero-btns fade-up delay-3">
-          <a class="btn-primary" href="#" onclick="showPage('gallery')">Explore Gallery</a>
-          <a class="btn-outline" href="#" onclick="showPage('suggest')">Suggest a Book</a>
+        <div class="hero-eyebrow fu"><span></span> Lucknow's Modern Study Library 2026</div>
+        <h1 class="fu d1">
+          Your Path to
+          <span class="line2">Success Starts <span class="accent">Here.</span></span>
+        </h1>
+        <p class="hero-desc fu d2">
+          Study Hub Library — Lucknow's most advanced learning space in the heart of Hazratganj. From UPSC prep to board exams, we give every student the environment, resources and community to excel.
+        </p>
+        <div class="hero-actions fu d3">
+          <a class="btn-gold" href="#" onclick="showPage('gallery')">Explore Library</a>
+          <a class="btn-ghost" href="#" onclick="showPage('contact')">Visit Us Today</a>
+        </div>
+        <div class="hero-tags fu d4">
+          <span class="tag">#UPSC Ready</span>
+          <span class="tag">#AC Study Halls</span>
+          <span class="tag">#Wi-Fi Enabled</span>
+          <span class="tag">#Board Exams</span>
+          <span class="tag">#24hr Access</span>
         </div>
       </div>
-      <div class="hero-visual fade-up delay-4">
-        <div class="stat-cards">
-          <div class="stat-card"><div class="stat-number">1.2L+</div><div class="stat-label">Books Available</div></div>
-          <div class="stat-card"><div class="stat-number">8,400+</div><div class="stat-label">Active Members</div></div>
-          <div class="stat-card"><div class="stat-number">130+</div><div class="stat-label">Years of Legacy</div></div>
-          <div class="stat-card"><div class="stat-number">12</div><div class="stat-label">Reading Halls</div></div>
+
+      <div class="hero-right fu d2">
+        <div class="stat-grid">
+          <div class="stat-box">
+            <div class="stat-num">50K+</div>
+            <div class="stat-lbl">Books Available</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num">3,200+</div>
+            <div class="stat-lbl">Active Members</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num">8</div>
+            <div class="stat-lbl">Study Halls</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num">9+</div>
+            <div class="stat-lbl">Years of Trust</div>
+          </div>
         </div>
-        <div class="hero-quote">
-          <p>"Kitabein behtareen dost hain — jo kabhi dhoka nahi deti, kabhi judaa nahi hoti."</p>
-          <cite>— Library Motto, Nawabi Granth Sadan</cite>
+        <div class="feature-card">
+          <div class="feature-icon">🏆</div>
+          <div class="feature-text">
+            <h4>Ranked #1 Study Library in Lucknow</h4>
+            <p>Voted by students & educators — UP Education Review 2025</p>
+          </div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">⚡</div>
+          <div class="feature-text">
+            <h4>Open from 6 AM — available 7 days a week</h4>
+            <p>Extended hours during board exam seasons</p>
+          </div>
         </div>
       </div>
+
     </div>
   </section>
 
-  <!-- FEATURES -->
-  <section class="section" style="background: var(--parchment);">
-    <div class="section-inner">
-      <div class="section-header">
-        <span class="section-label">Our Services</span>
-        <h2 class="section-title">Everything a Reader Needs</h2>
-        <div class="divider"></div>
+  <!-- ABOUT STRIP -->
+  <div class="about-strip">
+    <div class="about-inner">
+      <div>
+        <p class="sec-tag">Who We Are</p>
+        <h2>Lucknow's <em>Smartest</em> Study Space</h2>
+        <p>Study Hub Library is not just a place to read — it's a complete academic ecosystem built for students who are serious about their goals. Located in the cultural heart of Lucknow, we blend traditional library heritage with modern learning facilities.</p>
+        <p>Whether you're preparing for UPSC, SSC, NEET, JEE, board exams or simply looking for a focused place to read and grow — Study Hub is your home.</p>
+        <a class="btn-gold" href="#" onclick="showPage('contact')" style="display:inline-block;margin-top:10px">Get Membership →</a>
       </div>
-      <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:24px;">
-        <div class="stat-card" style="background:#fff; text-align:left; padding:28px;">
-          <div style="font-size:2rem; margin-bottom:14px;">📚</div>
-          <h3 style="font-family:'Playfair Display',serif; font-size:1.15rem; margin-bottom:8px;">Book Lending</h3>
-          <p style="font-size:0.9rem; color:var(--warm-gray);">Borrow up to 4 books for 15 days. Online renewal available for members.</p>
+      <div class="about-highlights">
+        <div class="ah">
+          <div class="ah-num">01</div>
+          <div class="ah-text">
+            <h4>Curated Study Collections</h4>
+            <p>Subject-specific shelves for UPSC, SSC, banking, engineering, medicine, literature and more.</p>
+          </div>
         </div>
-        <div class="stat-card" style="background:#fff; text-align:left; padding:28px;">
-          <div style="font-size:2rem; margin-bottom:14px;">🖥️</div>
-          <h3 style="font-family:'Playfair Display',serif; font-size:1.15rem; margin-bottom:8px;">Digital Library</h3>
-          <p style="font-size:0.9rem; color:var(--warm-gray);">Access 25,000+ eBooks and digital journals from any device, anytime.</p>
+        <div class="ah">
+          <div class="ah-num">02</div>
+          <div class="ah-text">
+            <h4>Expert-Led Seminars</h4>
+            <p>Monthly free sessions by IAS officers, professors and subject matter experts for members.</p>
+          </div>
         </div>
-        <div class="stat-card" style="background:#fff; text-align:left; padding:28px;">
-          <div style="font-size:2rem; margin-bottom:14px;">🎓</div>
-          <h3 style="font-family:'Playfair Display',serif; font-size:1.15rem; margin-bottom:8px;">Study Halls</h3>
-          <p style="font-size:0.9rem; color:var(--warm-gray);">Quiet, AC-equipped study rooms with Wi-Fi and printing facilities.</p>
-        </div>
-        <div class="stat-card" style="background:#fff; text-align:left; padding:28px;">
-          <div style="font-size:2rem; margin-bottom:14px;">🎭</div>
-          <h3 style="font-family:'Playfair Display',serif; font-size:1.15rem; margin-bottom:8px;">Cultural Events</h3>
-          <p style="font-size:0.9rem; color:var(--warm-gray);">Monthly mushairas, book launches, and storytelling sessions for all ages.</p>
-        </div>
-        <div class="stat-card" style="background:#fff; text-align:left; padding:28px;">
-          <div style="font-size:2rem; margin-bottom:14px;">📰</div>
-          <h3 style="font-family:'Playfair Display',serif; font-size:1.15rem; margin-bottom:8px;">Newspaper Archive</h3>
-          <p style="font-size:0.9rem; color:var(--warm-gray);">Rare Urdu newspapers from 1900s – a treasure of Lucknow's history.</p>
-        </div>
-        <div class="stat-card" style="background:#fff; text-align:left; padding:28px;">
-          <div style="font-size:2rem; margin-bottom:14px;">👧</div>
-          <h3 style="font-family:'Playfair Display',serif; font-size:1.15rem; margin-bottom:8px;">Children's Corner</h3>
-          <p style="font-size:0.9rem; color:var(--warm-gray);">A dedicated wing with illustrated books and storytelling for ages 3–14.</p>
+        <div class="ah">
+          <div class="ah-num">03</div>
+          <div class="ah-text">
+            <h4>Silence Guaranteed</h4>
+            <p>Dedicated silent zones and group discussion rooms — you choose your study mode.</p>
+          </div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
 
-  <!-- NEWS PREVIEW -->
+  <!-- SERVICES -->
   <section class="section">
     <div class="section-inner">
-      <div class="section-header">
-        <span class="section-label">Latest Updates</span>
-        <h2 class="section-title">News & Announcements</h2>
-        <div class="divider"></div>
+      <div class="sec-header center">
+        <p class="sec-tag">What We Offer</p>
+        <h2 class="sec-title">Everything a Serious Student Needs</h2>
+        <p class="sec-sub">Designed to eliminate every possible excuse and help you focus on what matters — learning.</p>
       </div>
-      <div class="news-grid">
-        <div class="news-card">
-          <div class="news-img"><div class="news-img-placeholder" style="background:#e8f4e8;">📖</div></div>
-          <div class="news-body">
-            <span class="news-tag">Announcement</span>
-            <h3 class="news-title">New Urdu Literature Wing Inaugurated</h3>
-            <p class="news-excerpt">A dedicated section for Urdu poetry and prose, featuring rare manuscripts from the Nawabi era, is now open to the public.</p>
-            <div class="news-meta"><span class="news-date">18 Feb 2026</span><a class="read-more" href="#">Read More →</a></div>
-          </div>
+      <div class="services-grid">
+        <div class="service-card" style="--ccolor:var(--gold)">
+          <div class="s-icon" style="background:rgba(232,184,75,0.1)">📚</div>
+          <h3>50,000+ Book Collection</h3>
+          <p>Comprehensive library covering competitive exams, academics, Urdu & Hindi literature, science, history and general knowledge — updated quarterly.</p>
         </div>
-        <div class="news-card">
-          <div class="news-img"><div class="news-img-placeholder" style="background:#fff8e1;">🎭</div></div>
-          <div class="news-body">
-            <span class="news-tag">Event</span>
-            <h3 class="news-title">Mushaira Night — 2nd March 2026</h3>
-            <p class="news-excerpt">Join us for an enchanting evening of Urdu poetry with acclaimed poets from Lucknow, Delhi and Bhopal. Entry free for members.</p>
-            <div class="news-meta"><span class="news-date">15 Feb 2026</span><a class="read-more" href="#">Read More →</a></div>
-          </div>
+        <div class="service-card" style="--ccolor:var(--teal)">
+          <div class="s-icon" style="background:rgba(62,207,178,0.1)">🏛️</div>
+          <h3>AC Study Halls</h3>
+          <p>8 spacious air-conditioned halls with ergonomic seating, individual reading lamps, and power sockets at every seat. Capacity for 400+ students.</p>
         </div>
-        <div class="news-card">
-          <div class="news-img"><div class="news-img-placeholder" style="background:#fce4ec;">🌟</div></div>
-          <div class="news-body">
-            <span class="news-tag">Membership</span>
-            <h3 class="news-title">Annual Membership Drive 2026 Open</h3>
-            <p class="news-excerpt">Register for annual membership at ₹500 and get unlimited access to all reading halls, digital resources and events.</p>
-            <div class="news-meta"><span class="news-date">10 Feb 2026</span><a class="read-more" href="#">Read More →</a></div>
-          </div>
+        <div class="service-card" style="--ccolor:var(--accent)">
+          <div class="s-icon" style="background:rgba(91,126,255,0.1)">💻</div>
+          <h3>Digital Resources Hub</h3>
+          <p>High-speed Wi-Fi, 60 desktop workstations, access to NCERT, Drishti IAS, Unacademy and 15,000+ digital journals and study materials.</p>
         </div>
-      </div>
-      <div style="text-align:center; margin-top:36px;">
-        <a class="btn-primary" href="#" onclick="showPage('news')">View All News</a>
+        <div class="service-card" style="--ccolor:#e85c4b">
+          <div class="s-icon" style="background:rgba(232,92,75,0.1)">🎓</div>
+          <h3>UPSC & Competitive Zone</h3>
+          <p>Dedicated section for IAS/IPS aspirants with curated booklist, previous year papers, answer writing practice material and current affairs files.</p>
+        </div>
+        <div class="service-card" style="--ccolor:#b48aff">
+          <div class="s-icon" style="background:rgba(180,138,255,0.1)">📖</div>
+          <h3>Book Lending Service</h3>
+          <p>Borrow up to 3 books for 14 days. Online renewals available through member portal. No late fine for the first renewal.</p>
+        </div>
+        <div class="service-card" style="--ccolor:var(--teal)">
+          <div class="s-icon" style="background:rgba(62,207,178,0.1)">☕</div>
+          <h3>Reader's Café</h3>
+          <p>In-house café serving chai, coffee and light snacks. Because great study sessions deserve great fuel. Open from 7AM to 9PM.</p>
+        </div>
+        <div class="service-card" style="--ccolor:var(--gold)">
+          <div class="s-icon" style="background:rgba(232,184,75,0.1)">👧</div>
+          <h3>Children's Learning Corner</h3>
+          <p>A bright, illustrated section for kids aged 4–14. Story books, activity kits, and weekend reading events to build the love of reading early.</p>
+        </div>
+        <div class="service-card" style="--ccolor:var(--accent)">
+          <div class="s-icon" style="background:rgba(91,126,255,0.1)">🗞️</div>
+          <h3>Newspaper & Magazine Wall</h3>
+          <p>15+ daily newspapers including The Hindu, Hindustan, Dainik Jagran and 30+ magazines for current affairs and general reading.</p>
+        </div>
+        <div class="service-card" style="--ccolor:#e85c4b">
+          <div class="s-icon" style="background:rgba(232,92,75,0.1)">🖨️</div>
+          <h3>Print, Scan & Photocopy</h3>
+          <p>Self-service printing, scanning and photocopying stations available at affordable rates throughout all floors of the library.</p>
+        </div>
       </div>
     </div>
   </section>
+
+  <!-- MEMBERSHIP CTA -->
+  <section class="section" style="padding-top:0">
+    <div class="section-inner">
+      <div style="background:linear-gradient(135deg,var(--surface) 0%,#1a2040 100%);border:1px solid var(--border);border-radius:24px;padding:60px 48px;display:grid;grid-template-columns:1fr auto;gap:40px;align-items:center;position:relative;overflow:hidden;">
+        <div style="position:absolute;right:0;top:0;bottom:0;width:300px;background:radial-gradient(circle at 80% 50%,rgba(232,184,75,0.08),transparent 70%);pointer-events:none;"></div>
+        <div>
+          <p class="sec-tag">Membership 2026</p>
+          <h2 style="font-family:'DM Serif Display',serif;font-size:clamp(1.6rem,3vw,2.2rem);margin-bottom:12px;color:var(--white)">Join Study Hub Today — <span style="color:var(--gold)">Just ₹499/year</span></h2>
+          <p style="color:var(--muted);max-width:480px;font-size:15px">Unlimited library access, free event entry, digital resources, book lending privileges, study hall priority booking and much more.</p>
+        </div>
+        <div style="flex-shrink:0;display:flex;flex-direction:column;gap:12px;align-items:flex-end;">
+          <a class="btn-gold" href="#" onclick="showPage('suggest')">Register Now →</a>
+          <a class="btn-ghost" href="#" onclick="showPage('contact')" style="text-align:center">Learn More</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
 </div>
 
-<!-- ════ GALLERY PAGE ════ -->
+<!-- ══════════════ GALLERY ══════════════ -->
 <div class="page" id="page-gallery">
-  <div class="page-hero">
-    <div class="page-hero-content">
-      <h1 class="fade-up">Library Gallery</h1>
-      <p class="fade-up delay-1">A visual journey through our heritage, halls, and collections</p>
-    </div>
+  <div class="page-banner">
+    <h1 class="fu">Library Gallery</h1>
+    <p class="fu d1">Take a visual tour of Study Hub's world-class facilities and spaces</p>
   </div>
   <section class="section">
     <div class="section-inner">
       <div class="gallery-filters">
-        <button class="filter-btn active" onclick="filterGallery('all',this)">All</button>
-        <button class="filter-btn" onclick="filterGallery('heritage',this)">Heritage</button>
-        <button class="filter-btn" onclick="filterGallery('reading',this)">Reading Halls</button>
-        <button class="filter-btn" onclick="filterGallery('collections',this)">Collections</button>
-        <button class="filter-btn" onclick="filterGallery('events',this)">Events</button>
-        <button class="filter-btn" onclick="filterGallery('children',this)">Children's Corner</button>
+        <button class="gf-btn active" onclick="filterG('all',this)">All Photos</button>
+        <button class="gf-btn" onclick="filterG('halls',this)">Study Halls</button>
+        <button class="gf-btn" onclick="filterG('collection',this)">Collections</button>
+        <button class="gf-btn" onclick="filterG('digital',this)">Digital Zone</button>
+        <button class="gf-btn" onclick="filterG('events',this)">Events</button>
+        <button class="gf-btn" onclick="filterG('facilities',this)">Facilities</button>
       </div>
-      <div class="gallery-grid" id="gallery-grid">
-        <div class="gallery-item" data-cat="heritage">
-          <div class="gallery-placeholder" style="background: linear-gradient(135deg,#d4a017,#8b3a0f);">🏛️</div>
-          <div class="gallery-overlay"><div class="gallery-caption"><strong>Main Entrance</strong>The 1892 colonial-era façade</div></div>
+      <div class="gallery-masonry" id="gallery-grid">
+
+        <div class="g-item" data-cat="halls">
+          <div class="g-bg" style="background:linear-gradient(135deg,#1e3a2f,#2d5a42)">🏛️</div>
+          <div class="g-over"><div class="g-caption"><strong>Grand Study Hall — Floor 1</strong><span>Capacity: 120 students | AC + Lamps</span></div></div>
         </div>
-        <div class="gallery-item" data-cat="reading">
-          <div class="gallery-placeholder" style="background: linear-gradient(135deg,#1e3a2f,#2d5a42);">📖</div>
-          <div class="gallery-overlay"><div class="gallery-caption"><strong>Grand Reading Hall</strong>Capacity: 200 readers</div></div>
+        <div class="g-item" data-cat="halls">
+          <div class="g-bg" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">🌙</div>
+          <div class="g-over"><div class="g-caption"><strong>Night Study Hall</strong><span>Open till midnight during exam seasons</span></div></div>
         </div>
-        <div class="gallery-item" data-cat="collections">
-          <div class="gallery-placeholder" style="background: linear-gradient(135deg,#3d2b1f,#7a4a2e);">📚</div>
-          <div class="gallery-overlay"><div class="gallery-caption"><strong>Urdu Manuscript Collection</strong>17th–19th century rare texts</div></div>
+        <div class="g-item" data-cat="collection">
+          <div class="g-bg" style="background:linear-gradient(135deg,#3d2b1f,#7a4a2e)">📚</div>
+          <div class="g-over"><div class="g-caption"><strong>UPSC & Civil Services Wing</strong><span>2,000+ curated IAS prep books</span></div></div>
         </div>
-        <div class="gallery-item" data-cat="events">
-          <div class="gallery-placeholder" style="background: linear-gradient(135deg,#1a1209,#3d2b1f);">🎭</div>
-          <div class="gallery-overlay"><div class="gallery-caption"><strong>Mushaira 2025</strong>Annual poetry evening</div></div>
+        <div class="g-item" data-cat="collection">
+          <div class="g-bg" style="background:linear-gradient(135deg,#1b5e20,#2e7d32)">🌿</div>
+          <div class="g-over"><div class="g-caption"><strong>Hindi & Urdu Literature</strong><span>Rare books & modern prose collections</span></div></div>
         </div>
-        <div class="gallery-item" data-cat="children">
-          <div class="gallery-placeholder" style="background: linear-gradient(135deg,#e8d5a3,#d4a017);">👧</div>
-          <div class="gallery-overlay"><div class="gallery-caption"><strong>Children's Wing</strong>Colourful and imaginative</div></div>
+        <div class="g-item" data-cat="digital">
+          <div class="g-bg" style="background:linear-gradient(135deg,#0d47a1,#1565c0)">💻</div>
+          <div class="g-over"><div class="g-caption"><strong>Digital Workstations</strong><span>60 high-speed computers — free for members</span></div></div>
         </div>
-        <div class="gallery-item" data-cat="heritage">
-          <div class="gallery-placeholder" style="background: linear-gradient(135deg,#2c3e50,#1a252f);">🕰️</div>
-          <div class="gallery-overlay"><div class="gallery-caption"><strong>Clock Tower</strong>An iconic Lucknow landmark</div></div>
+        <div class="g-item" data-cat="digital">
+          <div class="g-bg" style="background:linear-gradient(135deg,#004d40,#00695c)">📡</div>
+          <div class="g-over"><div class="g-caption"><strong>Wi-Fi Zone</strong><span>1 Gbps fibre — blazing fast throughout</span></div></div>
         </div>
-        <div class="gallery-item" data-cat="reading">
-          <div class="gallery-placeholder" style="background: linear-gradient(135deg,#4a3728,#6b5e4e);">☕</div>
-          <div class="gallery-overlay"><div class="gallery-caption"><strong>Reader's Café</strong>Books and chai — perfect combo</div></div>
+        <div class="g-item" data-cat="events">
+          <div class="g-bg" style="background:linear-gradient(135deg,#b71c1c,#c62828)">🎭</div>
+          <div class="g-over"><div class="g-caption"><strong>IAS Seminar — Jan 2026</strong><span>200+ students attended the free session</span></div></div>
         </div>
-        <div class="gallery-item" data-cat="collections">
-          <div class="gallery-placeholder" style="background: linear-gradient(135deg,#1b5e20,#388e3c);">🌿</div>
-          <div class="gallery-overlay"><div class="gallery-caption"><strong>Sanskrit Collection</strong>Vedic texts and commentaries</div></div>
+        <div class="g-item" data-cat="events">
+          <div class="g-bg" style="background:linear-gradient(135deg,#e65100,#f57c00)">🏆</div>
+          <div class="g-over"><div class="g-caption"><strong>Annual Results Celebration 2025</strong><span>Our 47 UPSC selections felicitated</span></div></div>
         </div>
-        <div class="gallery-item" data-cat="events">
-          <div class="gallery-placeholder" style="background: linear-gradient(135deg,#b71c1c,#e53935);">🎉</div>
-          <div class="gallery-overlay"><div class="gallery-caption"><strong>Book Launch 2025</strong>Author reading event</div></div>
+        <div class="g-item" data-cat="facilities">
+          <div class="g-bg" style="background:linear-gradient(135deg,#4a148c,#6a1b9a)">☕</div>
+          <div class="g-over"><div class="g-caption"><strong>Reader's Café</strong><span>Chai, coffee & snacks — open 7AM–9PM</span></div></div>
         </div>
-        <div class="gallery-item" data-cat="reading">
-          <div class="gallery-placeholder" style="background: linear-gradient(135deg,#37474f,#546e7a);">🖥️</div>
-          <div class="gallery-overlay"><div class="gallery-caption"><strong>Digital Zone</strong>50+ computer workstations</div></div>
+        <div class="g-item" data-cat="facilities">
+          <div class="g-bg" style="background:linear-gradient(135deg,#37474f,#546e7a)">🖨️</div>
+          <div class="g-over"><div class="g-caption"><strong>Print & Copy Centre</strong><span>Self-service at affordable rates</span></div></div>
         </div>
-        <div class="gallery-item" data-cat="heritage">
-          <div class="gallery-placeholder" style="background: linear-gradient(135deg,#f9a825,#f57f17);">🌅</div>
-          <div class="gallery-overlay"><div class="gallery-caption"><strong>Heritage Courtyard</strong>Central garden and fountain</div></div>
+        <div class="g-item" data-cat="halls">
+          <div class="g-bg" style="background:linear-gradient(135deg,#e8b84b,#b8860b)">👥</div>
+          <div class="g-over"><div class="g-caption"><strong>Group Discussion Rooms</strong><span>6 soundproof rooms — booking available</span></div></div>
         </div>
-        <div class="gallery-item" data-cat="children">
-          <div class="gallery-placeholder" style="background: linear-gradient(135deg,#e91e63,#c2185b);">🎈</div>
-          <div class="gallery-overlay"><div class="gallery-caption"><strong>Story Time</strong>Weekend storytelling sessions</div></div>
+        <div class="g-item" data-cat="facilities">
+          <div class="g-bg" style="background:linear-gradient(135deg,#880e4f,#ad1457)">👧</div>
+          <div class="g-over"><div class="g-caption"><strong>Children's Learning Corner</strong><span>Bright, colourful space for kids 4–14</span></div></div>
         </div>
+
       </div>
     </div>
   </section>
 </div>
 
-<!-- ════ NEWS PAGE ════ -->
-<div class="page" id="page-news">
-  <div class="page-hero">
-    <div class="page-hero-content">
-      <h1 class="fade-up">News & Events</h1>
-      <p class="fade-up delay-1">Stay updated with the latest from Nawabi Granth Sadan</p>
-    </div>
+<!-- ══════════════ SUGGEST ══════════════ -->
+<div class="page" id="page-suggest">
+  <div class="page-banner">
+    <h1 class="fu">Suggest a Book</h1>
+    <p class="fu d1">Help us build the best study library in Lucknow — your voice shapes our collection</p>
   </div>
   <section class="section">
     <div class="section-inner">
-      <div class="news-grid">
-        <div class="news-card">
-          <div class="news-img"><div class="news-img-placeholder" style="background:#e8f4e8;">📖</div></div>
-          <div class="news-body">
-            <span class="news-tag">Announcement</span>
-            <h3 class="news-title">New Urdu Literature Wing Inaugurated</h3>
-            <p class="news-excerpt">A dedicated section for Urdu poetry and prose, featuring rare manuscripts from the Nawabi era, is now open to the public. This wing houses over 12,000 books and 400 rare manuscripts.</p>
-            <div class="news-meta"><span class="news-date">18 Feb 2026</span></div>
-          </div>
-        </div>
-        <div class="news-card">
-          <div class="news-img"><div class="news-img-placeholder" style="background:#fff8e1;">🎭</div></div>
-          <div class="news-body">
-            <span class="news-tag">Event</span>
-            <h3 class="news-title">Mushaira Night — 2nd March 2026</h3>
-            <p class="news-excerpt">Join us for an enchanting evening of Urdu poetry. Poets from across India will recite works of Mir, Ghalib and contemporary voices. Entry free for library members.</p>
-            <div class="news-meta"><span class="news-date">15 Feb 2026</span></div>
-          </div>
-        </div>
-        <div class="news-card">
-          <div class="news-img"><div class="news-img-placeholder" style="background:#fce4ec;">🌟</div></div>
-          <div class="news-body">
-            <span class="news-tag">Membership</span>
-            <h3 class="news-title">Annual Membership Drive 2026 Open</h3>
-            <p class="news-excerpt">Register for annual membership at ₹500 only. Members enjoy unlimited book borrowing, digital access, event entry and priority study-hall booking.</p>
-            <div class="news-meta"><span class="news-date">10 Feb 2026</span></div>
-          </div>
-        </div>
-        <div class="news-card">
-          <div class="news-img"><div class="news-img-placeholder" style="background:#e3f2fd;">🏆</div></div>
-          <div class="news-body">
-            <span class="news-tag">Achievement</span>
-            <h3 class="news-title">National Award for Heritage Library Preservation</h3>
-            <p class="news-excerpt">The Ministry of Culture has recognized Nawabi Granth Sadan for its outstanding work in preserving rare Nawabi-era manuscripts and documents of historical significance.</p>
-            <div class="news-meta"><span class="news-date">5 Feb 2026</span></div>
-          </div>
-        </div>
-        <div class="news-card">
-          <div class="news-img"><div class="news-img-placeholder" style="background:#f3e5f5;">👧</div></div>
-          <div class="news-body">
-            <span class="news-tag">Children</span>
-            <h3 class="news-title">Summer Reading Programme Registration Opens</h3>
-            <p class="news-excerpt">Enrol your child (age 5–14) in our Summer Reading Challenge. Exciting prizes, certificates, and exclusive events await young readers this May–June.</p>
-            <div class="news-meta"><span class="news-date">1 Feb 2026</span></div>
-          </div>
-        </div>
-        <div class="news-card">
-          <div class="news-img"><div class="news-img-placeholder" style="background:#e0f7fa;">🖥️</div></div>
-          <div class="news-body">
-            <span class="news-tag">Digital</span>
-            <h3 class="news-title">25,000 eBooks Now Available Online</h3>
-            <p class="news-excerpt">Our digital collection has expanded to 25,000 eBooks accessible through the member portal. Multi-language support including Hindi, Urdu, English and regional languages.</p>
-            <div class="news-meta"><span class="news-date">28 Jan 2026</span></div>
-          </div>
-        </div>
+      <div style="text-align:center;margin-bottom:44px">
+        <p class="sec-tag">Reader's Voice</p>
+        <h2 class="sec-title">We Listen to Our Readers</h2>
+        <p class="sec-sub">Can't find a book you need for your studies? Suggest it — we review all submissions within 7 days and try our best to add it to the collection.</p>
       </div>
-    </div>
-  </section>
-</div>
-
-<!-- ════ SUGGEST PAGE ════ -->
-<div class="page" id="page-suggest">
-  <div class="page-hero">
-    <div class="page-hero-content">
-      <h1 class="fade-up">Suggest a Book</h1>
-      <p class="fade-up delay-1">Help us grow our collection — your suggestions matter to us</p>
-    </div>
-  </div>
-  <section class="section suggest-section">
-    <div class="section-inner">
-      <div style="text-align:center; margin-bottom:40px;">
-        <span class="section-label">Reader's Voice</span>
-        <h2 class="section-title">We Value Your Recommendations</h2>
-        <p class="section-sub">Can't find a book you're looking for? Suggest it and we'll try our best to add it to the Nawabi Granth Sadan collection.</p>
-        <div class="divider"></div>
-      </div>
-      <div class="suggest-form-wrap">
-        <form id="suggest-form" onsubmit="submitSuggest(event)">
-          <div class="form-row">
-            <div class="form-group">
-              <label>Your Name</label>
-              <input type="text" placeholder="Ramesh Kumar" required>
+      <div class="form-wrap">
+        <form id="suggest-form" onsubmit="submitForm('suggest-form','suggest-ok',event)">
+          <div class="form-2col">
+            <div class="fg">
+              <label>Your Name *</label>
+              <input type="text" placeholder="Aarav Sharma" required>
             </div>
-            <div class="form-group">
-              <label>Email Address</label>
-              <input type="email" placeholder="you@example.com">
+            <div class="fg">
+              <label>Mobile / Email</label>
+              <input type="text" placeholder="+91 98765 43210">
             </div>
           </div>
-          <div class="form-row">
-            <div class="form-group">
+          <div class="form-2col">
+            <div class="fg">
               <label>Book Title *</label>
-              <input type="text" placeholder="Enter book title" required>
+              <input type="text" placeholder="Enter full book title" required>
             </div>
-            <div class="form-group">
+            <div class="fg">
               <label>Author Name</label>
-              <input type="text" placeholder="Author's full name">
+              <input type="text" placeholder="Author's name">
             </div>
           </div>
-          <div class="form-row">
-            <div class="form-group">
+          <div class="form-2col">
+            <div class="fg">
               <label>Language</label>
               <select>
                 <option>Hindi</option>
-                <option>Urdu</option>
                 <option>English</option>
+                <option>Urdu</option>
                 <option>Sanskrit</option>
                 <option>Other</option>
               </select>
             </div>
-            <div class="form-group">
-              <label>Genre / Category</label>
+            <div class="fg">
+              <label>Category / Purpose</label>
               <select>
-                <option>Literature & Fiction</option>
-                <option>Poetry</option>
-                <option>History</option>
-                <option>Science</option>
+                <option>UPSC / Civil Services</option>
+                <option>SSC / Banking Exams</option>
+                <option>NEET / Medical</option>
+                <option>JEE / Engineering</option>
+                <option>Board Exams (10th/12th)</option>
+                <option>Hindi Literature</option>
+                <option>Urdu Poetry & Prose</option>
+                <option>General Knowledge</option>
                 <option>Children's Books</option>
-                <option>Self-Help</option>
-                <option>Biography</option>
-                <option>Reference</option>
+                <option>Self-Help / Motivation</option>
+                <option>History & Culture</option>
                 <option>Other</option>
               </select>
             </div>
           </div>
-          <div class="form-group">
-            <label>Why should we add this book?</label>
-            <textarea placeholder="Tell us about the book and why it would benefit our readers..."></textarea>
+          <div class="fg">
+            <label>Why should we add this? (Optional)</label>
+            <textarea placeholder="Tell us how this book will help students at Study Hub Library..."></textarea>
           </div>
-          <button type="submit" class="form-submit">Submit Suggestion</button>
-          <div class="success-msg" id="suggest-success">🎉 Thank you! Your suggestion has been submitted. We'll review it within 7 days.</div>
+          <button type="submit" class="form-btn">Submit Suggestion ✦</button>
+          <div class="ok-msg" id="suggest-ok">🎉 Thank you! Your suggestion has been submitted and will be reviewed within 7 working days.</div>
         </form>
       </div>
     </div>
   </section>
 </div>
 
-<!-- ════ NOTIFICATIONS PAGE ════ -->
+<!-- ══════════════ NOTIFICATIONS ══════════════ -->
 <div class="page" id="page-notifications">
-  <div class="page-hero">
-    <div class="page-hero-content">
-      <h1 class="fade-up">Notifications</h1>
-      <p class="fade-up delay-1">Stay informed about library updates, events and reminders</p>
-    </div>
+  <div class="page-banner">
+    <h1 class="fu">Notifications</h1>
+    <p class="fu d1">Important updates, reminders and announcements from Study Hub Library</p>
   </div>
   <section class="section">
     <div class="section-inner">
-      <div class="notif-list">
-        <div class="notif-item unread">
-          <div class="notif-icon">📢</div>
+      <div class="notif-stack">
+
+        <div class="notif-card new">
+          <div class="ni">📢</div>
           <div>
-            <div class="notif-title">Library Timings Extended on Sundays</div>
-            <div class="notif-body">Starting 1st March 2026, the library will be open on Sundays from 10:00 AM to 4:00 PM. Members can access all facilities including digital zone and study halls.</div>
-            <div class="notif-time">Today, 9:00 AM</div>
+            <div class="nt">UPSC Study Zone Now Open on All Floors <span class="badge-new">NEW</span></div>
+            <div class="nb">We have expanded our UPSC/Civil Services section to all 3 floors. New additions include NCERT compilations, Laxmikant latest edition, Vision IAS materials and complete sets of previous year papers from 1998–2025.</div>
+            <span class="ntime">Today, 8:00 AM</span>
           </div>
         </div>
-        <div class="notif-item unread">
-          <div class="notif-icon">🎭</div>
+
+        <div class="notif-card new">
+          <div class="ni">🎓</div>
           <div>
-            <div class="notif-title">Reminder: Mushaira Night — 2nd March</div>
-            <div class="notif-body">The annual Mushaira event is just around the corner. Seats are limited — please collect your entry pass from the reception desk or call +91-522-2614567.</div>
-            <div class="notif-time">Yesterday, 4:30 PM</div>
+            <div class="nt">Free Seminar: "How to Crack UPSC 2026" — 5 March <span class="badge-new">NEW</span></div>
+            <div class="nb">Join us on 5th March 2026 at 5:00 PM for a free seminar by IPS Officer Rajeev Srivastava (2018 batch) on strategy, time management and booklist for UPSC 2026. Limited seats — confirm at reception.</div>
+            <span class="ntime">Yesterday, 6:00 PM</span>
           </div>
         </div>
-        <div class="notif-item">
-          <div class="notif-icon">📚</div>
+
+        <div class="notif-card">
+          <div class="ni">⏰</div>
           <div>
-            <div class="notif-title">500 New Books Added This Week</div>
-            <div class="notif-body">New arrivals include titles in Urdu fiction, Hindi poetry, competitive exam guides, and children's illustrated books. Check the New Arrivals shelf in the main hall.</div>
-            <div class="notif-time">2 days ago</div>
+            <div class="nt">Extended Hours During Board Season — Feb to April</div>
+            <div class="nb">Study Hub Library will now remain open from 6:00 AM to 11:00 PM Monday to Saturday and 8:00 AM to 8:00 PM on Sundays throughout the board exam season (February to April 2026).</div>
+            <span class="ntime">22 Feb 2026</span>
           </div>
         </div>
-        <div class="notif-item">
-          <div class="notif-icon">🌟</div>
+
+        <div class="notif-card">
+          <div class="ni">💻</div>
           <div>
-            <div class="notif-title">Membership Renewal Reminder</div>
-            <div class="notif-body">Your library membership expires on 31st March 2026. Renew now at ₹500/year to continue enjoying all privileges without interruption.</div>
-            <div class="notif-time">5 days ago</div>
+            <div class="nt">Wi-Fi Speed Upgraded to 1 Gbps Fibre</div>
+            <div class="nb">We have completed the upgrade to 1 Gbps fibre connectivity across all floors and the café. Members can now access digital resources, stream lectures and download study material at full speed without interruption.</div>
+            <span class="ntime">18 Feb 2026</span>
           </div>
         </div>
-        <div class="notif-item">
-          <div class="notif-icon">🏆</div>
+
+        <div class="notif-card">
+          <div class="ni">🏆</div>
           <div>
-            <div class="notif-title">We Won the National Heritage Library Award!</div>
-            <div class="notif-body">Nawabi Granth Sadan has been honoured with the National Award for Heritage Library Preservation by the Ministry of Culture, Government of India.</div>
-            <div class="notif-time">20 Feb 2026</div>
+            <div class="nt">47 Study Hub Members Cleared UPSC 2025</div>
+            <div class="nb">We are proud to announce that 47 of our registered members successfully cleared UPSC Prelims 2025 and 12 made it to the final list. A felicitation ceremony was held on 10 Feb 2026 at the library premises.</div>
+            <span class="ntime">10 Feb 2026</span>
           </div>
         </div>
-        <div class="notif-item">
-          <div class="notif-icon">⚙️</div>
+
+        <div class="notif-card">
+          <div class="ni">📚</div>
           <div>
-            <div class="notif-title">System Maintenance — 25 Feb (11 PM–1 AM)</div>
-            <div class="notif-body">The online member portal and digital catalogue will be unavailable on the night of 25th February for scheduled maintenance. We apologize for any inconvenience.</div>
-            <div class="notif-time">19 Feb 2026</div>
+            <div class="nt">1,200 New Books Added — January 2026 Batch</div>
+            <div class="nb">Our latest acquisition includes 1,200 new titles across competitive exam preparation, Hindi fiction, UP Board curriculum books, science textbooks and motivational literature. Check the New Arrivals shelf near the entrance.</div>
+            <span class="ntime">5 Feb 2026</span>
           </div>
         </div>
+
+        <div class="notif-card">
+          <div class="ni">💳</div>
+          <div>
+            <div class="nt">2026 Membership Renewal Open — ₹499 Only</div>
+            <div class="nb">Renew your Study Hub membership for 2026 at just ₹499/year. Early renewals before 28 February will receive a free monthly magazine subscription and priority study hall booking for the next 3 months.</div>
+            <span class="ntime">1 Feb 2026</span>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
 </div>
 
-<!-- ════ CONTACT PAGE ════ -->
+<!-- ══════════════ CONTACT ══════════════ -->
 <div class="page" id="page-contact">
-  <div class="page-hero">
-    <div class="page-hero-content">
-      <h1 class="fade-up">Contact Us</h1>
-      <p class="fade-up delay-1">We'd love to hear from you — visit us or reach out digitally</p>
-    </div>
+  <div class="page-banner">
+    <h1 class="fu">Contact Us</h1>
+    <p class="fu d1">We're always here to help — come visit or reach out to us anytime</p>
   </div>
   <section class="section">
     <div class="section-inner">
-      <div class="contact-grid">
-        <div class="contact-info">
-          <h3>Get In Touch</h3>
-          <div class="info-block">
-            <div class="info-icon">📍</div>
+      <div class="contact-layout">
+
+        <div>
+          <p class="sec-tag" style="margin-bottom:24px">Find Us</p>
+          <div class="contact-card">
+            <div class="cc-icon">📍</div>
             <div>
-              <div class="info-label">Address</div>
-              <div class="info-value">14, Hazratganj Road, Near GPO<br>Lucknow, Uttar Pradesh — 226001</div>
+              <div class="cc-label">Address</div>
+              <div class="cc-val">22-A, Sahara Estate, Near Lekhraj Metro<br>Indira Nagar, Lucknow — 226016<br><small style="color:var(--muted)">Also near Hazratganj & Gomti Nagar</small></div>
             </div>
           </div>
-          <div class="info-block">
-            <div class="info-icon">📞</div>
+          <div class="contact-card">
+            <div class="cc-icon">📞</div>
             <div>
-              <div class="info-label">Phone</div>
-              <div class="info-value">+91-522-2614567<br>+91-998-765-4321</div>
+              <div class="cc-label">Phone</div>
+              <div class="cc-val">+91-98390-45678<br>+91-522-4089001</div>
             </div>
           </div>
-          <div class="info-block">
-            <div class="info-icon">✉️</div>
+          <div class="contact-card">
+            <div class="cc-icon">✉️</div>
             <div>
-              <div class="info-label">Email</div>
-              <div class="info-value">info@nawabigranthlko.in<br>membership@nawabigranthlko.in</div>
+              <div class="cc-label">Email</div>
+              <div class="cc-val">hello@studyhublko.in<br>membership@studyhublko.in</div>
             </div>
           </div>
-          <div class="info-block">
-            <div class="info-icon">🕐</div>
-            <div>
-              <div class="info-label">Opening Hours</div>
-              <div class="info-value">Mon–Sat: 8:00 AM – 8:00 PM<br>Sunday: 10:00 AM – 4:00 PM<br>Public Holidays: Closed</div>
-            </div>
-          </div>
-          <div class="map-embed">
-            🗺️
-            <small>Near Hazratganj, Lucknow</small>
-            <small style="font-size:12px; color:#aaa;">Interactive map coming soon</small>
+          <div class="hours-row">
+            <h4>Opening Hours</h4>
+            <div class="hour-item"><span class="day">Monday – Friday</span><span class="time">6:00 AM – 10:00 PM</span></div>
+            <div class="hour-item"><span class="day">Saturday</span><span class="time">6:00 AM – 10:00 PM</span></div>
+            <div class="hour-item"><span class="day">Sunday</span><span class="time">8:00 AM – 8:00 PM</span></div>
+            <div class="hour-item"><span class="day">Public Holidays</span><span class="closed">Closed</span></div>
+            <div class="hour-item"><span class="day">Board Exam Season</span><span class="time" style="color:var(--teal)">6:00 AM – 11:00 PM</span></div>
           </div>
         </div>
+
         <div>
-          <div class="suggest-form-wrap" style="padding:36px;">
-            <h3 style="font-family:'Playfair Display',serif; font-size:1.5rem; margin-bottom:28px;">Send Us a Message</h3>
-            <form id="contact-form" onsubmit="submitContact(event)">
-              <div class="form-row">
-                <div class="form-group">
+          <div class="form-wrap" style="padding:40px 36px">
+            <p class="sec-tag" style="margin-bottom:8px">Send a Message</p>
+            <h2 style="font-family:'DM Serif Display',serif;font-size:1.8rem;margin-bottom:28px">We'll reply in 24 hours</h2>
+            <form id="contact-form" onsubmit="submitForm('contact-form','contact-ok',event)">
+              <div class="form-2col">
+                <div class="fg">
                   <label>Full Name *</label>
                   <input type="text" placeholder="Your name" required>
                 </div>
-                <div class="form-group">
+                <div class="fg">
                   <label>Phone Number</label>
                   <input type="tel" placeholder="+91 XXXXX XXXXX">
                 </div>
               </div>
-              <div class="form-group">
+              <div class="fg">
                 <label>Email Address *</label>
-                <input type="email" placeholder="you@example.com" required>
+                <input type="email" placeholder="you@gmail.com" required>
               </div>
-              <div class="form-group">
+              <div class="fg">
                 <label>Subject</label>
                 <select>
-                  <option>General Inquiry</option>
-                  <option>Membership</option>
+                  <option>Membership Enquiry</option>
+                  <option>Book Enquiry</option>
+                  <option>Study Hall Booking</option>
+                  <option>Event Registration</option>
                   <option>Book Donation</option>
-                  <option>Event Booking</option>
-                  <option>Digital Access</option>
-                  <option>Complaint / Feedback</option>
+                  <option>General Feedback</option>
+                  <option>Complaint</option>
                 </select>
               </div>
-              <div class="form-group">
+              <div class="fg">
                 <label>Message *</label>
-                <textarea placeholder="Type your message here..." required></textarea>
+                <textarea placeholder="How can we help you today?" required></textarea>
               </div>
-              <button type="submit" class="form-submit">Send Message</button>
-              <div class="success-msg" id="contact-success">✅ Message sent! We'll reply within 2 business days.</div>
+              <button type="submit" class="form-btn">Send Message →</button>
+              <div class="ok-msg" id="contact-ok">✅ Message received! Our team will get back to you within 24 hours.</div>
             </form>
           </div>
         </div>
+
       </div>
     </div>
   </section>
@@ -960,116 +1086,126 @@
 <footer>
   <div class="footer-inner">
     <div class="footer-grid">
-      <div class="footer-brand">
+      <div class="footer-about">
         <div class="logo">
-          <div class="logo-icon">📚</div>
-          <div class="logo-text">
-            <div class="name" style="color:var(--cream);">Nawabi Granth Sadan</div>
-            <div class="tagline">Lucknow City Library · Est. 1892</div>
+          <div class="logo-mark">📚</div>
+          <div>
+            <div class="logo-name">Study Hub Library</div>
+            <span class="logo-sub">Lucknow · Est. 2016</span>
           </div>
         </div>
-        <p>A heritage institution dedicated to the promotion of knowledge, culture and literacy in the heart of Lucknow since 1892.</p>
+        <p>Lucknow's premier modern study library. We exist to give every student — regardless of background — access to world-class learning resources and a focused environment to achieve their goals.</p>
+        <div class="social-row">
+          <a class="social-btn" href="#">📘</a>
+          <a class="social-btn" href="#">📸</a>
+          <a class="social-btn" href="#">▶️</a>
+          <a class="social-btn" href="#">🐦</a>
+        </div>
       </div>
       <div class="footer-col">
         <h4>Quick Links</h4>
         <a href="#" onclick="showPage('home')">Home</a>
         <a href="#" onclick="showPage('gallery')">Gallery</a>
-        <a href="#" onclick="showPage('news')">News</a>
         <a href="#" onclick="showPage('suggest')">Suggest a Book</a>
+        <a href="#" onclick="showPage('notifications')">Notifications</a>
         <a href="#" onclick="showPage('contact')">Contact</a>
       </div>
       <div class="footer-col">
         <h4>Services</h4>
         <a href="#">Book Lending</a>
-        <a href="#">Digital Library</a>
-        <a href="#">Membership</a>
-        <a href="#">Study Halls</a>
+        <a href="#">UPSC Study Zone</a>
+        <a href="#">Digital Resources</a>
+        <a href="#">AC Study Halls</a>
+        <a href="#">Reader's Café</a>
         <a href="#">Children's Corner</a>
       </div>
       <div class="footer-col">
         <h4>Contact</h4>
-        <a href="#">📍 Hazratganj, Lucknow</a>
-        <a href="#">📞 +91-522-2614567</a>
-        <a href="#">✉️ info@nawabigranthlko.in</a>
-        <a href="#">🕐 Mon–Sat: 8AM–8PM</a>
+        <a href="#">📍 Indira Nagar, Lucknow</a>
+        <a href="#">📞 +91-98390-45678</a>
+        <a href="#">✉️ hello@studyhublko.in</a>
+        <a href="#">🕐 Mon–Sat: 6AM–10PM</a>
+        <a href="#">🌐 www.studyhublko.in</a>
       </div>
     </div>
     <div class="footer-bottom">
-      <p>© 2026 Nawabi Granth Sadan, Lucknow. All rights reserved.</p>
-      <p style="color:var(--gold); font-size:12px;">यत्र ज्ञानं तत्र विजयः — Where there is knowledge, there is victory</p>
+      <p>© 2026 Study Hub Library, Lucknow. All rights reserved.</p>
+      <p class="motto">ज्ञान ही शक्ति है — Knowledge is Power</p>
     </div>
   </div>
 </footer>
 
 <script>
-  // ─── PAGE NAVIGATION ───
-  function showPage(name) {
-    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-    document.getElementById('page-' + name).classList.add('active');
-    document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
-    const navEl = document.getElementById('nav-' + name);
-    if (navEl) navEl.classList.add('active');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
-
-  // ─── HAMBURGER ───
-  function toggleMenu() {
-    document.getElementById('mobile-menu').classList.toggle('open');
-  }
-
-  // ─── NOTIFICATION BAR ───
-  function closeNotif() {
-    document.getElementById('notification-bar').style.display = 'none';
-  }
-
-  // ─── GALLERY FILTER ───
-  function filterGallery(cat, btn) {
-    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    document.querySelectorAll('.gallery-item').forEach(item => {
-      if (cat === 'all' || item.dataset.cat === cat) {
-        item.style.display = '';
-        item.style.animation = 'fadeUp 0.4s ease forwards';
-      } else {
-        item.style.display = 'none';
-      }
-    });
-  }
-
-  // ─── TOAST ───
-  function showToast(msg) {
-    const t = document.getElementById('toast');
-    t.textContent = msg;
-    t.classList.add('show');
-    setTimeout(() => t.classList.remove('show'), 3500);
-  }
-
-  // ─── FORMS ───
-  function submitSuggest(e) {
-    e.preventDefault();
-    document.getElementById('suggest-success').style.display = 'block';
-    showToast('📚 Book suggestion submitted!');
-    setTimeout(() => { document.getElementById('suggest-success').style.display = 'none'; }, 5000);
-  }
-  function submitContact(e) {
-    e.preventDefault();
-    document.getElementById('contact-success').style.display = 'block';
-    showToast('✅ Message sent successfully!');
-    setTimeout(() => { document.getElementById('contact-success').style.display = 'none'; }, 5000);
-  }
-
-  // ─── INTERSECTION OBSERVER for fade animations ───
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.style.animationPlayState = 'running';
-      }
-    });
-  }, { threshold: 0.1 });
-  document.querySelectorAll('.fade-up').forEach(el => {
-    el.style.animationPlayState = 'paused';
-    observer.observe(el);
+// Navigation
+function showPage(name){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('page-'+name).classList.add('active');
+  document.querySelectorAll('.nav-links a').forEach(a=>a.classList.remove('active'));
+  const el=document.getElementById('nav-'+name);
+  if(el) el.classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+  // re-trigger animations
+  document.querySelectorAll('#page-'+name+' .fu').forEach(el=>{
+    el.style.animation='none';
+    void el.offsetWidth;
+    el.style.animation='';
   });
+}
+
+// Mobile menu
+function toggleMob(){
+  document.getElementById('mob-menu').classList.toggle('open');
+}
+
+// Close ticker
+function closeTicker(){
+  document.getElementById('ticker-bar').style.display='none';
+}
+
+// Gallery filter
+function filterG(cat,btn){
+  document.querySelectorAll('.gf-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.g-item').forEach(item=>{
+    const show=(cat==='all'||item.dataset.cat===cat);
+    item.style.display=show?'':'none';
+    if(show){
+      item.style.animation='none';
+      void item.offsetWidth;
+      item.style.animation='fadeUp 0.4s ease forwards';
+    }
+  });
+}
+
+// Toast
+function toast(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg;t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),3500);
+}
+
+// Forms
+function submitForm(formId,okId,e){
+  e.preventDefault();
+  const ok=document.getElementById(okId);
+  ok.style.display='block';
+  toast(okId==='suggest-ok'?'📚 Book suggestion submitted!':'✅ Message sent successfully!');
+  setTimeout(()=>ok.style.display='none',6000);
+  e.target.reset();
+}
+
+// Intersection observer for animations
+const io=new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      entry.target.style.animationPlayState='running';
+    }
+  });
+},{threshold:0.1});
+document.querySelectorAll('.fu').forEach(el=>{
+  el.style.animationPlayState='paused';
+  io.observe(el);
+});
 </script>
 </body>
 </html>
