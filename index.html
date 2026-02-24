@@ -4,537 +4,254 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Study Hub Library — Lucknow 2026</title>
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
-/* ══════════════════════════════════════
-   DESIGN SYSTEM
-══════════════════════════════════════ */
 :root {
-  --bg:        #0d0f14;
-  --surface:   #141720;
-  --surface2:  #1c2030;
-  --border:    rgba(255,255,255,0.07);
-  --gold:      #e8b84b;
-  --gold2:     #f5d07a;
-  --teal:      #3ecfb2;
-  --red:       #e85c4b;
-  --white:     #f0f2f7;
-  --muted:     #8890a4;
-  --accent:    #5b7eff;
-  --shadow:    rgba(0,0,0,0.5);
+  --bg: #0d0f14;
+  --surface: #141720;
+  --surface2: #1c2030;
+  --border: rgba(255,255,255,0.07);
+  --gold: #e8b84b;
+  --gold2: #f5d07a;
+  --teal: #3ecfb2;
+  --red: #e85c4b;
+  --white: #f0f2f7;
+  --muted: #8890a4;
+  --accent: #5b7eff;
+  --orange: #D04D0C;
+  --orange2: #e85e20;
+  --shadow: rgba(0,0,0,0.5);
 }
-
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{
-  font-family:'DM Sans',sans-serif;
-  background:var(--bg);
-  color:var(--white);
-  font-size:16px;
-  line-height:1.7;
-  overflow-x:hidden;
-}
-
-/* ══ SCROLLBAR ══ */
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--white);font-size:16px;line-height:1.7;overflow-x:hidden}
 ::-webkit-scrollbar{width:6px}
 ::-webkit-scrollbar-track{background:var(--bg)}
 ::-webkit-scrollbar-thumb{background:var(--gold);border-radius:3px}
 
-/* ══ TICKER ══ */
-#ticker-bar{
-  background:linear-gradient(90deg,var(--gold),var(--gold2));
-  color:#0d0f14;
-  font-family:'Space Mono',monospace;
-  font-size:12px;
-  font-weight:700;
-  letter-spacing:0.5px;
-  padding:8px 48px 8px 16px;
-  position:relative;
-  overflow:hidden;
-}
-#ticker-text{display:inline-block;white-space:nowrap;animation:scroll-left 30s linear infinite}
-@keyframes scroll-left{
-  0%  {transform:translateX(100vw)}
-  100%{transform:translateX(-100%)}
-}
-#close-ticker{
-  position:absolute;right:12px;top:50%;transform:translateY(-50%);
-  background:rgba(0,0,0,0.2);border:none;color:#0d0f14;
-  width:22px;height:22px;border-radius:50%;cursor:pointer;
-  font-size:13px;display:flex;align-items:center;justify-content:center;
-  font-weight:700;
-}
+/* TICKER */
+#ticker-bar{background:linear-gradient(90deg,var(--gold),var(--gold2));color:#0d0f14;font-family:'Space Mono',monospace;font-size:12px;font-weight:700;padding:9px 48px 9px 0;position:relative;overflow:hidden;white-space:nowrap}
+#ticker-inner{display:inline-block;animation:ticker 35s linear infinite;padding-left:100%}
+@keyframes ticker{0%{transform:translateX(0)}100%{transform:translateX(-100%)}}
+#btn-close-ticker{position:absolute;right:12px;top:50%;transform:translateY(-50%);background:rgba(0,0,0,0.2);border:none;color:#0d0f14;width:24px;height:24px;border-radius:50%;cursor:pointer;font-size:13px;font-weight:900;display:flex;align-items:center;justify-content:center;z-index:2}
 
-/* ══ NAVBAR ══ */
-nav{
-  background:rgba(13,15,20,0.95);
-  backdrop-filter:blur(20px);
-  border-bottom:1px solid var(--border);
-  position:sticky;top:0;z-index:1000;
-}
-.nav-wrap{
-  max-width:1280px;margin:auto;
-  display:flex;align-items:center;justify-content:space-between;
-  padding:0 28px;height:70px;
-}
-.logo{display:flex;align-items:center;gap:14px;text-decoration:none;cursor:pointer}
-.logo-mark{
-  width:40px;height:40px;border-radius:10px;
-  background:linear-gradient(135deg,var(--gold),var(--teal));
-  display:flex;align-items:center;justify-content:center;
-  font-size:20px;flex-shrink:0;
-}
-.logo-name{
-  font-family:'DM Serif Display',serif;
-  font-size:20px;color:var(--white);letter-spacing:0.3px;
-}
-.logo-sub{
-  font-family:'Space Mono',monospace;
-  font-size:10px;color:var(--gold);letter-spacing:2px;
-  text-transform:uppercase;display:block;margin-top:1px;
-}
-.nav-links{display:flex;align-items:center;gap:2px;list-style:none}
-.nav-links a{
-  color:var(--muted);text-decoration:none;
-  font-size:14px;font-weight:500;padding:8px 16px;
-  border-radius:8px;transition:all 0.2s;position:relative;
-}
-.nav-links a:hover,.nav-links a.active{
-  color:var(--white);background:var(--surface2);
-}
-.nav-links a.active::before{
-  content:'';position:absolute;bottom:4px;left:50%;transform:translateX(-50%);
-  width:4px;height:4px;border-radius:50%;background:var(--gold);
-}
-.nav-cta{
-  background:var(--gold);color:var(--bg);
-  padding:9px 22px;border-radius:8px;font-weight:700;
-  font-size:13px;text-decoration:none;transition:all 0.2s;
-  flex-shrink:0;
-}
-.nav-cta:hover{background:var(--gold2);transform:translateY(-1px)}
-.hamburger{
-  display:none;background:var(--surface2);border:1px solid var(--border);
-  color:var(--white);padding:8px 12px;border-radius:8px;cursor:pointer;font-size:16px;
-}
-.mob-menu{
-  display:none;background:var(--surface);
-  border-bottom:1px solid var(--border);padding:16px 28px 20px;
-}
-.mob-menu.open{display:block}
-.mob-menu a{
-  display:block;color:var(--muted);text-decoration:none;
-  padding:12px 0;border-bottom:1px solid var(--border);
-  font-weight:500;font-size:15px;transition:color 0.2s;
-}
-.mob-menu a:hover{color:var(--gold)}
+/* NAV */
+nav{background:rgba(13,15,20,0.97);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:9999}
+.nav-wrap{max-width:1280px;margin:auto;display:flex;align-items:center;justify-content:space-between;padding:0 24px;height:68px}
+.logo{display:flex;align-items:center;gap:12px;cursor:pointer;text-decoration:none}
+.logo-mark{width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg,var(--gold),var(--teal));display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+.logo-name{font-family:'DM Serif Display',serif;font-size:19px;color:var(--white)}
+.logo-sub{font-family:'Space Mono',monospace;font-size:9px;color:var(--gold);letter-spacing:2px;text-transform:uppercase;display:block}
+.nav-list{display:flex;align-items:center;gap:2px;list-style:none}
+.nav-list li a{color:var(--muted);text-decoration:none;font-size:14px;font-weight:500;padding:8px 14px;border-radius:8px;transition:all 0.2s;display:block;cursor:pointer;border:none;background:transparent}
+.nav-list li a:hover,.nav-list li a.active{color:var(--white);background:var(--surface2)}
+.nav-list li a.active::after{content:'';display:block;width:4px;height:4px;border-radius:50%;background:var(--gold);margin:2px auto 0}
+.nav-join{background:var(--gold);color:var(--bg);padding:9px 20px;border-radius:8px;font-weight:700;font-size:13px;text-decoration:none;transition:all 0.2s;cursor:pointer;border:none;font-family:'DM Sans',sans-serif}
+.nav-join:hover{background:var(--gold2);transform:translateY(-1px)}
+.hamburger{display:none;background:var(--surface2);border:1px solid var(--border);color:var(--white);padding:8px 12px;border-radius:8px;cursor:pointer;font-size:18px;line-height:1}
+.mob-nav{display:none;background:var(--surface);border-bottom:1px solid var(--border);padding:12px 24px 18px}
+.mob-nav a{display:block;color:var(--muted);text-decoration:none;padding:11px 0;border-bottom:1px solid var(--border);font-size:15px;font-weight:500;transition:color 0.2s;cursor:pointer}
+.mob-nav a:hover{color:var(--gold)}
+.mob-nav a:last-child{border-bottom:none}
 
-/* ══ PAGES ══ */
+/* PAGES - critical rule */
 .page{display:none}
 .page.active{display:block}
 
-/* ══ PAGE HERO BANNER ══ */
-.page-banner{
-  background:linear-gradient(135deg,var(--surface) 0%,var(--bg) 100%);
-  border-bottom:1px solid var(--border);
-  padding:64px 28px 56px;text-align:center;
-  position:relative;overflow:hidden;
-}
-.page-banner::before{
-  content:'';position:absolute;inset:0;
-  background:radial-gradient(ellipse 60% 80% at 50% 0%, rgba(232,184,75,0.08),transparent 70%);
-}
-.page-banner h1{
-  font-family:'DM Serif Display',serif;
-  font-size:clamp(2rem,4vw,3rem);color:var(--white);
-  margin-bottom:10px;position:relative;z-index:1;
-}
-.page-banner p{color:var(--muted);position:relative;z-index:1;font-size:1.05rem}
+/* PAGE BANNER */
+.page-banner{background:linear-gradient(160deg,var(--surface),var(--bg));border-bottom:1px solid var(--border);padding:64px 24px 52px;text-align:center;position:relative;overflow:hidden}
+.page-banner::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 50% 0%,rgba(232,184,75,0.07),transparent 70%)}
+.page-banner h1{font-family:'DM Serif Display',serif;font-size:clamp(2rem,4vw,3rem);color:var(--white);margin-bottom:10px;position:relative;z-index:1}
+.page-banner p{color:var(--muted);position:relative;z-index:1;font-size:1rem}
 
-/* ══ HERO ══ */
-.hero{
-  min-height:100vh;display:flex;align-items:center;
-  background:var(--bg);position:relative;overflow:hidden;
-}
-.hero-bg{
-  position:absolute;inset:0;
-  background:
-    radial-gradient(ellipse 50% 70% at 80% 50%, rgba(62,207,178,0.06) 0%, transparent 60%),
-    radial-gradient(ellipse 40% 60% at 10% 30%, rgba(232,184,75,0.07) 0%, transparent 50%),
-    radial-gradient(ellipse 60% 40% at 50% 100%, rgba(91,126,255,0.05) 0%, transparent 60%);
-}
-.hero-grid-line{
-  position:absolute;inset:0;
-  background-image:
-    linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
-  background-size:60px 60px;
-}
-.hero-inner{
-  max-width:1280px;margin:auto;padding:80px 28px;
-  display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;
-  position:relative;z-index:2;
-}
-.hero-eyebrow{
-  display:inline-flex;align-items:center;gap:8px;
-  background:rgba(232,184,75,0.1);border:1px solid rgba(232,184,75,0.3);
-  color:var(--gold);font-size:11px;font-weight:700;letter-spacing:2.5px;
-  text-transform:uppercase;padding:6px 14px;border-radius:100px;
-  margin-bottom:24px;font-family:'Space Mono',monospace;
-}
-.hero-eyebrow span{
-  width:6px;height:6px;border-radius:50%;background:var(--gold);
-  animation:pulse 2s ease-in-out infinite;
-}
-@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.4;transform:scale(0.7)}}
-.hero h1{
-  font-family:'DM Serif Display',serif;
-  font-size:clamp(2.5rem,5.5vw,4.2rem);
-  line-height:1.1;color:var(--white);margin-bottom:20px;
-}
-.hero h1 .accent{color:var(--gold);font-style:italic}
-.hero h1 .line2{display:block}
-.hero-desc{color:var(--muted);font-size:1.05rem;max-width:480px;margin-bottom:36px;line-height:1.8}
-.hero-actions{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:44px}
-.btn-gold{
-  background:var(--gold);color:var(--bg);padding:14px 30px;
-  border-radius:10px;font-weight:700;font-size:14px;
-  border:none;cursor:pointer;transition:all 0.2s;text-decoration:none;
-  letter-spacing:0.3px;
-}
-.btn-gold:hover{background:var(--gold2);transform:translateY(-2px);box-shadow:0 8px 28px rgba(232,184,75,0.35)}
-.btn-ghost{
-  background:transparent;color:var(--white);padding:14px 30px;
-  border-radius:10px;font-weight:600;font-size:14px;
-  border:1px solid var(--border);cursor:pointer;transition:all 0.2s;text-decoration:none;
-}
-.btn-ghost:hover{border-color:var(--gold);color:var(--gold)}
-.hero-tags{display:flex;gap:10px;flex-wrap:wrap}
-.tag{
-  background:var(--surface2);border:1px solid var(--border);
-  color:var(--muted);font-size:12px;font-weight:600;
-  padding:6px 14px;border-radius:6px;font-family:'Space Mono',monospace;
-}
-
-/* Hero right side */
-.hero-right{display:flex;flex-direction:column;gap:16px}
-.stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.stat-box{
-  background:var(--surface);border:1px solid var(--border);
-  border-radius:14px;padding:24px 20px;
-  transition:all 0.3s;position:relative;overflow:hidden;
-}
-.stat-box::before{
-  content:'';position:absolute;top:0;left:0;right:0;height:2px;
-  background:linear-gradient(90deg,var(--gold),transparent);
-  opacity:0;transition:opacity 0.3s;
-}
+/* HERO */
+.hero{min-height:100vh;display:flex;align-items:center;background:var(--bg);position:relative;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 50% 70% at 80% 50%,rgba(62,207,178,0.06),transparent 60%),radial-gradient(ellipse 40% 60% at 10% 30%,rgba(232,184,75,0.07),transparent 50%);pointer-events:none}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.02) 1px,transparent 1px);background-size:60px 60px;pointer-events:none}
+.hero-inner{max-width:1280px;margin:auto;padding:80px 24px;display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center;position:relative;z-index:2}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(232,184,75,0.1);border:1px solid rgba(232,184,75,0.3);color:var(--gold);font-size:11px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;padding:6px 14px;border-radius:100px;margin-bottom:22px;font-family:'Space Mono',monospace}
+.eyebrow-dot{width:6px;height:6px;border-radius:50%;background:var(--gold);animation:blink 2s ease-in-out infinite}
+@keyframes blink{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.3;transform:scale(0.6)}}
+.hero h1{font-family:'DM Serif Display',serif;font-size:clamp(2.4rem,5.5vw,4.2rem);line-height:1.1;color:var(--white);margin-bottom:18px}
+.hero h1 .acc{color:var(--gold);font-style:italic}
+.hero-desc{color:var(--muted);font-size:1.05rem;max-width:480px;margin-bottom:32px;line-height:1.8}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:40px}
+.btn-primary{background:var(--gold);color:var(--bg);padding:13px 28px;border-radius:10px;font-weight:700;font-size:14px;border:none;cursor:pointer;transition:all 0.2s;text-decoration:none;display:inline-block;font-family:'DM Sans',sans-serif}
+.btn-primary:hover{background:var(--gold2);transform:translateY(-2px);box-shadow:0 8px 24px rgba(232,184,75,0.3)}
+.btn-outline{background:transparent;color:var(--white);padding:13px 28px;border-radius:10px;font-weight:600;font-size:14px;border:1px solid var(--border);cursor:pointer;transition:all 0.2s;text-decoration:none;display:inline-block;font-family:'DM Sans',sans-serif}
+.btn-outline:hover{border-color:var(--gold);color:var(--gold)}
+.hero-tags{display:flex;gap:8px;flex-wrap:wrap}
+.tag{background:var(--surface2);border:1px solid var(--border);color:var(--muted);font-size:12px;font-weight:600;padding:5px 12px;border-radius:6px;font-family:'Space Mono',monospace}
+.hero-right{display:flex;flex-direction:column;gap:14px}
+.stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.stat-box{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:22px 18px;transition:all 0.3s;position:relative;overflow:hidden}
+.stat-box::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold),transparent);opacity:0;transition:opacity 0.3s}
 .stat-box:hover{border-color:rgba(232,184,75,0.3);transform:translateY(-3px)}
 .stat-box:hover::before{opacity:1}
-.stat-num{
-  font-family:'DM Serif Display',serif;font-size:2.2rem;
-  color:var(--gold);line-height:1;margin-bottom:4px;
-}
+.stat-num{font-family:'DM Serif Display',serif;font-size:2.1rem;color:var(--gold);line-height:1;margin-bottom:4px}
 .stat-lbl{color:var(--muted);font-size:13px;font-weight:500}
+.feat-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:20px 22px;display:flex;align-items:center;gap:14px}
+.feat-icon{width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,rgba(232,184,75,0.15),rgba(62,207,178,0.1));display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+.feat-text h4{font-size:14px;font-weight:600;margin-bottom:2px}
+.feat-text p{font-size:12px;color:var(--muted)}
 
-.feature-card{
-  background:var(--surface);border:1px solid var(--border);
-  border-radius:14px;padding:22px 24px;
-  display:flex;align-items:center;gap:16px;
-}
-.feature-icon{
-  width:46px;height:46px;border-radius:10px;
-  background:linear-gradient(135deg,rgba(232,184,75,0.15),rgba(62,207,178,0.1));
-  display:flex;align-items:center;justify-content:center;
-  font-size:22px;flex-shrink:0;
-}
-.feature-text h4{font-size:15px;font-weight:600;margin-bottom:2px}
-.feature-text p{font-size:13px;color:var(--muted)}
-
-/* ══ SECTIONS ══ */
-.section{padding:80px 28px}
+/* SECTIONS */
+.section{padding:80px 24px}
 .section-inner{max-width:1280px;margin:auto}
-.sec-header{margin-bottom:52px}
-.sec-tag{
-  display:inline-block;
-  font-family:'Space Mono',monospace;font-size:11px;font-weight:700;
-  letter-spacing:2px;text-transform:uppercase;color:var(--teal);
-  margin-bottom:12px;
-}
-.sec-title{
-  font-family:'DM Serif Display',serif;
-  font-size:clamp(1.8rem,3.5vw,2.6rem);color:var(--white);
-  margin-bottom:12px;
-}
-.sec-sub{color:var(--muted);max-width:520px;font-size:1rem}
-.sec-header.center{text-align:center}
-.sec-header.center .sec-sub{margin:0 auto}
+.sec-tag{display:inline-block;font-family:'Space Mono',monospace;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--teal);margin-bottom:10px}
+.sec-title{font-family:'DM Serif Display',serif;font-size:clamp(1.8rem,3.5vw,2.5rem);color:var(--white);margin-bottom:10px}
+.sec-sub{color:var(--muted);font-size:1rem;max-width:520px}
+.sec-center{text-align:center;margin-bottom:48px}
+.sec-center .sec-sub{margin:0 auto}
 
-/* ══ SERVICES GRID ══ */
-.services-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-  gap:20px;
-}
-.service-card{
-  background:var(--surface);border:1px solid var(--border);
-  border-radius:16px;padding:32px 28px;
-  transition:all 0.3s;cursor:default;position:relative;overflow:hidden;
-}
-.service-card::after{
-  content:'';position:absolute;bottom:0;left:0;right:0;height:2px;
-  background:var(--ccolor,var(--gold));transform:scaleX(0);
-  transform-origin:left;transition:transform 0.3s;
-}
-.service-card:hover{border-color:rgba(255,255,255,0.12);transform:translateY(-4px);
-  box-shadow:0 20px 48px var(--shadow)}
-.service-card:hover::after{transform:scaleX(1)}
-.s-icon{
-  width:52px;height:52px;border-radius:12px;
-  display:flex;align-items:center;justify-content:center;
-  font-size:24px;margin-bottom:20px;
-}
-.service-card h3{font-size:18px;font-weight:600;margin-bottom:10px;color:var(--white)}
-.service-card p{color:var(--muted);font-size:14px;line-height:1.7}
-
-/* ══ GALLERY ══ */
-.gallery-filters{
-  display:flex;gap:10px;flex-wrap:wrap;margin-bottom:36px;
-}
-.gf-btn{
-  background:var(--surface);border:1px solid var(--border);
-  color:var(--muted);font-size:13px;font-weight:600;
-  padding:8px 20px;border-radius:8px;cursor:pointer;transition:all 0.2s;
-  font-family:'DM Sans',sans-serif;
-}
-.gf-btn:hover,.gf-btn.active{
-  background:var(--gold);border-color:var(--gold);color:var(--bg);
-}
-.gallery-masonry{
-  display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
-  gap:16px;
-}
-.g-item{
-  border-radius:12px;overflow:hidden;position:relative;
-  cursor:pointer;aspect-ratio:4/3;
-  transition:transform 0.3s,box-shadow 0.3s;
-}
-.g-item:hover{transform:scale(1.02);box-shadow:0 16px 40px var(--shadow);z-index:2}
-.g-bg{
-  width:100%;height:100%;
-  display:flex;align-items:center;justify-content:center;
-  font-size:3.2rem;border:1px solid var(--border);
-}
-.g-over{
-  position:absolute;inset:0;
-  background:linear-gradient(to top,rgba(13,15,20,0.92) 0%,transparent 55%);
-  opacity:0;transition:opacity 0.3s;
-  display:flex;align-items:flex-end;padding:18px;
-}
-.g-item:hover .g-over{opacity:1}
-.g-caption strong{display:block;font-size:15px;font-weight:600;margin-bottom:3px}
-.g-caption span{font-size:12px;color:var(--muted)}
-
-/* ══ SUGGEST FORM ══ */
-.form-wrap{
-  max-width:760px;margin:auto;
-  background:var(--surface);border:1px solid var(--border);
-  border-radius:20px;padding:52px 48px;
-}
-.form-2col{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:20px}
-.fg{display:flex;flex-direction:column;gap:6px;margin-bottom:20px}
-.fg label{
-  font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;
-  color:var(--muted);font-family:'Space Mono',monospace;
-}
-.fg input,.fg select,.fg textarea{
-  background:var(--bg);border:1px solid var(--border);
-  border-radius:10px;padding:13px 16px;
-  font-family:'DM Sans',sans-serif;font-size:15px;color:var(--white);
-  outline:none;transition:border-color 0.2s,box-shadow 0.2s;
-  -webkit-appearance:none;
-}
-.fg input:focus,.fg select:focus,.fg textarea:focus{
-  border-color:var(--gold);box-shadow:0 0 0 3px rgba(232,184,75,0.1);
-}
-.fg select option{background:var(--bg)}
-.fg textarea{resize:vertical;min-height:120px}
-.form-btn{
-  width:100%;background:var(--gold);color:var(--bg);
-  border:none;padding:16px;border-radius:10px;font-weight:700;
-  font-size:15px;letter-spacing:0.5px;cursor:pointer;transition:all 0.2s;
-  font-family:'DM Sans',sans-serif;
-}
-.form-btn:hover{background:var(--gold2)}
-.ok-msg{
-  display:none;background:rgba(62,207,178,0.1);
-  border:1px solid rgba(62,207,178,0.3);color:var(--teal);
-  padding:14px 20px;border-radius:10px;margin-top:16px;
-  text-align:center;font-weight:600;font-size:14px;
-}
-
-/* ══ NOTIFICATIONS ══ */
-.notif-stack{display:flex;flex-direction:column;gap:14px;max-width:900px;margin:auto}
-.notif-card{
-  background:var(--surface);border:1px solid var(--border);
-  border-radius:14px;padding:22px 26px;
-  display:flex;gap:18px;align-items:flex-start;
-  transition:border-color 0.2s;
-}
-.notif-card.new{border-left:3px solid var(--gold)}
-.notif-card:hover{border-color:rgba(232,184,75,0.3)}
-.ni{font-size:26px;flex-shrink:0;margin-top:2px}
-.nt{font-size:16px;font-weight:600;margin-bottom:5px}
-.nb{color:var(--muted);font-size:14px;line-height:1.6;margin-bottom:7px}
-.ntime{
-  font-size:11px;color:#555;font-family:'Space Mono',monospace;
-  display:inline-block;background:var(--surface2);padding:3px 10px;border-radius:4px;
-}
-.badge-new{
-  display:inline-block;background:var(--gold);color:var(--bg);
-  font-size:9px;font-weight:800;letter-spacing:1px;
-  padding:2px 8px;border-radius:4px;margin-left:10px;
-  vertical-align:middle;font-family:'Space Mono',monospace;
-}
-
-/* ══ CONTACT ══ */
-.contact-layout{display:grid;grid-template-columns:1fr 1.5fr;gap:56px;align-items:start}
-.contact-card{
-  background:var(--surface);border:1px solid var(--border);
-  border-radius:16px;padding:36px 32px;margin-bottom:16px;
-  display:flex;gap:18px;align-items:flex-start;transition:border-color 0.2s;
-}
-.contact-card:hover{border-color:rgba(232,184,75,0.2)}
-.cc-icon{
-  width:46px;height:46px;border-radius:10px;
-  background:linear-gradient(135deg,rgba(232,184,75,0.12),rgba(62,207,178,0.08));
-  display:flex;align-items:center;justify-content:center;
-  font-size:20px;flex-shrink:0;
-}
-.cc-label{font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;
-  letter-spacing:1.5px;margin-bottom:5px;font-family:'Space Mono',monospace}
-.cc-val{font-size:15px;color:var(--white);line-height:1.6}
-.hours-row{
-  background:var(--surface);border:1px solid var(--border);
-  border-radius:16px;padding:24px 28px;
-}
-.hours-row h4{font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;
-  color:var(--teal);margin-bottom:16px;font-family:'Space Mono',monospace}
-.hour-item{display:flex;justify-content:space-between;padding:8px 0;
-  border-bottom:1px solid var(--border);font-size:14px}
-.hour-item:last-child{border-bottom:none}
-.hour-item .day{color:var(--muted)}
-.hour-item .time{color:var(--white);font-weight:600}
-.hour-item .closed{color:var(--red)}
-
-/* ══ ABOUT STRIP ══ */
-.about-strip{
-  background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border);
-}
-.about-inner{
-  max-width:1280px;margin:auto;padding:80px 28px;
-  display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;
-}
-.about-inner h2{
-  font-family:'DM Serif Display',serif;
-  font-size:clamp(2rem,3.5vw,2.8rem);margin-bottom:20px;
-}
+/* ABOUT */
+.about-wrap{background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.about-inner{max-width:1280px;margin:auto;padding:80px 24px;display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center}
+.about-inner h2{font-family:'DM Serif Display',serif;font-size:clamp(1.9rem,3.5vw,2.7rem);margin-bottom:18px}
 .about-inner h2 em{color:var(--gold);font-style:italic}
-.about-inner p{color:var(--muted);margin-bottom:16px;line-height:1.8}
-.about-highlights{display:flex;flex-direction:column;gap:14px}
-.ah{
-  display:flex;gap:14px;align-items:flex-start;
-  background:var(--bg);border:1px solid var(--border);
-  border-radius:12px;padding:18px 20px;
-}
-.ah-num{
-  font-family:'DM Serif Display',serif;font-size:1.8rem;
-  color:var(--gold);line-height:1;flex-shrink:0;min-width:60px;
-}
-.ah-text h4{font-weight:600;font-size:15px;margin-bottom:3px}
-.ah-text p{color:var(--muted);font-size:13px;line-height:1.5}
+.about-inner p{color:var(--muted);margin-bottom:14px;line-height:1.8}
+.hl-list{display:flex;flex-direction:column;gap:12px}
+.hl{display:flex;gap:14px;align-items:flex-start;background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:16px 18px}
+.hl-num{font-family:'DM Serif Display',serif;font-size:1.7rem;color:var(--gold);line-height:1;flex-shrink:0;min-width:52px}
+.hl-text h4{font-weight:600;font-size:14px;margin-bottom:2px}
+.hl-text p{color:var(--muted);font-size:13px;line-height:1.5}
 
-/* ══ FOOTER ══ */
-footer{background:var(--surface);border-top:1px solid var(--border);padding:64px 28px 28px}
-.footer-inner{max-width:1280px;margin:auto}
-.footer-grid{
-  display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:44px;
-  margin-bottom:48px;
-}
-.footer-about p{color:var(--muted);font-size:14px;margin-top:16px;line-height:1.8;max-width:300px}
-.footer-col h4{
-  font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;
-  color:var(--gold);margin-bottom:18px;font-family:'Space Mono',monospace;
-}
-.footer-col a{
-  display:block;color:var(--muted);text-decoration:none;
-  font-size:14px;margin-bottom:10px;transition:color 0.2s;font-weight:500;
-}
-.footer-col a:hover{color:var(--white)}
-.footer-bottom{
-  border-top:1px solid var(--border);padding-top:24px;
-  display:flex;justify-content:space-between;align-items:center;
-  flex-wrap:wrap;gap:10px;
-}
-.footer-bottom p{font-size:13px;color:var(--muted)}
-.footer-bottom .motto{
-  font-family:'Space Mono',monospace;font-size:11px;color:var(--gold);
-  letter-spacing:0.5px;
-}
-.social-row{display:flex;gap:10px;margin-top:16px}
-.social-btn{
-  width:36px;height:36px;border-radius:8px;background:var(--bg);
-  border:1px solid var(--border);display:flex;align-items:center;justify-content:center;
-  font-size:16px;cursor:pointer;transition:all 0.2s;text-decoration:none;
-}
-.social-btn:hover{border-color:var(--gold);transform:translateY(-2px)}
+/* SERVICES */
+.srv-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:18px}
+.srv-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:30px 26px;transition:all 0.3s;position:relative;overflow:hidden}
+.srv-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--cc,var(--gold));transform:scaleX(0);transform-origin:left;transition:transform 0.3s}
+.srv-card:hover{transform:translateY(-4px);box-shadow:0 18px 44px var(--shadow);border-color:rgba(255,255,255,0.1)}
+.srv-card:hover::after{transform:scaleX(1)}
+.srv-icon{width:50px;height:50px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:18px}
+.srv-card h3{font-size:17px;font-weight:600;margin-bottom:8px;color:var(--white)}
+.srv-card p{color:var(--muted);font-size:14px;line-height:1.7}
 
-/* ══ TOAST ══ */
-.toast{
-  position:fixed;bottom:24px;right:24px;z-index:9999;
-  background:var(--surface2);color:var(--white);
-  border:1px solid var(--border);border-left:3px solid var(--teal);
-  padding:14px 22px;border-radius:12px;
-  font-size:14px;font-weight:600;
-  box-shadow:0 10px 40px var(--shadow);
-  transform:translateY(80px);opacity:0;
-  transition:all 0.35s cubic-bezier(.17,.67,.35,1.1);
-  max-width:320px;
-}
-.toast.show{transform:translateY(0);opacity:1}
+/* MEMBERSHIP CTA */
+.mc-wrap{background:linear-gradient(135deg,#1a0a04 0%,#2a1208 45%,#180e20 100%);border:1px solid rgba(208,77,12,0.35);border-radius:24px;padding:56px 48px;display:grid;grid-template-columns:1fr 290px;gap:48px;align-items:center;position:relative;overflow:hidden}
+.mc-glow1{position:absolute;width:340px;height:340px;top:-100px;left:-80px;background:rgba(208,77,12,0.15);border-radius:50%;filter:blur(70px);pointer-events:none}
+.mc-glow2{position:absolute;width:280px;height:280px;bottom:-80px;right:240px;background:rgba(208,77,12,0.08);border-radius:50%;filter:blur(60px);pointer-events:none}
+.mc-badge{display:inline-block;background:rgba(208,77,12,0.18);border:1px solid rgba(208,77,12,0.5);color:#ff7a3c;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:6px 16px;border-radius:100px;margin-bottom:18px;font-family:'Space Mono',monospace}
+.mc-title{font-family:'DM Serif Display',serif;font-size:clamp(1.6rem,2.8vw,2.2rem);color:var(--white);line-height:1.25;margin-bottom:12px}
+.mc-price-line{display:block;color:var(--orange);font-size:clamp(1.8rem,3vw,2.5rem);margin-top:4px}
+.mc-price-line small{font-size:0.5em;color:#e87845;font-weight:500}
+.mc-desc{color:var(--muted);font-size:15px;line-height:1.75;max-width:440px;margin-bottom:26px}
+.mc-perks{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.mc-perk{display:flex;align-items:center;gap:9px;font-size:13px;font-weight:600;color:rgba(240,242,247,0.85)}
+.mc-dot{width:8px;height:8px;border-radius:50%;background:var(--orange);box-shadow:0 0 8px rgba(208,77,12,0.7);flex-shrink:0}
+.mc-card{background:rgba(255,255,255,0.04);border:1px solid rgba(208,77,12,0.3);border-radius:18px;padding:34px 26px;text-align:center;position:relative;z-index:2;backdrop-filter:blur(12px);box-shadow:0 8px 48px rgba(208,77,12,0.12),inset 0 1px 0 rgba(255,255,255,0.05)}
+.mc-card-lbl{font-family:'Space Mono',monospace;font-size:10px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:#ff7a3c;margin-bottom:10px}
+.mc-card-price{font-family:'DM Serif Display',serif;font-size:3.2rem;color:var(--orange);line-height:1;margin-bottom:4px;text-shadow:0 0 28px rgba(208,77,12,0.4)}
+.mc-card-per{font-size:12px;color:var(--muted);margin-bottom:24px;font-weight:500}
+.mc-btn1{display:block;background:var(--orange);color:#fff;padding:13px 18px;border-radius:10px;font-weight:700;font-size:15px;text-decoration:none;margin-bottom:10px;transition:all 0.2s;box-shadow:0 4px 18px rgba(208,77,12,0.4);cursor:pointer;border:none;width:100%;text-align:center;font-family:'DM Sans',sans-serif}
+.mc-btn1:hover{background:var(--orange2);transform:translateY(-2px);box-shadow:0 8px 28px rgba(208,77,12,0.5)}
+.mc-btn2{display:block;background:transparent;color:rgba(240,242,247,0.7);padding:11px 18px;border-radius:10px;font-weight:600;font-size:14px;text-decoration:none;border:1px solid var(--border);transition:all 0.2s;margin-bottom:16px;cursor:pointer;width:100%;text-align:center;font-family:'DM Sans',sans-serif}
+.mc-btn2:hover{border-color:rgba(208,77,12,0.4);color:#ff7a3c}
+.mc-note{font-size:11px;color:var(--muted);font-family:'Space Mono',monospace}
 
-/* ══ ANIMATIONS ══ */
-@keyframes fadeUp{
-  from{opacity:0;transform:translateY(20px)}
-  to{opacity:1;transform:translateY(0)}
-}
-.fu{animation:fadeUp 0.6s ease forwards;opacity:0}
-.d1{animation-delay:0.1s}.d2{animation-delay:0.2s}
-.d3{animation-delay:0.3s}.d4{animation-delay:0.4s}
+/* GALLERY */
+.g-filters{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:32px}
+.g-btn{background:var(--surface);border:1px solid var(--border);color:var(--muted);font-size:13px;font-weight:600;padding:8px 18px;border-radius:8px;cursor:pointer;transition:all 0.2s;font-family:'DM Sans',sans-serif}
+.g-btn:hover,.g-btn.active{background:var(--gold);border-color:var(--gold);color:var(--bg)}
+.g-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:16px}
+.g-item{border-radius:12px;overflow:hidden;position:relative;aspect-ratio:4/3;cursor:pointer;transition:transform 0.3s,box-shadow 0.3s}
+.g-item:hover{transform:scale(1.03);box-shadow:0 14px 36px var(--shadow);z-index:2}
+.g-thumb{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:3rem;border:1px solid var(--border)}
+.g-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(13,15,20,0.92) 0%,transparent 55%);opacity:0;transition:opacity 0.3s;display:flex;align-items:flex-end;padding:16px}
+.g-item:hover .g-overlay{opacity:1}
+.g-cap strong{display:block;font-size:15px;font-weight:600;margin-bottom:3px}
+.g-cap span{font-size:12px;color:var(--muted)}
 
-/* ══ RESPONSIVE ══ */
+/* FORMS */
+.form-box{max-width:740px;margin:auto;background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:48px 44px}
+.f2{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:18px}
+.fg{display:flex;flex-direction:column;gap:6px;margin-bottom:18px}
+.fg label{font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);font-family:'Space Mono',monospace}
+.fg input,.fg select,.fg textarea{background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:12px 15px;font-family:'DM Sans',sans-serif;font-size:15px;color:var(--white);outline:none;transition:border-color 0.2s,box-shadow 0.2s;-webkit-appearance:none;width:100%}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(232,184,75,0.1)}
+.fg select option{background:var(--bg);color:var(--white)}
+.fg textarea{resize:vertical;min-height:120px}
+.f-btn{width:100%;background:var(--gold);color:var(--bg);border:none;padding:15px;border-radius:10px;font-weight:700;font-size:15px;cursor:pointer;transition:all 0.2s;font-family:'DM Sans',sans-serif}
+.f-btn:hover{background:var(--gold2)}
+.ok-box{display:none;background:rgba(62,207,178,0.1);border:1px solid rgba(62,207,178,0.3);color:var(--teal);padding:14px 20px;border-radius:10px;margin-top:14px;text-align:center;font-weight:600;font-size:14px}
+
+/* NOTIFICATIONS */
+.notif-list{display:flex;flex-direction:column;gap:12px;max-width:880px;margin:auto}
+.n-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:20px 24px;display:flex;gap:16px;align-items:flex-start;transition:border-color 0.2s}
+.n-card.n-new{border-left:3px solid var(--gold)}
+.n-card:hover{border-color:rgba(232,184,75,0.3)}
+.n-ico{font-size:24px;flex-shrink:0;margin-top:2px}
+.n-title{font-size:15px;font-weight:600;margin-bottom:5px}
+.n-body{color:var(--muted);font-size:14px;line-height:1.6;margin-bottom:8px}
+.n-time{font-size:11px;color:#555;font-family:'Space Mono',monospace;background:var(--surface2);padding:3px 10px;border-radius:4px;display:inline-block}
+.n-badge{display:inline-block;background:var(--gold);color:var(--bg);font-size:9px;font-weight:800;letter-spacing:1px;padding:2px 8px;border-radius:4px;margin-left:8px;vertical-align:middle;font-family:'Space Mono',monospace}
+
+/* CONTACT */
+.c-grid{display:grid;grid-template-columns:1fr 1.5fr;gap:52px;align-items:start}
+.c-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:22px 26px;margin-bottom:14px;display:flex;gap:16px;align-items:flex-start;transition:border-color 0.2s}
+.c-card:hover{border-color:rgba(232,184,75,0.2)}
+.c-ico{width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,rgba(232,184,75,0.12),rgba(62,207,178,0.08));display:flex;align-items:center;justify-content:center;font-size:19px;flex-shrink:0}
+.c-lbl{font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:4px;font-family:'Space Mono',monospace}
+.c-val{font-size:14px;color:var(--white);line-height:1.6}
+.hours-box{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:22px 26px}
+.hours-box h4{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--teal);margin-bottom:14px;font-family:'Space Mono',monospace}
+.h-row{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);font-size:14px}
+.h-row:last-child{border-bottom:none}
+.h-row .day{color:var(--muted)}
+.h-row .time{color:var(--white);font-weight:600}
+.h-row .closed{color:var(--red)}
+
+/* FOOTER */
+footer{background:var(--surface);border-top:1px solid var(--border);padding:60px 24px 26px}
+.f-inner{max-width:1280px;margin:auto}
+.f-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:44px}
+.f-about p{color:var(--muted);font-size:14px;margin-top:14px;line-height:1.8;max-width:290px}
+.f-col h4{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:16px;font-family:'Space Mono',monospace}
+.f-col a{display:block;color:var(--muted);text-decoration:none;font-size:14px;margin-bottom:9px;transition:color 0.2s;font-weight:500;cursor:pointer}
+.f-col a:hover{color:var(--white)}
+.f-bottom{border-top:1px solid var(--border);padding-top:22px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
+.f-bottom p{font-size:13px;color:var(--muted)}
+.f-motto{font-family:'Space Mono',monospace;font-size:11px;color:var(--gold)}
+.soc-row{display:flex;gap:10px;margin-top:14px}
+.soc-btn{width:36px;height:36px;border-radius:8px;background:var(--bg);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:16px;cursor:pointer;transition:all 0.2s;text-decoration:none}
+.soc-btn:hover{border-color:var(--gold);transform:translateY(-2px)}
+
+/* TOAST */
+#toast{position:fixed;bottom:24px;right:24px;z-index:99999;background:var(--surface2);color:var(--white);border:1px solid var(--border);border-left:3px solid var(--teal);padding:14px 22px;border-radius:12px;font-size:14px;font-weight:600;box-shadow:0 10px 40px var(--shadow);transform:translateY(80px);opacity:0;transition:all 0.35s ease;max-width:320px;pointer-events:none}
+#toast.show{transform:translateY(0);opacity:1}
+
+/* ANIMATIONS */
+@keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+.fu{opacity:0;animation:fadeUp 0.6s ease forwards}
+.d1{animation-delay:0.1s}.d2{animation-delay:0.2s}.d3{animation-delay:0.3s}.d4{animation-delay:0.45s}
+
+/* RESPONSIVE */
 @media(max-width:1024px){
-  .hero-inner{grid-template-columns:1fr;gap:48px}
-  .hero-right{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .hero-inner{grid-template-columns:1fr;gap:44px}
+  .hero-right{display:grid;grid-template-columns:1fr 1fr;gap:12px}
   .stat-grid{grid-template-columns:repeat(4,1fr)}
-  .about-inner{grid-template-columns:1fr;gap:40px}
-  .contact-layout{grid-template-columns:1fr}
-  .footer-grid{grid-template-columns:1fr 1fr}
+  .about-inner{grid-template-columns:1fr;gap:36px}
+  .c-grid{grid-template-columns:1fr}
+  .f-grid{grid-template-columns:1fr 1fr}
+  .mc-wrap{grid-template-columns:1fr;gap:28px;padding:40px 32px}
+  .mc-card{max-width:380px;width:100%}
 }
 @media(max-width:768px){
-  .nav-links,.nav-cta{display:none}
+  .nav-list,.nav-join{display:none}
   .hamburger{display:block}
+  .hero-inner{padding:60px 20px}
   .hero-right{grid-template-columns:1fr 1fr}
-  .form-2col{grid-template-columns:1fr}
-  .form-wrap{padding:28px 20px}
   .stat-grid{grid-template-columns:1fr 1fr}
-  .footer-grid{grid-template-columns:1fr}
-  .footer-bottom{flex-direction:column;text-align:center}
-  .gallery-masonry{grid-template-columns:repeat(auto-fill,minmax(200px,1fr))}
+  .f2{grid-template-columns:1fr}
+  .form-box{padding:28px 18px}
+  .f-grid{grid-template-columns:1fr}
+  .f-bottom{flex-direction:column;text-align:center}
+  .g-grid{grid-template-columns:repeat(auto-fill,minmax(200px,1fr))}
+  .mc-wrap{padding:28px 18px;border-radius:16px}
+  .mc-perks{grid-template-columns:1fr}
+  .mc-card{max-width:100%}
 }
 @media(max-width:480px){
-  .hero-actions{flex-direction:column}
+  .hero-btns{flex-direction:column}
   .hero-right{grid-template-columns:1fr}
 }
 </style>
@@ -543,345 +260,152 @@ footer{background:var(--surface);border-top:1px solid var(--border);padding:64px
 
 <!-- TICKER -->
 <div id="ticker-bar">
-  <span id="ticker-text">
-    🔥 NEW: UPSC Study Zone launched — 200+ IAS books added &nbsp;|&nbsp; 
-    📅 Free Competitive Exam Seminar — 5 March 2026, 5PM &nbsp;|&nbsp; 
-    🎓 12th Board special reading hall open 7AM–10PM &nbsp;|&nbsp; 
-    💻 High-speed Wi-Fi upgraded across all floors &nbsp;|&nbsp; 
-    📚 Annual membership at just ₹499 — Register now!
-  </span>
-  <button id="close-ticker" onclick="closeTicker()">✕</button>
+  <span id="ticker-inner">🔥 UPSC Study Zone launched — 200+ IAS books added &nbsp;&nbsp;|&nbsp;&nbsp; 📅 Free Competitive Exam Seminar — 5 March 2026, 5PM &nbsp;&nbsp;|&nbsp;&nbsp; 🎓 12th Board reading hall open 7AM–10PM &nbsp;&nbsp;|&nbsp;&nbsp; 💻 1Gbps Wi-Fi upgraded across all floors &nbsp;&nbsp;|&nbsp;&nbsp; 📚 Annual membership at just ₹499 — Register now! &nbsp;&nbsp;|&nbsp;&nbsp; 🏆 47 members cleared UPSC 2025! &nbsp;&nbsp;|&nbsp;&nbsp;</span>
+  <button id="btn-close-ticker" onclick="document.getElementById('ticker-bar').style.display='none'">✕</button>
 </div>
 
 <!-- NAVBAR -->
 <nav>
   <div class="nav-wrap">
-    <div class="logo" onclick="showPage('home')">
+    <div class="logo" onclick="goTo('home')">
       <div class="logo-mark">📚</div>
       <div>
         <div class="logo-name">Study Hub Library</div>
         <span class="logo-sub">Lucknow · Est. 2016</span>
       </div>
     </div>
-    <ul class="nav-links" id="nav-links">
-      <li><a href="#" id="nav-home" class="active" onclick="showPage('home')">Home</a></li>
-      <li><a href="#" id="nav-gallery" onclick="showPage('gallery')">Gallery</a></li>
-      <li><a href="#" id="nav-suggest" onclick="showPage('suggest')">Suggest a Book</a></li>
-      <li><a href="#" id="nav-notifications" onclick="showPage('notifications')">Notifications</a></li>
-      <li><a href="#" id="nav-contact" onclick="showPage('contact')">Contact</a></li>
+    <ul class="nav-list" id="desktop-nav">
+      <li><a id="nav-home" class="active" onclick="goTo('home')">Home</a></li>
+      <li><a id="nav-gallery" onclick="goTo('gallery')">Gallery</a></li>
+      <li><a id="nav-suggest" onclick="goTo('suggest')">Suggest a Book</a></li>
+      <li><a id="nav-notifications" onclick="goTo('notifications')">Notifications</a></li>
+      <li><a id="nav-contact" onclick="goTo('contact')">Contact</a></li>
     </ul>
-    <a class="nav-cta" href="#" onclick="showPage('suggest')">Join Free</a>
-    <button class="hamburger" onclick="toggleMob()">☰</button>
+    <button class="nav-join" onclick="goTo('suggest')">Join Free</button>
+    <button class="hamburger" id="ham-btn" onclick="toggleNav()">☰</button>
   </div>
-  <div class="mob-menu" id="mob-menu">
-    <a href="#" onclick="showPage('home');toggleMob()">🏠 Home</a>
-    <a href="#" onclick="showPage('gallery');toggleMob()">🖼️ Gallery</a>
-    <a href="#" onclick="showPage('suggest');toggleMob()">💡 Suggest a Book</a>
-    <a href="#" onclick="showPage('notifications');toggleMob()">🔔 Notifications</a>
-    <a href="#" onclick="showPage('contact');toggleMob()">📬 Contact</a>
+  <div class="mob-nav" id="mob-nav">
+    <a onclick="goTo('home');closeMob()">🏠 Home</a>
+    <a onclick="goTo('gallery');closeMob()">🖼️ Gallery</a>
+    <a onclick="goTo('suggest');closeMob()">💡 Suggest a Book</a>
+    <a onclick="goTo('notifications');closeMob()">🔔 Notifications</a>
+    <a onclick="goTo('contact');closeMob()">📬 Contact</a>
   </div>
 </nav>
 
-<div id="toast" class="toast"></div>
+<div id="toast"></div>
 
-<!-- ══════════════ HOME ══════════════ -->
+<!-- ═══════ HOME ═══════ -->
 <div class="page active" id="page-home">
-
-  <!-- HERO -->
   <section class="hero">
     <div class="hero-bg"></div>
-    <div class="hero-grid-line"></div>
+    <div class="hero-grid"></div>
     <div class="hero-inner">
-
       <div>
-        <div class="hero-eyebrow fu"><span></span> Lucknow's Modern Study Library 2026</div>
-        <h1 class="fu d1">
-          Your Path to
-          <span class="line2">Success Starts <span class="accent">Here.</span></span>
-        </h1>
-        <p class="hero-desc fu d2">
-          Study Hub Library — Lucknow's most advanced learning space in the heart of Hazratganj. From UPSC prep to board exams, we give every student the environment, resources and community to excel.
-        </p>
-        <div class="hero-actions fu d3">
-          <a class="btn-gold" href="#" onclick="showPage('gallery')">Explore Library</a>
-          <a class="btn-ghost" href="#" onclick="showPage('contact')">Visit Us Today</a>
+        <div class="eyebrow fu"><span class="eyebrow-dot"></span>Lucknow's Modern Study Library 2026</div>
+        <h1 class="fu d1">Your Path to<br><span class="acc">Success</span> Starts Here.</h1>
+        <p class="hero-desc fu d2">Study Hub Library — Lucknow's most advanced learning space. From UPSC prep to board exams, we give every student the environment, resources and community to excel.</p>
+        <div class="hero-btns fu d3">
+          <button class="btn-primary" onclick="goTo('gallery')">Explore Library</button>
+          <button class="btn-outline" onclick="goTo('contact')">Visit Us Today</button>
         </div>
         <div class="hero-tags fu d4">
           <span class="tag">#UPSC Ready</span>
           <span class="tag">#AC Study Halls</span>
           <span class="tag">#Wi-Fi Enabled</span>
           <span class="tag">#Board Exams</span>
-          <span class="tag">#24hr Access</span>
+          <span class="tag">#Open Daily</span>
         </div>
       </div>
-
       <div class="hero-right fu d2">
         <div class="stat-grid">
-          <div class="stat-box">
-            <div class="stat-num">50K+</div>
-            <div class="stat-lbl">Books Available</div>
-          </div>
-          <div class="stat-box">
-            <div class="stat-num">3,200+</div>
-            <div class="stat-lbl">Active Members</div>
-          </div>
-          <div class="stat-box">
-            <div class="stat-num">8</div>
-            <div class="stat-lbl">Study Halls</div>
-          </div>
-          <div class="stat-box">
-            <div class="stat-num">9+</div>
-            <div class="stat-lbl">Years of Trust</div>
-          </div>
+          <div class="stat-box"><div class="stat-num">50K+</div><div class="stat-lbl">Books Available</div></div>
+          <div class="stat-box"><div class="stat-num">3,200+</div><div class="stat-lbl">Active Members</div></div>
+          <div class="stat-box"><div class="stat-num">8</div><div class="stat-lbl">Study Halls</div></div>
+          <div class="stat-box"><div class="stat-num">9+</div><div class="stat-lbl">Years of Trust</div></div>
         </div>
-        <div class="feature-card">
-          <div class="feature-icon">🏆</div>
-          <div class="feature-text">
-            <h4>Ranked #1 Study Library in Lucknow</h4>
-            <p>Voted by students & educators — UP Education Review 2025</p>
-          </div>
+        <div class="feat-card">
+          <div class="feat-icon">🏆</div>
+          <div class="feat-text"><h4>Ranked #1 Study Library in Lucknow</h4><p>Voted by students & educators — UP Education Review 2025</p></div>
         </div>
-        <div class="feature-card">
-          <div class="feature-icon">⚡</div>
-          <div class="feature-text">
-            <h4>Open from 6 AM — available 7 days a week</h4>
-            <p>Extended hours during board exam seasons</p>
-          </div>
+        <div class="feat-card">
+          <div class="feat-icon">⚡</div>
+          <div class="feat-text"><h4>Open from 6 AM — 7 days a week</h4><p>Extended hours during board exam seasons</p></div>
         </div>
       </div>
-
     </div>
   </section>
 
-  <!-- ABOUT STRIP -->
-  <div class="about-strip">
+  <div class="about-wrap">
     <div class="about-inner">
       <div>
         <p class="sec-tag">Who We Are</p>
         <h2>Lucknow's <em>Smartest</em> Study Space</h2>
-        <p>Study Hub Library is not just a place to read — it's a complete academic ecosystem built for students who are serious about their goals. Located in the cultural heart of Lucknow, we blend traditional library heritage with modern learning facilities.</p>
-        <p>Whether you're preparing for UPSC, SSC, NEET, JEE, board exams or simply looking for a focused place to read and grow — Study Hub is your home.</p>
-        <a class="btn-gold" href="#" onclick="showPage('contact')" style="display:inline-block;margin-top:10px">Get Membership →</a>
+        <p>Study Hub Library is not just a place to read — it's a complete academic ecosystem built for students who are serious about their goals. Located in the heart of Lucknow, we blend heritage with modern learning.</p>
+        <p>Whether you're preparing for UPSC, SSC, NEET, JEE, board exams or simply looking for a focused place to grow — Study Hub is your home.</p>
+        <button class="btn-primary" style="margin-top:12px" onclick="goTo('contact')">Get Membership →</button>
       </div>
-      <div class="about-highlights">
-        <div class="ah">
-          <div class="ah-num">01</div>
-          <div class="ah-text">
-            <h4>Curated Study Collections</h4>
-            <p>Subject-specific shelves for UPSC, SSC, banking, engineering, medicine, literature and more.</p>
-          </div>
-        </div>
-        <div class="ah">
-          <div class="ah-num">02</div>
-          <div class="ah-text">
-            <h4>Expert-Led Seminars</h4>
-            <p>Monthly free sessions by IAS officers, professors and subject matter experts for members.</p>
-          </div>
-        </div>
-        <div class="ah">
-          <div class="ah-num">03</div>
-          <div class="ah-text">
-            <h4>Silence Guaranteed</h4>
-            <p>Dedicated silent zones and group discussion rooms — you choose your study mode.</p>
-          </div>
-        </div>
+      <div class="hl-list">
+        <div class="hl"><div class="hl-num">01</div><div class="hl-text"><h4>Curated Study Collections</h4><p>Subject-specific shelves for UPSC, SSC, banking, engineering, medicine, literature and more.</p></div></div>
+        <div class="hl"><div class="hl-num">02</div><div class="hl-text"><h4>Expert-Led Seminars</h4><p>Monthly free sessions by IAS officers, professors and subject matter experts for members.</p></div></div>
+        <div class="hl"><div class="hl-num">03</div><div class="hl-text"><h4>Silence Guaranteed</h4><p>Dedicated silent zones and group discussion rooms — you choose your study mode.</p></div></div>
       </div>
     </div>
   </div>
 
-  <!-- SERVICES -->
   <section class="section">
     <div class="section-inner">
-      <div class="sec-header center">
+      <div class="sec-center">
         <p class="sec-tag">What We Offer</p>
         <h2 class="sec-title">Everything a Serious Student Needs</h2>
-        <p class="sec-sub">Designed to eliminate every possible excuse and help you focus on what matters — learning.</p>
+        <p class="sec-sub">Designed to eliminate every excuse and help you focus on what matters — learning.</p>
       </div>
-      <div class="services-grid">
-        <div class="service-card" style="--ccolor:var(--gold)">
-          <div class="s-icon" style="background:rgba(232,184,75,0.1)">📚</div>
-          <h3>50,000+ Book Collection</h3>
-          <p>Comprehensive library covering competitive exams, academics, Urdu & Hindi literature, science, history and general knowledge — updated quarterly.</p>
-        </div>
-        <div class="service-card" style="--ccolor:var(--teal)">
-          <div class="s-icon" style="background:rgba(62,207,178,0.1)">🏛️</div>
-          <h3>AC Study Halls</h3>
-          <p>8 spacious air-conditioned halls with ergonomic seating, individual reading lamps, and power sockets at every seat. Capacity for 400+ students.</p>
-        </div>
-        <div class="service-card" style="--ccolor:var(--accent)">
-          <div class="s-icon" style="background:rgba(91,126,255,0.1)">💻</div>
-          <h3>Digital Resources Hub</h3>
-          <p>High-speed Wi-Fi, 60 desktop workstations, access to NCERT, Drishti IAS, Unacademy and 15,000+ digital journals and study materials.</p>
-        </div>
-        <div class="service-card" style="--ccolor:#e85c4b">
-          <div class="s-icon" style="background:rgba(232,92,75,0.1)">🎓</div>
-          <h3>UPSC & Competitive Zone</h3>
-          <p>Dedicated section for IAS/IPS aspirants with curated booklist, previous year papers, answer writing practice material and current affairs files.</p>
-        </div>
-        <div class="service-card" style="--ccolor:#b48aff">
-          <div class="s-icon" style="background:rgba(180,138,255,0.1)">📖</div>
-          <h3>Book Lending Service</h3>
-          <p>Borrow up to 3 books for 14 days. Online renewals available through member portal. No late fine for the first renewal.</p>
-        </div>
-        <div class="service-card" style="--ccolor:var(--teal)">
-          <div class="s-icon" style="background:rgba(62,207,178,0.1)">☕</div>
-          <h3>Reader's Café</h3>
-          <p>In-house café serving chai, coffee and light snacks. Because great study sessions deserve great fuel. Open from 7AM to 9PM.</p>
-        </div>
-        <div class="service-card" style="--ccolor:var(--gold)">
-          <div class="s-icon" style="background:rgba(232,184,75,0.1)">👧</div>
-          <h3>Children's Learning Corner</h3>
-          <p>A bright, illustrated section for kids aged 4–14. Story books, activity kits, and weekend reading events to build the love of reading early.</p>
-        </div>
-        <div class="service-card" style="--ccolor:var(--accent)">
-          <div class="s-icon" style="background:rgba(91,126,255,0.1)">🗞️</div>
-          <h3>Newspaper & Magazine Wall</h3>
-          <p>15+ daily newspapers including The Hindu, Hindustan, Dainik Jagran and 30+ magazines for current affairs and general reading.</p>
-        </div>
-        <div class="service-card" style="--ccolor:#e85c4b">
-          <div class="s-icon" style="background:rgba(232,92,75,0.1)">🖨️</div>
-          <h3>Print, Scan & Photocopy</h3>
-          <p>Self-service printing, scanning and photocopying stations available at affordable rates throughout all floors of the library.</p>
-        </div>
+      <div class="srv-grid">
+        <div class="srv-card" style="--cc:var(--gold)"><div class="srv-icon" style="background:rgba(232,184,75,0.1)">📚</div><h3>50,000+ Book Collection</h3><p>Competitive exams, academics, Urdu & Hindi literature, science, history — updated quarterly.</p></div>
+        <div class="srv-card" style="--cc:var(--teal)"><div class="srv-icon" style="background:rgba(62,207,178,0.1)">🏛️</div><h3>AC Study Halls</h3><p>8 air-conditioned halls with ergonomic seating, individual lamps, and power sockets. 400+ seats.</p></div>
+        <div class="srv-card" style="--cc:var(--accent)"><div class="srv-icon" style="background:rgba(91,126,255,0.1)">💻</div><h3>Digital Resources Hub</h3><p>High-speed Wi-Fi, 60 workstations, NCERT, Drishti IAS, Unacademy & 15,000+ digital journals.</p></div>
+        <div class="srv-card" style="--cc:#e85c4b"><div class="srv-icon" style="background:rgba(232,92,75,0.1)">🎓</div><h3>UPSC & Competitive Zone</h3><p>IAS/IPS section with curated books, previous year papers, answer writing material & current affairs.</p></div>
+        <div class="srv-card" style="--cc:#b48aff"><div class="srv-icon" style="background:rgba(180,138,255,0.1)">📖</div><h3>Book Lending Service</h3><p>Borrow up to 3 books for 14 days. Online renewals via member portal. No fine on first renewal.</p></div>
+        <div class="srv-card" style="--cc:var(--teal)"><div class="srv-icon" style="background:rgba(62,207,178,0.1)">☕</div><h3>Reader's Café</h3><p>Chai, coffee and light snacks — because great study sessions deserve great fuel. Open 7AM–9PM.</p></div>
+        <div class="srv-card" style="--cc:var(--gold)"><div class="srv-icon" style="background:rgba(232,184,75,0.1)">👧</div><h3>Children's Learning Corner</h3><p>A bright section for kids aged 4–14 with story books, activity kits and weekend reading events.</p></div>
+        <div class="srv-card" style="--cc:var(--accent)"><div class="srv-icon" style="background:rgba(91,126,255,0.1)">🗞️</div><h3>Newspaper & Magazine Wall</h3><p>15+ daily newspapers — The Hindu, Hindustan, Dainik Jagran — and 30+ magazines.</p></div>
+        <div class="srv-card" style="--cc:#e85c4b"><div class="srv-icon" style="background:rgba(232,92,75,0.1)">🖨️</div><h3>Print, Scan & Photocopy</h3><p>Self-service stations available at affordable rates on all floors of the library.</p></div>
       </div>
     </div>
   </section>
 
-  <!-- MEMBERSHIP CTA -->
   <section class="section" style="padding-top:0">
     <div class="section-inner">
-      <div class="membership-cta">
-        <!-- glows -->
-        <div class="mc-glow mc-glow1"></div>
-        <div class="mc-glow mc-glow2"></div>
-
-        <div class="mc-left">
-          <span class="mc-tag">🔥 Membership 2026</span>
-          <h2 class="mc-title">
-            Join Study Hub Today —
-            <span class="mc-price">Just ₹499<small>/year</small></span>
-          </h2>
+      <div class="mc-wrap">
+        <div class="mc-glow1"></div>
+        <div class="mc-glow2"></div>
+        <div style="position:relative;z-index:2">
+          <span class="mc-badge">🔥 Membership 2026</span>
+          <h2 class="mc-title">Join Study Hub Today —<span class="mc-price-line">Just ₹499<small>/year</small></span></h2>
           <p class="mc-desc">Unlimited library access, free event entry, digital resources, book lending privileges, study hall priority booking and much more.</p>
-
           <div class="mc-perks">
-            <div class="mc-perk"><span class="mc-perk-dot"></span>Unlimited Book Borrowing</div>
-            <div class="mc-perk"><span class="mc-perk-dot"></span>Free Seminar Entry</div>
-            <div class="mc-perk"><span class="mc-perk-dot"></span>Digital Resources Access</div>
-            <div class="mc-perk"><span class="mc-perk-dot"></span>Priority Study Hall Booking</div>
+            <div class="mc-perk"><span class="mc-dot"></span>Unlimited Book Borrowing</div>
+            <div class="mc-perk"><span class="mc-dot"></span>Free Seminar Entry</div>
+            <div class="mc-perk"><span class="mc-dot"></span>Digital Resources Access</div>
+            <div class="mc-perk"><span class="mc-dot"></span>Priority Hall Booking</div>
           </div>
         </div>
-
-        <div class="mc-right">
+        <div>
           <div class="mc-card">
-            <div class="mc-card-label">Annual Plan</div>
+            <div class="mc-card-lbl">Annual Plan</div>
             <div class="mc-card-price">₹499</div>
             <div class="mc-card-per">per year · all inclusive</div>
-            <a class="mc-btn-primary" href="#" onclick="showPage('suggest')">Register Now →</a>
-            <a class="mc-btn-secondary" href="#" onclick="showPage('contact')">Know More</a>
-            <div class="mc-note">✓ No hidden charges &nbsp;·&nbsp; Cancel anytime</div>
+            <button class="mc-btn1" onclick="goTo('suggest')">Register Now →</button>
+            <button class="mc-btn2" onclick="goTo('contact')">Know More</button>
+            <div class="mc-note">✓ No hidden charges · Cancel anytime</div>
           </div>
         </div>
       </div>
     </div>
   </section>
-
-  <style>
-  .membership-cta{
-    background:linear-gradient(135deg,#1a0a04 0%,#2a1208 40%,#1a0f1f 100%);
-    border:1px solid rgba(208,77,12,0.35);
-    border-radius:24px;padding:56px 52px;
-    display:grid;grid-template-columns:1fr 300px;gap:48px;align-items:center;
-    position:relative;overflow:hidden;
-  }
-  .mc-glow{position:absolute;border-radius:50%;pointer-events:none;filter:blur(60px)}
-  .mc-glow1{width:320px;height:320px;top:-80px;left:-60px;background:rgba(208,77,12,0.18)}
-  .mc-glow2{width:260px;height:260px;bottom:-60px;right:260px;background:rgba(208,77,12,0.10)}
-
-  .mc-tag{
-    display:inline-block;
-    background:rgba(208,77,12,0.18);
-    border:1px solid rgba(208,77,12,0.5);
-    color:#ff7a3c;
-    font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;
-    padding:6px 16px;border-radius:100px;margin-bottom:20px;
-    font-family:'Space Mono',monospace;
-  }
-  .mc-title{
-    font-family:'DM Serif Display',serif;
-    font-size:clamp(1.6rem,3vw,2.3rem);
-    color:var(--white);line-height:1.25;margin-bottom:14px;
-  }
-  .mc-price{
-    display:block;color:#D04D0C;
-    font-size:clamp(1.8rem,3.5vw,2.6rem);margin-top:4px;
-  }
-  .mc-price small{font-size:0.55em;color:#e87845;font-family:'DM Sans',sans-serif;font-weight:500}
-  .mc-desc{color:var(--muted);font-size:15px;line-height:1.75;max-width:440px;margin-bottom:28px}
-  .mc-perks{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-  .mc-perk{
-    display:flex;align-items:center;gap:9px;
-    font-size:13px;font-weight:600;color:rgba(240,242,247,0.85);
-  }
-  .mc-perk-dot{
-    width:8px;height:8px;border-radius:50%;flex-shrink:0;
-    background:#D04D0C;box-shadow:0 0 8px rgba(208,77,12,0.7);
-  }
-
-  /* Right card */
-  .mc-right{position:relative;z-index:2}
-  .mc-card{
-    background:rgba(255,255,255,0.04);
-    border:1px solid rgba(208,77,12,0.3);
-    border-radius:18px;padding:36px 28px;text-align:center;
-    backdrop-filter:blur(12px);
-    box-shadow:0 8px 48px rgba(208,77,12,0.12),inset 0 1px 0 rgba(255,255,255,0.06);
-  }
-  .mc-card-label{
-    font-family:'Space Mono',monospace;font-size:10px;font-weight:700;
-    letter-spacing:2.5px;text-transform:uppercase;color:#ff7a3c;margin-bottom:12px;
-  }
-  .mc-card-price{
-    font-family:'DM Serif Display',serif;font-size:3.4rem;
-    color:#D04D0C;line-height:1;margin-bottom:4px;
-    text-shadow:0 0 30px rgba(208,77,12,0.4);
-  }
-  .mc-card-per{font-size:12px;color:var(--muted);margin-bottom:28px;font-weight:500}
-  .mc-btn-primary{
-    display:block;background:#D04D0C;color:#fff;
-    padding:14px 20px;border-radius:10px;font-weight:700;font-size:15px;
-    text-decoration:none;margin-bottom:10px;transition:all 0.2s;
-    box-shadow:0 4px 20px rgba(208,77,12,0.45);
-  }
-  .mc-btn-primary:hover{background:#e85e20;transform:translateY(-2px);box-shadow:0 8px 28px rgba(208,77,12,0.55)}
-  .mc-btn-secondary{
-    display:block;background:transparent;color:rgba(240,242,247,0.7);
-    padding:12px 20px;border-radius:10px;font-weight:600;font-size:14px;
-    text-decoration:none;border:1px solid var(--border);transition:all 0.2s;margin-bottom:18px;
-  }
-  .mc-btn-secondary:hover{border-color:rgba(208,77,12,0.4);color:#ff7a3c}
-  .mc-note{font-size:11px;color:var(--muted);font-family:'Space Mono',monospace}
-
-  /* Responsive */
-  @media(max-width:900px){
-    .membership-cta{grid-template-columns:1fr;gap:32px;padding:40px 32px}
-    .mc-right{display:flex;justify-content:center}
-    .mc-card{max-width:360px;width:100%}
-    .mc-price{display:inline;font-size:2rem}
-  }
-  @media(max-width:600px){
-    .membership-cta{padding:28px 20px;border-radius:16px}
-    .mc-perks{grid-template-columns:1fr}
-    .mc-title{font-size:1.5rem}
-    .mc-card{padding:28px 20px}
-    .mc-card-price{font-size:2.8rem}
-    .mc-right{width:100%}
-    .mc-card{max-width:100%}
-  }
-  </style>
-
 </div>
 
-<!-- ══════════════ GALLERY ══════════════ -->
+<!-- ═══════ GALLERY ═══════ -->
 <div class="page" id="page-gallery">
   <div class="page-banner">
     <h1 class="fu">Library Gallery</h1>
@@ -889,71 +413,33 @@ footer{background:var(--surface);border-top:1px solid var(--border);padding:64px
   </div>
   <section class="section">
     <div class="section-inner">
-      <div class="gallery-filters">
-        <button class="gf-btn active" onclick="filterG('all',this)">All Photos</button>
-        <button class="gf-btn" onclick="filterG('halls',this)">Study Halls</button>
-        <button class="gf-btn" onclick="filterG('collection',this)">Collections</button>
-        <button class="gf-btn" onclick="filterG('digital',this)">Digital Zone</button>
-        <button class="gf-btn" onclick="filterG('events',this)">Events</button>
-        <button class="gf-btn" onclick="filterG('facilities',this)">Facilities</button>
+      <div class="g-filters">
+        <button class="g-btn active" onclick="filterGallery('all',this)">All Photos</button>
+        <button class="g-btn" onclick="filterGallery('halls',this)">Study Halls</button>
+        <button class="g-btn" onclick="filterGallery('collection',this)">Collections</button>
+        <button class="g-btn" onclick="filterGallery('digital',this)">Digital Zone</button>
+        <button class="g-btn" onclick="filterGallery('events',this)">Events</button>
+        <button class="g-btn" onclick="filterGallery('facilities',this)">Facilities</button>
       </div>
-      <div class="gallery-masonry" id="gallery-grid">
-
-        <div class="g-item" data-cat="halls">
-          <div class="g-bg" style="background:linear-gradient(135deg,#1e3a2f,#2d5a42)">🏛️</div>
-          <div class="g-over"><div class="g-caption"><strong>Grand Study Hall — Floor 1</strong><span>Capacity: 120 students | AC + Lamps</span></div></div>
-        </div>
-        <div class="g-item" data-cat="halls">
-          <div class="g-bg" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">🌙</div>
-          <div class="g-over"><div class="g-caption"><strong>Night Study Hall</strong><span>Open till midnight during exam seasons</span></div></div>
-        </div>
-        <div class="g-item" data-cat="collection">
-          <div class="g-bg" style="background:linear-gradient(135deg,#3d2b1f,#7a4a2e)">📚</div>
-          <div class="g-over"><div class="g-caption"><strong>UPSC & Civil Services Wing</strong><span>2,000+ curated IAS prep books</span></div></div>
-        </div>
-        <div class="g-item" data-cat="collection">
-          <div class="g-bg" style="background:linear-gradient(135deg,#1b5e20,#2e7d32)">🌿</div>
-          <div class="g-over"><div class="g-caption"><strong>Hindi & Urdu Literature</strong><span>Rare books & modern prose collections</span></div></div>
-        </div>
-        <div class="g-item" data-cat="digital">
-          <div class="g-bg" style="background:linear-gradient(135deg,#0d47a1,#1565c0)">💻</div>
-          <div class="g-over"><div class="g-caption"><strong>Digital Workstations</strong><span>60 high-speed computers — free for members</span></div></div>
-        </div>
-        <div class="g-item" data-cat="digital">
-          <div class="g-bg" style="background:linear-gradient(135deg,#004d40,#00695c)">📡</div>
-          <div class="g-over"><div class="g-caption"><strong>Wi-Fi Zone</strong><span>1 Gbps fibre — blazing fast throughout</span></div></div>
-        </div>
-        <div class="g-item" data-cat="events">
-          <div class="g-bg" style="background:linear-gradient(135deg,#b71c1c,#c62828)">🎭</div>
-          <div class="g-over"><div class="g-caption"><strong>IAS Seminar — Jan 2026</strong><span>200+ students attended the free session</span></div></div>
-        </div>
-        <div class="g-item" data-cat="events">
-          <div class="g-bg" style="background:linear-gradient(135deg,#e65100,#f57c00)">🏆</div>
-          <div class="g-over"><div class="g-caption"><strong>Annual Results Celebration 2025</strong><span>Our 47 UPSC selections felicitated</span></div></div>
-        </div>
-        <div class="g-item" data-cat="facilities">
-          <div class="g-bg" style="background:linear-gradient(135deg,#4a148c,#6a1b9a)">☕</div>
-          <div class="g-over"><div class="g-caption"><strong>Reader's Café</strong><span>Chai, coffee & snacks — open 7AM–9PM</span></div></div>
-        </div>
-        <div class="g-item" data-cat="facilities">
-          <div class="g-bg" style="background:linear-gradient(135deg,#37474f,#546e7a)">🖨️</div>
-          <div class="g-over"><div class="g-caption"><strong>Print & Copy Centre</strong><span>Self-service at affordable rates</span></div></div>
-        </div>
-        <div class="g-item" data-cat="halls">
-          <div class="g-bg" style="background:linear-gradient(135deg,#e8b84b,#b8860b)">👥</div>
-          <div class="g-over"><div class="g-caption"><strong>Group Discussion Rooms</strong><span>6 soundproof rooms — booking available</span></div></div>
-        </div>
-        <div class="g-item" data-cat="facilities">
-          <div class="g-bg" style="background:linear-gradient(135deg,#880e4f,#ad1457)">👧</div>
-          <div class="g-over"><div class="g-caption"><strong>Children's Learning Corner</strong><span>Bright, colourful space for kids 4–14</span></div></div>
-        </div>
-
+      <div class="g-grid" id="g-grid">
+        <div class="g-item" data-cat="halls"><div class="g-thumb" style="background:linear-gradient(135deg,#1e3a2f,#2d5a42)">🏛️</div><div class="g-overlay"><div class="g-cap"><strong>Grand Study Hall — Floor 1</strong><span>Capacity: 120 students | AC + Lamps</span></div></div></div>
+        <div class="g-item" data-cat="halls"><div class="g-thumb" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">🌙</div><div class="g-overlay"><div class="g-cap"><strong>Night Study Hall</strong><span>Open till midnight during exam seasons</span></div></div></div>
+        <div class="g-item" data-cat="collection"><div class="g-thumb" style="background:linear-gradient(135deg,#3d2b1f,#7a4a2e)">📚</div><div class="g-overlay"><div class="g-cap"><strong>UPSC & Civil Services Wing</strong><span>2,000+ curated IAS prep books</span></div></div></div>
+        <div class="g-item" data-cat="collection"><div class="g-thumb" style="background:linear-gradient(135deg,#1b5e20,#2e7d32)">🌿</div><div class="g-overlay"><div class="g-cap"><strong>Hindi & Urdu Literature</strong><span>Rare books & modern prose collections</span></div></div></div>
+        <div class="g-item" data-cat="digital"><div class="g-thumb" style="background:linear-gradient(135deg,#0d47a1,#1565c0)">💻</div><div class="g-overlay"><div class="g-cap"><strong>Digital Workstations</strong><span>60 high-speed computers — free for members</span></div></div></div>
+        <div class="g-item" data-cat="digital"><div class="g-thumb" style="background:linear-gradient(135deg,#004d40,#00695c)">📡</div><div class="g-overlay"><div class="g-cap"><strong>Wi-Fi Zone</strong><span>1 Gbps fibre — blazing fast throughout</span></div></div></div>
+        <div class="g-item" data-cat="events"><div class="g-thumb" style="background:linear-gradient(135deg,#b71c1c,#c62828)">🎭</div><div class="g-overlay"><div class="g-cap"><strong>IAS Seminar — Jan 2026</strong><span>200+ students attended the free session</span></div></div></div>
+        <div class="g-item" data-cat="events"><div class="g-thumb" style="background:linear-gradient(135deg,#e65100,#f57c00)">🏆</div><div class="g-overlay"><div class="g-cap"><strong>Annual Results Celebration 2025</strong><span>47 UPSC selections felicitated</span></div></div></div>
+        <div class="g-item" data-cat="facilities"><div class="g-thumb" style="background:linear-gradient(135deg,#4a148c,#6a1b9a)">☕</div><div class="g-overlay"><div class="g-cap"><strong>Reader's Café</strong><span>Chai, coffee & snacks — open 7AM–9PM</span></div></div></div>
+        <div class="g-item" data-cat="facilities"><div class="g-thumb" style="background:linear-gradient(135deg,#37474f,#546e7a)">🖨️</div><div class="g-overlay"><div class="g-cap"><strong>Print & Copy Centre</strong><span>Self-service at affordable rates</span></div></div></div>
+        <div class="g-item" data-cat="halls"><div class="g-thumb" style="background:linear-gradient(135deg,#e8b84b,#b8860b)">👥</div><div class="g-overlay"><div class="g-cap"><strong>Group Discussion Rooms</strong><span>6 soundproof rooms — booking available</span></div></div></div>
+        <div class="g-item" data-cat="facilities"><div class="g-thumb" style="background:linear-gradient(135deg,#880e4f,#ad1457)">👧</div><div class="g-overlay"><div class="g-cap"><strong>Children's Learning Corner</strong><span>Bright, colourful space for kids 4–14</span></div></div></div>
       </div>
     </div>
   </section>
 </div>
 
-<!-- ══════════════ SUGGEST ══════════════ -->
+<!-- ═══════ SUGGEST ═══════ -->
 <div class="page" id="page-suggest">
   <div class="page-banner">
     <h1 class="fu">Suggest a Book</h1>
@@ -961,75 +447,35 @@ footer{background:var(--surface);border-top:1px solid var(--border);padding:64px
   </div>
   <section class="section">
     <div class="section-inner">
-      <div style="text-align:center;margin-bottom:44px">
+      <div class="sec-center">
         <p class="sec-tag">Reader's Voice</p>
         <h2 class="sec-title">We Listen to Our Readers</h2>
-        <p class="sec-sub">Can't find a book you need for your studies? Suggest it — we review all submissions within 7 days and try our best to add it to the collection.</p>
+        <p class="sec-sub">Can't find a book for your studies? Suggest it — we review all submissions within 7 working days.</p>
       </div>
-      <div class="form-wrap">
-        <form id="suggest-form" onsubmit="submitForm('suggest-form','suggest-ok',event)">
-          <div class="form-2col">
-            <div class="fg">
-              <label>Your Name *</label>
-              <input type="text" placeholder="Aarav Sharma" required>
-            </div>
-            <div class="fg">
-              <label>Mobile / Email</label>
-              <input type="text" placeholder="+91 98765 43210">
-            </div>
+      <div class="form-box">
+        <form id="sug-form" onsubmit="formSubmit(event,'sug-ok')">
+          <div class="f2">
+            <div class="fg"><label>Your Name *</label><input type="text" placeholder="Aarav Sharma" required></div>
+            <div class="fg"><label>Mobile / Email</label><input type="text" placeholder="+91 98765 43210"></div>
           </div>
-          <div class="form-2col">
-            <div class="fg">
-              <label>Book Title *</label>
-              <input type="text" placeholder="Enter full book title" required>
-            </div>
-            <div class="fg">
-              <label>Author Name</label>
-              <input type="text" placeholder="Author's name">
-            </div>
+          <div class="f2">
+            <div class="fg"><label>Book Title *</label><input type="text" placeholder="Enter full book title" required></div>
+            <div class="fg"><label>Author Name</label><input type="text" placeholder="Author's name"></div>
           </div>
-          <div class="form-2col">
-            <div class="fg">
-              <label>Language</label>
-              <select>
-                <option>Hindi</option>
-                <option>English</option>
-                <option>Urdu</option>
-                <option>Sanskrit</option>
-                <option>Other</option>
-              </select>
-            </div>
-            <div class="fg">
-              <label>Category / Purpose</label>
-              <select>
-                <option>UPSC / Civil Services</option>
-                <option>SSC / Banking Exams</option>
-                <option>NEET / Medical</option>
-                <option>JEE / Engineering</option>
-                <option>Board Exams (10th/12th)</option>
-                <option>Hindi Literature</option>
-                <option>Urdu Poetry & Prose</option>
-                <option>General Knowledge</option>
-                <option>Children's Books</option>
-                <option>Self-Help / Motivation</option>
-                <option>History & Culture</option>
-                <option>Other</option>
-              </select>
-            </div>
+          <div class="f2">
+            <div class="fg"><label>Language</label><select><option>Hindi</option><option>English</option><option>Urdu</option><option>Sanskrit</option><option>Other</option></select></div>
+            <div class="fg"><label>Category / Purpose</label><select><option>UPSC / Civil Services</option><option>SSC / Banking Exams</option><option>NEET / Medical</option><option>JEE / Engineering</option><option>Board Exams (10th/12th)</option><option>Hindi Literature</option><option>Urdu Poetry & Prose</option><option>General Knowledge</option><option>Children's Books</option><option>Self-Help / Motivation</option><option>History & Culture</option><option>Other</option></select></div>
           </div>
-          <div class="fg">
-            <label>Why should we add this? (Optional)</label>
-            <textarea placeholder="Tell us how this book will help students at Study Hub Library..."></textarea>
-          </div>
-          <button type="submit" class="form-btn">Submit Suggestion ✦</button>
-          <div class="ok-msg" id="suggest-ok">🎉 Thank you! Your suggestion has been submitted and will be reviewed within 7 working days.</div>
+          <div class="fg"><label>Why should we add this? (Optional)</label><textarea placeholder="Tell us how this book will help students at Study Hub Library..."></textarea></div>
+          <button type="submit" class="f-btn">Submit Suggestion ✦</button>
+          <div class="ok-box" id="sug-ok">🎉 Thank you! Your suggestion has been submitted and will be reviewed within 7 working days.</div>
         </form>
       </div>
     </div>
   </section>
 </div>
 
-<!-- ══════════════ NOTIFICATIONS ══════════════ -->
+<!-- ═══════ NOTIFICATIONS ═══════ -->
 <div class="page" id="page-notifications">
   <div class="page-banner">
     <h1 class="fu">Notifications</h1>
@@ -1037,160 +483,80 @@ footer{background:var(--surface);border-top:1px solid var(--border);padding:64px
   </div>
   <section class="section">
     <div class="section-inner">
-      <div class="notif-stack">
-
-        <div class="notif-card new">
-          <div class="ni">📢</div>
-          <div>
-            <div class="nt">UPSC Study Zone Now Open on All Floors <span class="badge-new">NEW</span></div>
-            <div class="nb">We have expanded our UPSC/Civil Services section to all 3 floors. New additions include NCERT compilations, Laxmikant latest edition, Vision IAS materials and complete sets of previous year papers from 1998–2025.</div>
-            <span class="ntime">Today, 8:00 AM</span>
-          </div>
+      <div class="notif-list">
+        <div class="n-card n-new">
+          <div class="n-ico">📢</div>
+          <div><div class="n-title">UPSC Study Zone Now Open on All Floors <span class="n-badge">NEW</span></div><div class="n-body">We have expanded our UPSC/Civil Services section to all 3 floors. New additions include NCERT compilations, Laxmikant latest edition, Vision IAS materials and complete sets of previous year papers from 1998–2025.</div><span class="n-time">Today, 8:00 AM</span></div>
         </div>
-
-        <div class="notif-card new">
-          <div class="ni">🎓</div>
-          <div>
-            <div class="nt">Free Seminar: "How to Crack UPSC 2026" — 5 March <span class="badge-new">NEW</span></div>
-            <div class="nb">Join us on 5th March 2026 at 5:00 PM for a free seminar by IPS Officer Rajeev Srivastava (2018 batch) on strategy, time management and booklist for UPSC 2026. Limited seats — confirm at reception.</div>
-            <span class="ntime">Yesterday, 6:00 PM</span>
-          </div>
+        <div class="n-card n-new">
+          <div class="n-ico">🎓</div>
+          <div><div class="n-title">Free Seminar: "How to Crack UPSC 2026" — 5 March <span class="n-badge">NEW</span></div><div class="n-body">Join us on 5th March 2026 at 5:00 PM for a free seminar by IPS Officer Rajeev Srivastava (2018 batch) on strategy, time management and booklist for UPSC 2026. Limited seats — confirm at reception.</div><span class="n-time">Yesterday, 6:00 PM</span></div>
         </div>
-
-        <div class="notif-card">
-          <div class="ni">⏰</div>
-          <div>
-            <div class="nt">Extended Hours During Board Season — Feb to April</div>
-            <div class="nb">Study Hub Library will now remain open from 6:00 AM to 11:00 PM Monday to Saturday and 8:00 AM to 8:00 PM on Sundays throughout the board exam season (February to April 2026).</div>
-            <span class="ntime">22 Feb 2026</span>
-          </div>
+        <div class="n-card">
+          <div class="n-ico">⏰</div>
+          <div><div class="n-title">Extended Hours During Board Season — Feb to April</div><div class="n-body">Study Hub Library will remain open from 6:00 AM to 11:00 PM Monday to Saturday and 8:00 AM to 8:00 PM on Sundays throughout the board exam season (February to April 2026).</div><span class="n-time">22 Feb 2026</span></div>
         </div>
-
-        <div class="notif-card">
-          <div class="ni">💻</div>
-          <div>
-            <div class="nt">Wi-Fi Speed Upgraded to 1 Gbps Fibre</div>
-            <div class="nb">We have completed the upgrade to 1 Gbps fibre connectivity across all floors and the café. Members can now access digital resources, stream lectures and download study material at full speed without interruption.</div>
-            <span class="ntime">18 Feb 2026</span>
-          </div>
+        <div class="n-card">
+          <div class="n-ico">💻</div>
+          <div><div class="n-title">Wi-Fi Speed Upgraded to 1 Gbps Fibre</div><div class="n-body">We have completed the upgrade to 1 Gbps fibre connectivity across all floors and the café. Members can now access digital resources, stream lectures and download study material at full speed.</div><span class="n-time">18 Feb 2026</span></div>
         </div>
-
-        <div class="notif-card">
-          <div class="ni">🏆</div>
-          <div>
-            <div class="nt">47 Study Hub Members Cleared UPSC 2025</div>
-            <div class="nb">We are proud to announce that 47 of our registered members successfully cleared UPSC Prelims 2025 and 12 made it to the final list. A felicitation ceremony was held on 10 Feb 2026 at the library premises.</div>
-            <span class="ntime">10 Feb 2026</span>
-          </div>
+        <div class="n-card">
+          <div class="n-ico">🏆</div>
+          <div><div class="n-title">47 Study Hub Members Cleared UPSC 2025</div><div class="n-body">We are proud to announce that 47 of our registered members successfully cleared UPSC Prelims 2025 and 12 made it to the final list. A felicitation ceremony was held on 10 Feb 2026 at the library premises.</div><span class="n-time">10 Feb 2026</span></div>
         </div>
-
-        <div class="notif-card">
-          <div class="ni">📚</div>
-          <div>
-            <div class="nt">1,200 New Books Added — January 2026 Batch</div>
-            <div class="nb">Our latest acquisition includes 1,200 new titles across competitive exam preparation, Hindi fiction, UP Board curriculum books, science textbooks and motivational literature. Check the New Arrivals shelf near the entrance.</div>
-            <span class="ntime">5 Feb 2026</span>
-          </div>
+        <div class="n-card">
+          <div class="n-ico">📚</div>
+          <div><div class="n-title">1,200 New Books Added — January 2026 Batch</div><div class="n-body">Our latest acquisition includes 1,200 new titles across competitive exam prep, Hindi fiction, UP Board curriculum books, science textbooks and motivational literature. Check the New Arrivals shelf near the entrance.</div><span class="n-time">5 Feb 2026</span></div>
         </div>
-
-        <div class="notif-card">
-          <div class="ni">💳</div>
-          <div>
-            <div class="nt">2026 Membership Renewal Open — ₹499 Only</div>
-            <div class="nb">Renew your Study Hub membership for 2026 at just ₹499/year. Early renewals before 28 February will receive a free monthly magazine subscription and priority study hall booking for the next 3 months.</div>
-            <span class="ntime">1 Feb 2026</span>
-          </div>
+        <div class="n-card">
+          <div class="n-ico">💳</div>
+          <div><div class="n-title">2026 Membership Renewal Open — ₹499 Only</div><div class="n-body">Renew your Study Hub membership for 2026 at just ₹499/year. Early renewals before 28 February will receive a free monthly magazine subscription and priority study hall booking for the next 3 months.</div><span class="n-time">1 Feb 2026</span></div>
         </div>
-
       </div>
     </div>
   </section>
 </div>
 
-<!-- ══════════════ CONTACT ══════════════ -->
+<!-- ═══════ CONTACT ═══════ -->
 <div class="page" id="page-contact">
   <div class="page-banner">
     <h1 class="fu">Contact Us</h1>
-    <p class="fu d1">We're always here to help — come visit or reach out to us anytime</p>
+    <p class="fu d1">We're always here to help — come visit or reach out anytime</p>
   </div>
   <section class="section">
     <div class="section-inner">
-      <div class="contact-layout">
-
+      <div class="c-grid">
         <div>
-          <p class="sec-tag" style="margin-bottom:24px">Find Us</p>
-          <div class="contact-card">
-            <div class="cc-icon">📍</div>
-            <div>
-              <div class="cc-label">Address</div>
-              <div class="cc-val">22-A, Sahara Estate, Near Lekhraj Metro<br>Indira Nagar, Lucknow — 226016<br><small style="color:var(--muted)">Also near Hazratganj & Gomti Nagar</small></div>
-            </div>
-          </div>
-          <div class="contact-card">
-            <div class="cc-icon">📞</div>
-            <div>
-              <div class="cc-label">Phone</div>
-              <div class="cc-val">+91-98390-45678<br>+91-522-4089001</div>
-            </div>
-          </div>
-          <div class="contact-card">
-            <div class="cc-icon">✉️</div>
-            <div>
-              <div class="cc-label">Email</div>
-              <div class="cc-val"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="48202d242427083b3c3d2c31203d2a242327662126">[email&#160;protected]</a><br><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="14797179767166677c7d6454676061706d7c6176787f7b3a7d7a">[email&#160;protected]</a></div>
-            </div>
-          </div>
-          <div class="hours-row">
+          <p class="sec-tag" style="margin-bottom:20px">Find Us</p>
+          <div class="c-card"><div class="c-ico">📍</div><div><div class="c-lbl">Address</div><div class="c-val">22-A, Sahara Estate, Near Lekhraj Metro<br>Indira Nagar, Lucknow — 226016<br><small style="color:var(--muted)">Also near Hazratganj & Gomti Nagar</small></div></div></div>
+          <div class="c-card"><div class="c-ico">📞</div><div><div class="c-lbl">Phone</div><div class="c-val">+91-98390-45678<br>+91-522-4089001</div></div></div>
+          <div class="c-card"><div class="c-ico">✉️</div><div><div class="c-lbl">Email</div><div class="c-val">hello@studyhublko.in<br>membership@studyhublko.in</div></div></div>
+          <div class="hours-box">
             <h4>Opening Hours</h4>
-            <div class="hour-item"><span class="day">Monday – Friday</span><span class="time">6:00 AM – 10:00 PM</span></div>
-            <div class="hour-item"><span class="day">Saturday</span><span class="time">6:00 AM – 10:00 PM</span></div>
-            <div class="hour-item"><span class="day">Sunday</span><span class="time">8:00 AM – 8:00 PM</span></div>
-            <div class="hour-item"><span class="day">Public Holidays</span><span class="closed">Closed</span></div>
-            <div class="hour-item"><span class="day">Board Exam Season</span><span class="time" style="color:var(--teal)">6:00 AM – 11:00 PM</span></div>
+            <div class="h-row"><span class="day">Monday – Friday</span><span class="time">6:00 AM – 10:00 PM</span></div>
+            <div class="h-row"><span class="day">Saturday</span><span class="time">6:00 AM – 10:00 PM</span></div>
+            <div class="h-row"><span class="day">Sunday</span><span class="time">8:00 AM – 8:00 PM</span></div>
+            <div class="h-row"><span class="day">Public Holidays</span><span class="closed">Closed</span></div>
+            <div class="h-row"><span class="day">Board Exam Season</span><span class="time" style="color:var(--teal)">6:00 AM – 11:00 PM</span></div>
           </div>
         </div>
-
         <div>
-          <div class="form-wrap" style="padding:40px 36px">
-            <p class="sec-tag" style="margin-bottom:8px">Send a Message</p>
-            <h2 style="font-family:'DM Serif Display',serif;font-size:1.8rem;margin-bottom:28px">We'll reply in 24 hours</h2>
-            <form id="contact-form" onsubmit="submitForm('contact-form','contact-ok',event)">
-              <div class="form-2col">
-                <div class="fg">
-                  <label>Full Name *</label>
-                  <input type="text" placeholder="Your name" required>
-                </div>
-                <div class="fg">
-                  <label>Phone Number</label>
-                  <input type="tel" placeholder="+91 XXXXX XXXXX">
-                </div>
+          <div class="form-box" style="padding:38px 34px">
+            <p class="sec-tag" style="margin-bottom:6px">Send a Message</p>
+            <h2 style="font-family:'DM Serif Display',serif;font-size:1.75rem;margin-bottom:24px;color:var(--white)">We'll reply in 24 hours</h2>
+            <form id="con-form" onsubmit="formSubmit(event,'con-ok')">
+              <div class="f2">
+                <div class="fg"><label>Full Name *</label><input type="text" placeholder="Your name" required></div>
+                <div class="fg"><label>Phone Number</label><input type="tel" placeholder="+91 XXXXX XXXXX"></div>
               </div>
-              <div class="fg">
-                <label>Email Address *</label>
-                <input type="email" placeholder="you@gmail.com" required>
-              </div>
-              <div class="fg">
-                <label>Subject</label>
-                <select>
-                  <option>Membership Enquiry</option>
-                  <option>Book Enquiry</option>
-                  <option>Study Hall Booking</option>
-                  <option>Event Registration</option>
-                  <option>Book Donation</option>
-                  <option>General Feedback</option>
-                  <option>Complaint</option>
-                </select>
-              </div>
-              <div class="fg">
-                <label>Message *</label>
-                <textarea placeholder="How can we help you today?" required></textarea>
-              </div>
-              <button type="submit" class="form-btn">Send Message →</button>
-              <div class="ok-msg" id="contact-ok">✅ Message received! Our team will get back to you within 24 hours.</div>
+              <div class="fg"><label>Email Address *</label><input type="email" placeholder="you@gmail.com" required></div>
+              <div class="fg"><label>Subject</label><select><option>Membership Enquiry</option><option>Book Enquiry</option><option>Study Hall Booking</option><option>Event Registration</option><option>Book Donation</option><option>General Feedback</option><option>Complaint</option></select></div>
+              <div class="fg"><label>Message *</label><textarea placeholder="How can we help you today?" required></textarea></div>
+              <button type="submit" class="f-btn">Send Message →</button>
+              <div class="ok-box" id="con-ok">✅ Message received! Our team will reply within 24 hours.</div>
             </form>
           </div>
         </div>
-
       </div>
     </div>
   </section>
@@ -1198,33 +564,30 @@ footer{background:var(--surface);border-top:1px solid var(--border);padding:64px
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-inner">
-    <div class="footer-grid">
-      <div class="footer-about">
+  <div class="f-inner">
+    <div class="f-grid">
+      <div class="f-about">
         <div class="logo">
           <div class="logo-mark">📚</div>
-          <div>
-            <div class="logo-name">Study Hub Library</div>
-            <span class="logo-sub">Lucknow · Est. 2016</span>
-          </div>
+          <div><div class="logo-name">Study Hub Library</div><span class="logo-sub">Lucknow · Est. 2016</span></div>
         </div>
-        <p>Lucknow's premier modern study library. We exist to give every student — regardless of background — access to world-class learning resources and a focused environment to achieve their goals.</p>
-        <div class="social-row">
-          <a class="social-btn" href="#">📘</a>
-          <a class="social-btn" href="#">📸</a>
-          <a class="social-btn" href="#">▶️</a>
-          <a class="social-btn" href="#">🐦</a>
+        <p>Lucknow's premier modern study library. We exist to give every student access to world-class learning resources and a focused environment to achieve their goals.</p>
+        <div class="soc-row">
+          <a class="soc-btn" href="#">📘</a>
+          <a class="soc-btn" href="#">📸</a>
+          <a class="soc-btn" href="#">▶️</a>
+          <a class="soc-btn" href="#">🐦</a>
         </div>
       </div>
-      <div class="footer-col">
+      <div class="f-col">
         <h4>Quick Links</h4>
-        <a href="#" onclick="showPage('home')">Home</a>
-        <a href="#" onclick="showPage('gallery')">Gallery</a>
-        <a href="#" onclick="showPage('suggest')">Suggest a Book</a>
-        <a href="#" onclick="showPage('notifications')">Notifications</a>
-        <a href="#" onclick="showPage('contact')">Contact</a>
+        <a onclick="goTo('home')">Home</a>
+        <a onclick="goTo('gallery')">Gallery</a>
+        <a onclick="goTo('suggest')">Suggest a Book</a>
+        <a onclick="goTo('notifications')">Notifications</a>
+        <a onclick="goTo('contact')">Contact</a>
       </div>
-      <div class="footer-col">
+      <div class="f-col">
         <h4>Services</h4>
         <a href="#">Book Lending</a>
         <a href="#">UPSC Study Zone</a>
@@ -1233,74 +596,101 @@ footer{background:var(--surface);border-top:1px solid var(--border);padding:64px
         <a href="#">Reader's Café</a>
         <a href="#">Children's Corner</a>
       </div>
-      <div class="footer-col">
+      <div class="f-col">
         <h4>Contact</h4>
         <a href="#">📍 Indira Nagar, Lucknow</a>
         <a href="#">📞 +91-98390-45678</a>
-        <a href="#">✉️ <span class="__cf_email__" data-cfemail="8be3eee7e7e4cbf8fffeeff2e3fee9e7e0e4a5e2e5">[email&#160;protected]</span></a>
+        <a href="#">✉️ hello@studyhublko.in</a>
         <a href="#">🕐 Mon–Sat: 6AM–10PM</a>
         <a href="#">🌐 www.studyhublko.in</a>
       </div>
     </div>
-    <div class="footer-bottom">
+    <div class="f-bottom">
       <p>© 2026 Study Hub Library, Lucknow. All rights reserved.</p>
-      <p class="motto">ज्ञान ही शक्ति है — Knowledge is Power</p>
+      <p class="f-motto">ज्ञान ही शक्ति है — Knowledge is Power</p>
     </div>
   </div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-// Navigation
-function showPage(name){
-  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-  document.getElementById('page-'+name).classList.add('active');
-  document.querySelectorAll('.nav-links a').forEach(a=>a.classList.remove('active'));
-  const el=document.getElementById('nav-'+name);
-  if(el) el.classList.add('active');
-  window.scrollTo({top:0,behavior:'smooth'});
-  // re-trigger animations
-  document.querySelectorAll('#page-'+name+' .fu').forEach(el=>{
-    el.style.animation='none';
-    void el.offsetWidth;
-    el.style.animation='';
-  });
+<script>
+// ── NAVIGATION ──
+function goTo(name) {
+  var pages = document.querySelectorAll('.page');
+  for (var i = 0; i < pages.length; i++) {
+    pages[i].classList.remove('active');
+  }
+  var target = document.getElementById('page-' + name);
+  if (target) { target.classList.add('active'); }
+
+  var navLinks = document.querySelectorAll('.nav-list li a');
+  for (var j = 0; j < navLinks.length; j++) {
+    navLinks[j].classList.remove('active');
+  }
+  var activeLink = document.getElementById('nav-' + name);
+  if (activeLink) { activeLink.classList.add('active'); }
+
+  window.scrollTo(0, 0);
 }
 
-// Mobile menu
-function toggleMob(){
-  document.getElementById('mob-menu').classList.toggle('open');
+// ── MOBILE NAV ──
+function toggleNav() {
+  var mob = document.getElementById('mob-nav');
+  mob.style.display = (mob.style.display === 'block') ? 'none' : 'block';
+}
+function closeMob() {
+  document.getElementById('mob-nav').style.display = 'none';
 }
 
-// Close ticker
-function closeTicker(){
-  document.getElementById('ticker-bar').style.display='none';
-}
-
-// Gallery filter
-function filterG(cat,btn){
-  document.querySelectorAll('.gf-btn').forEach(b=>b.classList.remove('active'));
+// ── GALLERY FILTER ──
+function filterGallery(cat, btn) {
+  var btns = document.querySelectorAll('.g-btn');
+  for (var i = 0; i < btns.length; i++) { btns[i].classList.remove('active'); }
   btn.classList.add('active');
-  document.querySelectorAll('.g-item').forEach(item=>{
-    const show=(cat==='all'||item.dataset.cat===cat);
-    item.style.display=show?'':'none';
-    if(show){
-      item.style.animation='none';
-      void item.offsetWidth;
-      item.style.animation='fadeUp 0.4s ease forwards';
+
+  var items = document.querySelectorAll('.g-item');
+  for (var j = 0; j < items.length; j++) {
+    if (cat === 'all' || items[j].getAttribute('data-cat') === cat) {
+      items[j].style.display = '';
+    } else {
+      items[j].style.display = 'none';
     }
-  });
+  }
 }
 
-// Toast
-function toast(msg){
-  const t=document.getElementById('toast');
-  t.textContent=msg;t.classList.add('show');
-  setTimeout(()=>t.classList.remove('show'),3500);
-}
-
-// Forms
-function submitForm(formId,okId,e){
+// ── FORM SUBMIT ──
+function formSubmit(e, okId) {
   e.preventDefault();
-  const ok=document.getElementById(okId);
-  ok.style.display='block';
-  toast(okId==='suggest-ok'?'📚 Book suggestion submitted!':'✅ Message sent s
+  var ok = document.getElementById(okId);
+  if (ok) {
+    ok.style.display = 'block';
+    showToast(okId === 'sug-ok' ? '📚 Book suggestion submitted!' : '✅ Message sent successfully!');
+    setTimeout(function() { if (ok) ok.style.display = 'none'; }, 6000);
+  }
+  e.target.reset();
+}
+
+// ── TOAST ──
+function showToast(msg) {
+  var t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(function() { t.classList.remove('show'); }, 3500);
+}
+
+// ── ANIMATE ON SCROLL ──
+var observer = new IntersectionObserver(function(entries) {
+  for (var i = 0; i < entries.length; i++) {
+    if (entries[i].isIntersecting) {
+      entries[i].target.style.animationPlayState = 'running';
+    }
+  }
+}, { threshold: 0.1 });
+
+var fuEls = document.querySelectorAll('.fu');
+for (var k = 0; k < fuEls.length; k++) {
+  fuEls[k].style.animationPlayState = 'paused';
+  observer.observe(fuEls[k]);
+}
+</script>
+</body>
+</html>
