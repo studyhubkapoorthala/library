@@ -13,7 +13,30 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
     />
     <style>
-  
+      .g-thumb {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        position: relative;
+      }
+
+      .g-thumb img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+      .g-item {
+        width: 100%;
+        aspect-ratio: 4 / 3;
+      }
+
+      @media (max-width: 768px) {
+        .g-item {
+          aspect-ratio: 1 / 1;
+        }
+      }
+
       /* ── THEME VARIABLES ── */
       [data-theme="dark"] {
         --bg: #0a0c10;
@@ -1652,7 +1675,7 @@
     <nav>
       <div class="nav-wrap">
         <div class="logo" onclick="goTo('home')">
-          <div class="logo-mark"><img src="studyhub.png" alt="" /></div>
+          <div class="logo-mark"><img src="img/studyhub.png" alt="" /></div>
           <div>
             <div class="logo-name">Study Hub Library</div>
             <span class="logo-sub">Lucknow · Est. 2026</span>
@@ -2027,12 +2050,12 @@
             <button class="g-btn" onclick="filterGallery('halls', this)">
               Study Halls
             </button>
-            <button class="g-btn" onclick="filterGallery('collection', this)">
+            <!-- <button class="g-btn" onclick="filterGallery('collection', this)">
               Collections
             </button>
             <button class="g-btn" onclick="filterGallery('digital', this)">
               Digital Zone
-            </button>
+            </button> -->
             <button class="g-btn" onclick="filterGallery('events', this)">
               Events
             </button>
@@ -2041,177 +2064,87 @@
             </button>
           </div>
 
-        
-           <div class="g-grid" id="g-grid">
+          <div class="g-grid" id="g-grid">
+           
+
             <div class="g-item" data-cat="halls">
-              <div
-                class="g-thumb"
-                style="background: linear-gradient(135deg, #1e3a2f, #2d5a42)"
-              >
-                🏛️
+              <div class="g-thumb">
+                <img src="img/lib1.jpeg" alt="Night Study Hall" />
               </div>
               <div class="g-overlay">
                 <div class="g-cap">
-                  <strong>Grand Study Hall — Floor 1</strong
-                  ><span>Capacity: 75 students | AC + Lamps</span>
+                  <strong>Night Study Hall</strong>
+                  <span>Open till midnight during exam seasons</span>
                 </div>
               </div>
             </div>
+
             <div class="g-item" data-cat="halls">
-              <div
-                class="g-thumb"
-                style="background: linear-gradient(135deg, #1a1a2e, #16213e)"
-              >
-                🌙
+              <div class="g-thumb">
+                <img src="img/lib2.jpeg" alt="Night Study Hall" />
               </div>
               <div class="g-overlay">
                 <div class="g-cap">
-                  <strong>Night Study Hall</strong
-                  ><span>Open till midnight during exam seasons</span>
+                  <strong>Night Study Hall</strong>
+                  <span>Open till midnight during exam seasons</span>
                 </div>
               </div>
             </div>
-            <div class="g-item" data-cat="collection">
-              <div
-                class="g-thumb"
-                style="background: linear-gradient(135deg, #3d2b1f, #7a4a2e)"
-              >
-                📚
+          
+          <div class="g-item" data-cat="halls">
+              <div class="g-thumb">
+                <img src="img/lib3.jpeg" alt="Night Study Hall" />
               </div>
               <div class="g-overlay">
                 <div class="g-cap">
-                  <strong>UPSC & Civil Services Wing</strong
-                  ><span>2,000+ curated IAS prep books</span>
+                  <strong>Night Study Hall</strong>
+                  <span>Open till midnight during exam seasons</span>
                 </div>
               </div>
             </div>
-            <div class="g-item" data-cat="collection">
-              <div
-                class="g-thumb"
-                style="background: linear-gradient(135deg, #1b5e20, #2e7d32)"
-              >
-                🌿
+
+             <div class="g-item" data-cat="halls">
+              <div class="g-thumb">
+                <img src="img/lib4.jpeg" alt="Night Study Hall" />
               </div>
               <div class="g-overlay">
                 <div class="g-cap">
-                  <strong>Hindi & Urdu Literature</strong
-                  ><span>Rare books & modern prose collections</span>
+                  <strong>Night Study Hall</strong>
+                  <span>Open till midnight during exam seasons</span>
                 </div>
               </div>
             </div>
-            <div class="g-item" data-cat="digital">
-              <div
-                class="g-thumb"
-                style="background: linear-gradient(135deg, #0d47a1, #1565c0)"
-              >
-                💻
+            
+            
+             <div class="g-item" data-cat="events">
+              <div class="g-thumb">
+                <img src="img/studyhub.gif" alt="Night Study Hall" />
               </div>
               <div class="g-overlay">
                 <div class="g-cap">
-                  <strong>Digital Workstations</strong
-                  ><span>60 high-speed computers — free for members</span>
+                  <strong>Coming Soon</strong>
+                  <span>Details will be available shortly</span>
                 </div>
               </div>
             </div>
-            <div class="g-item" data-cat="digital">
-              <div
-                class="g-thumb"
-                style="background: linear-gradient(135deg, #004d40, #00695c)"
-              >
-                📡
+
+             <div class="g-item" data-cat="facilities">
+              <div class="g-thumb">
+                <img src="img/studyhub.gif" alt="Night Study Hall" />
               </div>
               <div class="g-overlay">
                 <div class="g-cap">
-                  <strong>Wi-Fi Zone</strong
-                  ><span>1 Gbps fibre — blazing fast throughout</span>
+                 <strong>Coming Soon</strong>
+                  <span>Details will be available shortly</span>
                 </div>
               </div>
             </div>
-            <div class="g-item" data-cat="events">
-              <div
-                class="g-thumb"
-                style="background: linear-gradient(135deg, #b71c1c, #c62828)"
-              >
-                🎭
-              </div>
-              <div class="g-overlay">
-                <div class="g-cap">
-                  <strong>IAS Seminar — Jan 2026</strong
-                  ><span>200+ students attended the free session</span>
-                </div>
-              </div>
-            </div>
-            <div class="g-item" data-cat="events">
-              <div
-                class="g-thumb"
-                style="background: linear-gradient(135deg, #e65100, #f57c00)"
-              >
-                🏆
-              </div>
-              <div class="g-overlay">
-                <div class="g-cap">
-                  <strong>Annual Results Celebration 2025</strong
-                  ><span>47 UPSC selections felicitated</span>
-                </div>
-              </div>
-            </div>
-            <div class="g-item" data-cat="facilities">
-              <div
-                class="g-thumb"
-                style="background: linear-gradient(135deg, #4a148c, #6a1b9a)"
-              >
-                ☕
-              </div>
-              <div class="g-overlay">
-                <div class="g-cap">
-                  <strong>Reader's Café</strong
-                  ><span>Chai, coffee & snacks — open 7AM–9PM</span>
-                </div>
-              </div>
-            </div>
-            <div class="g-item" data-cat="facilities">
-              <div
-                class="g-thumb"
-                style="background: linear-gradient(135deg, #37474f, #546e7a)"
-              >
-                🖨️
-              </div>
-              <div class="g-overlay">
-                <div class="g-cap">
-                  <strong>Print & Copy Centre</strong
-                  ><span>Self-service at affordable rates</span>
-                </div>
-              </div>
-            </div>
-            <div class="g-item" data-cat="halls">
-              <div
-                class="g-thumb"
-                style="background: linear-gradient(135deg, #e8b84b, #b8860b)"
-              >
-                👥
-              </div>
-              <div class="g-overlay">
-                <div class="g-cap">
-                  <strong>Group Discussion Rooms</strong
-                  ><span>6 soundproof rooms — booking available</span>
-                </div>
-              </div>
-            </div>
-            <div class="g-item" data-cat="facilities">
-              <div
-                class="g-thumb"
-                style="background: linear-gradient(135deg, #880e4f, #ad1457)"
-              >
-                👧
-              </div>
-              <div class="g-overlay">
-                <div class="g-cap">
-                  <strong>Children's Learning Corner</strong
-                  ><span>Bright, colourful space for kids 4–14</span>
-                </div>
-              </div>
-            </div>
-          </div> 
+           
+           
+           
+            
+            
+          </div>
         </div>
       </section>
     </div>
@@ -2385,10 +2318,10 @@
                   <span class="n-badge">NEW</span>
                 </div>
                 <div class="n-body">
-                  Renew your Study Hub membership for 2026 at just ₹1199/monthly.
-                  Early renewals before 28 February will receive a free monthly
-                  magazine subscription and priority study hall booking for the
-                  next 3 months.
+                  Renew your Study Hub membership for 2026 at just
+                  ₹1199/monthly. Early renewals before 28 February will receive
+                  a free monthly magazine subscription and priority study hall
+                  booking for the next 3 months.
                 </div>
                 <span class="n-time">1 March 2026</span>
               </div>
@@ -2575,18 +2508,18 @@
               student access to world-class learning resources and a focused
               environment to achieve their goals.
             </p>
-            <div class="soc-row" >
+            <div class="soc-row">
               <a class="soc-btn" href="#"
-                ><i class="fa-brands fa-facebook-f" style="color: #e8b84b;"></i
+                ><i class="fa-brands fa-facebook-f" style="color: #e8b84b"></i
               ></a>
               <a class="soc-btn" href="#"
-                ><i class="fa-brands fa-instagram" style="color: #e8b84b;"></i
+                ><i class="fa-brands fa-instagram" style="color: #e8b84b"></i
               ></a>
               <a class="soc-btn" href="#"
-                ><i class="fa-brands fa-youtube" style="color: #e8b84b;"></i
+                ><i class="fa-brands fa-youtube" style="color: #e8b84b"></i
               ></a>
               <a class="soc-btn" href="#"
-                ><i class="fa-brands fa-x-twitter" style="color: #e8b84b;"></i
+                ><i class="fa-brands fa-x-twitter" style="color: #e8b84b"></i
               ></a>
             </div>
           </div>
