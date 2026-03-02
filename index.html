@@ -1,1134 +1,2808 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en" data-theme="dark">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Study Hub Library — Lucknow 2026</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
-<style>
-/* ── THEME VARIABLES ── */
-[data-theme="dark"] {
-  --bg: #0a0c10;
-  --bg2: #0f1117;
-  --surface: #141820;
-  --surface2: #1c2130;
-  --surface3: #232a3a;
-  --border: rgba(255,255,255,0.07);
-  --border2: rgba(255,255,255,0.12);
-  --white: #eef0f7;
-  --muted: #7a8499;
-  --muted2: #9aa0b4;
-  --gold: #e8b84b;
-  --gold2: #f5d07a;
-  --teal: #3ecfb2;
-  --red: #e85c4b;
-  --accent: #5b7eff;
-  --orange: #D04D0C;
-  --orange2: #e85e20;
-  --shadow: rgba(0,0,0,0.6);
-  --nav-bg: rgba(10,12,16,0.97);
-  --hero-grad1: rgba(62,207,178,0.05);
-  --hero-grad2: rgba(232,184,75,0.06);
-  --card-hover: rgba(255,255,255,0.03);
-  --theme-icon: "🌙";
-}
-[data-theme="light"] {
-  --bg: #f4f5f8;
-  --bg2: #ffffff;
-  --surface: #ffffff;
-  --surface2: #f0f2f8;
-  --surface3: #e8eaf2;
-  --border: rgba(0,0,0,0.08);
-  --border2: rgba(0,0,0,0.14);
-  --white: #1a1e2e;
-  --muted: #6b7280;
-  --muted2: #9ca3af;
-  --gold: #c9930a;
-  --gold2: #d9a820;
-  --teal: #0d9488;
-  --red: #dc2626;
-  --accent: #4f46e5;
-  --orange: #c2410c;
-  --orange2: #ea580c;
-  --shadow: rgba(0,0,0,0.12);
-  --nav-bg: rgba(244,245,248,0.97);
-  --hero-grad1: rgba(13,148,136,0.06);
-  --hero-grad2: rgba(201,147,10,0.07);
-  --card-hover: rgba(0,0,0,0.02);
-  --theme-icon: "☀️";
-}
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Study Hub Library — Lucknow 2026</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+    />
+    <style>
+  
+      /* ── THEME VARIABLES ── */
+      [data-theme="dark"] {
+        --bg: #0a0c10;
+        --bg2: #0f1117;
+        --surface: #141820;
+        --surface2: #1c2130;
+        --surface3: #232a3a;
+        --border: rgba(255, 255, 255, 0.07);
+        --border2: rgba(255, 255, 255, 0.12);
+        --white: #eef0f7;
+        --muted: #7a8499;
+        --muted2: #9aa0b4;
+        --gold: #e8b84b;
+        --gold2: #f5d07a;
+        --teal: #3ecfb2;
+        --red: #e85c4b;
+        --accent: #5b7eff;
+        --orange: #d04d0c;
+        --orange2: #e85e20;
+        --shadow: rgba(0, 0, 0, 0.6);
+        --nav-bg: rgba(10, 12, 16, 0.97);
+        --hero-grad1: rgba(62, 207, 178, 0.05);
+        --hero-grad2: rgba(232, 184, 75, 0.06);
+        --card-hover: rgba(255, 255, 255, 0.03);
+        --theme-icon: "🌙";
+      }
+      [data-theme="light"] {
+        --bg: #f4f5f8;
+        --bg2: #ffffff;
+        --surface: #ffffff;
+        --surface2: #f0f2f8;
+        --surface3: #e8eaf2;
+        --border: rgba(0, 0, 0, 0.08);
+        --border2: rgba(0, 0, 0, 0.14);
+        --white: #1a1e2e;
+        --muted: #6b7280;
+        --muted2: #9ca3af;
+        --gold: #c9930a;
+        --gold2: #d9a820;
+        --teal: #0d9488;
+        --red: #dc2626;
+        --accent: #4f46e5;
+        --orange: #c2410c;
+        --orange2: #ea580c;
+        --shadow: rgba(0, 0, 0, 0.12);
+        --nav-bg: rgba(244, 245, 248, 0.97);
+        --hero-grad1: rgba(13, 148, 136, 0.06);
+        --hero-grad2: rgba(201, 147, 10, 0.07);
+        --card-hover: rgba(0, 0, 0, 0.02);
+        --theme-icon: "☀️";
+      }
 
-/* ── RESET & BASE ── */
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{
-  font-family:'Outfit',sans-serif;
-  background:var(--bg);
-  color:var(--white);
-  font-size:16px;
-  line-height:1.7;
-  overflow-x:hidden;
-  transition:background 0.35s ease,color 0.35s ease;
-}
-::-webkit-scrollbar{width:5px}
-::-webkit-scrollbar-track{background:var(--bg)}
-::-webkit-scrollbar-thumb{background:var(--gold);border-radius:3px}
+      /* ── RESET & BASE ── */
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family: "Outfit", sans-serif;
+        background: var(--bg);
+        color: var(--white);
+        font-size: 16px;
+        line-height: 1.7;
+        overflow-x: hidden;
+        transition:
+          background 0.35s ease,
+          color 0.35s ease;
+      }
+      ::-webkit-scrollbar {
+        width: 5px;
+      }
+      ::-webkit-scrollbar-track {
+        background: var(--bg);
+      }
+      ::-webkit-scrollbar-thumb {
+        background: var(--gold);
+        border-radius: 3px;
+      }
 
-/* ── THEME TRANSITION ── */
-body,nav,.srv-card,.stat-box,.feat-card,.hl,.n-card,.c-card,.hours-box,
-.form-box,.fg input,.fg select,.fg textarea,.g-btn,.mc-wrap{
-  transition:background 0.35s ease, border-color 0.35s ease, color 0.35s ease;
-}
+      /* ── THEME TRANSITION ── */
+      body,
+      nav,
+      .srv-card,
+      .stat-box,
+      .feat-card,
+      .hl,
+      .n-card,
+      .c-card,
+      .hours-box,
+      .form-box,
+      .fg input,
+      .fg select,
+      .fg textarea,
+      .g-btn,
+      .mc-wrap {
+        transition:
+          background 0.35s ease,
+          border-color 0.35s ease,
+          color 0.35s ease;
+      }
 
-/* ── TICKER ── */
-#ticker-bar{
-  background:linear-gradient(90deg,var(--gold),var(--gold2));
-  color:#0a0c10;
-  font-family:'JetBrains Mono',monospace;
-  font-size:11.5px;
-  font-weight:700;
-  padding:9px 48px 9px 0;
-  position:relative;
-  overflow:hidden;
-  white-space:nowrap;
-}
-#ticker-inner{display:inline-block;animation:ticker 35s linear infinite;padding-left:100%}
-@keyframes ticker{0%{transform:translateX(0)}100%{transform:translateX(-100%)}}
-#btn-close-ticker{
-  position:absolute;right:12px;top:50%;transform:translateY(-50%);
-  background:rgba(0,0,0,0.2);border:none;color:#0a0c10;
-  width:24px;height:24px;border-radius:50%;cursor:pointer;
-  font-size:13px;font-weight:900;display:flex;align-items:center;
-  justify-content:center;z-index:2;
-}
+      /* ── TICKER ── */
+      #ticker-bar {
+        background: linear-gradient(90deg, var(--gold), var(--gold2));
+        color: #0a0c10;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 11.5px;
+        font-weight: 700;
+        padding: 9px 48px 9px 0;
+        position: relative;
+        overflow: hidden;
+        white-space: nowrap;
+      }
+      #ticker-inner {
+        display: inline-block;
+        animation: ticker 35s linear infinite;
+        padding-left: 100%;
+      }
+      @keyframes ticker {
+        0% {
+          transform: translateX(0);
+        }
+        100% {
+          transform: translateX(-100%);
+        }
+      }
+      #btn-close-ticker {
+        position: absolute;
+        right: 12px;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(0, 0, 0, 0.2);
+        border: none;
+        color: #0a0c10;
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+        cursor: pointer;
+        font-size: 13px;
+        font-weight: 900;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 2;
+      }
 
-/* ── NAV ── */
-nav{
-  background:var(--nav-bg);
-  backdrop-filter:blur(24px);
-  -webkit-backdrop-filter:blur(24px);
-  border-bottom:1px solid var(--border);
-  position:sticky;top:0;z-index:9999;
-}
-.nav-wrap{
-  max-width:1300px;margin:auto;
-  display:flex;align-items:center;justify-content:space-between;
-  padding:0 24px;height:68px;
-}
-.logo{display:flex;align-items:center;gap:12px;cursor:pointer;text-decoration:none}
-.logo-mark{
-  width:40px;height:40px;border-radius:10px;
-  background:linear-gradient(135deg,var(--gold),var(--teal));
-  display:flex;align-items:center;justify-content:center;
-  font-size:20px;flex-shrink:0;
-}
-.logo-name{font-family:'Playfair Display',serif;font-size:18px;color:var(--white);font-weight:700}
-.logo-sub{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--gold);letter-spacing:2px;text-transform:uppercase;display:block}
+      /* ── NAV ── */
+      nav {
+        background: var(--nav-bg);
+        backdrop-filter: blur(24px);
+        -webkit-backdrop-filter: blur(24px);
+        border-bottom: 1px solid var(--border);
+        position: sticky;
+        top: 0;
+        z-index: 9999;
+      }
+      .nav-wrap {
+        max-width: 1300px;
+        margin: auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 24px;
+        height: 68px;
+      }
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        cursor: pointer;
+        text-decoration: none;
+      }
+      .logo-mark {
+        width: 40px;
+        height: 40px;
+        border-radius: 10px;
+        background: linear-gradient(135deg, var(--gold), var(--teal));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+        flex-shrink: 0;
+      }
+      .logo-name {
+        font-family: "Playfair Display", serif;
+        font-size: 18px;
+        color: var(--white);
+        font-weight: 700;
+      }
+      .logo-sub {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 9px;
+        color: var(--gold);
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        display: block;
+      }
 
-/* Nav right cluster */
-.nav-right{display:flex;align-items:center;gap:10px}
-.nav-list{display:flex;align-items:center;gap:2px;list-style:none}
-.nav-list li a{
-  color:var(--muted);text-decoration:none;font-size:14px;font-weight:500;
-  padding:8px 14px;border-radius:8px;transition:all 0.2s;display:block;
-  cursor:pointer;border:none;background:transparent;font-family:'Outfit',sans-serif;
-}
-.nav-list li a:hover,.nav-list li a.active{color:var(--white);background:var(--surface2)}
+      /* Nav right cluster */
+      .nav-right {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .nav-list {
+        display: flex;
+        align-items: center;
+        gap: 2px;
+        list-style: none;
+      }
+      .nav-list li a {
+        color: var(--muted);
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 500;
+        padding: 8px 14px;
+        border-radius: 8px;
+        transition: all 0.2s;
+        display: block;
+        cursor: pointer;
+        border: none;
+        background: transparent;
+        font-family: "Outfit", sans-serif;
+      }
+      .nav-list li a:hover,
+      .nav-list li a.active {
+        color: var(--white);
+        background: var(--surface2);
+      }
 
-/* Theme toggle button */
-.theme-btn{
-  background:var(--surface2);
-  border:1px solid var(--border2);
-  color:var(--white);
-  width:38px;height:38px;border-radius:10px;
-  cursor:pointer;font-size:17px;
-  display:flex;align-items:center;justify-content:center;
-  transition:all 0.2s;flex-shrink:0;
-}
-.theme-btn:hover{border-color:var(--gold);transform:translateY(-1px)}
+      /* Theme toggle button */
+      .theme-btn {
+        background: var(--surface2);
+        border: 1px solid var(--border2);
+        color: var(--white);
+        width: 38px;
+        height: 38px;
+        border-radius: 10px;
+        cursor: pointer;
+        font-size: 17px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s;
+        flex-shrink: 0;
+      }
+      .theme-btn:hover {
+        border-color: var(--gold);
+        transform: translateY(-1px);
+      }
 
-.nav-join{
-  background:var(--gold);color:#0a0c10;
-  padding:9px 20px;border-radius:8px;
-  font-weight:700;font-size:13px;
-  text-decoration:none;transition:all 0.2s;
-  cursor:pointer;border:none;font-family:'Outfit',sans-serif;
-}
-.nav-join:hover{background:var(--gold2);transform:translateY(-1px)}
+      .nav-join {
+        background: var(--gold);
+        color: #0a0c10;
+        padding: 9px 20px;
+        border-radius: 8px;
+        font-weight: 700;
+        font-size: 13px;
+        text-decoration: none;
+        transition: all 0.2s;
+        cursor: pointer;
+        border: none;
+        font-family: "Outfit", sans-serif;
+      }
+      .nav-join:hover {
+        background: var(--gold2);
+        transform: translateY(-1px);
+      }
 
-/* Hamburger */
-.hamburger{
-  display:none;background:var(--surface2);
-  border:1px solid var(--border);color:var(--white);
-  padding:8px 13px;border-radius:8px;cursor:pointer;
-  font-size:18px;line-height:1;transition:all 0.2s;
-}
-.hamburger:hover{border-color:var(--gold)}
+      /* Hamburger */
+      .hamburger {
+        display: none;
+        background: var(--surface2);
+        border: 1px solid var(--border);
+        color: var(--white);
+        padding: 8px 13px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 18px;
+        line-height: 1;
+        transition: all 0.2s;
+      }
+      .hamburger:hover {
+        border-color: var(--gold);
+      }
 
-/* Mobile nav drawer */
-.mob-nav{
-  display:none;
-  background:var(--surface);
-  border-bottom:1px solid var(--border);
-  padding:8px 20px 16px;
-  animation:slideDown 0.25s ease;
-}
-@keyframes slideDown{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}
-.mob-nav-header{
-  display:flex;justify-content:space-between;
-  align-items:center;padding:10px 0 12px;
-  border-bottom:1px solid var(--border);margin-bottom:4px;
-}
-.mob-nav-title{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold)}
-.mob-close-btn{
-  background:var(--surface2);border:1px solid var(--border2);
-  color:var(--muted);width:30px;height:30px;border-radius:8px;
-  cursor:pointer;font-size:16px;font-weight:700;
-  display:flex;align-items:center;justify-content:center;
-  transition:all 0.2s;line-height:1;
-}
-.mob-close-btn:hover{border-color:var(--red);color:var(--red)}
-.mob-nav a{
-  display:flex;align-items:center;gap:10px;
-  color:var(--muted2);text-decoration:none;
-  padding:12px 4px;border-bottom:1px solid var(--border);
-  font-size:15px;font-weight:500;transition:color 0.2s;cursor:pointer;
-}
-.mob-nav a:hover{color:var(--gold)}
-.mob-nav a:last-child{border-bottom:none}
-.mob-theme-row{
-  display:flex;align-items:center;justify-content:space-between;
-  padding:14px 4px 4px;
-}
-.mob-theme-lbl{font-size:13px;font-weight:500;color:var(--muted)}
+      /* Mobile nav drawer */
+      .mob-nav {
+        display: none;
+        background: var(--surface);
+        border-bottom: 1px solid var(--border);
+        padding: 8px 20px 16px;
+        animation: slideDown 0.25s ease;
+      }
+      @keyframes slideDown {
+        from {
+          opacity: 0;
+          transform: translateY(-8px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .mob-nav-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 0 12px;
+        border-bottom: 1px solid var(--border);
+        margin-bottom: 4px;
+      }
+      .mob-nav-title {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: var(--gold);
+      }
+      .mob-close-btn {
+        background: var(--surface2);
+        border: 1px solid var(--border2);
+        color: var(--muted);
+        width: 30px;
+        height: 30px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 16px;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s;
+        line-height: 1;
+      }
+      .mob-close-btn:hover {
+        border-color: var(--red);
+        color: var(--red);
+      }
+      .mob-nav a {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: var(--muted2);
+        text-decoration: none;
+        padding: 12px 4px;
+        border-bottom: 1px solid var(--border);
+        font-size: 15px;
+        font-weight: 500;
+        transition: color 0.2s;
+        cursor: pointer;
+      }
+      .mob-nav a:hover {
+        color: var(--gold);
+      }
+      .mob-nav a:last-child {
+        border-bottom: none;
+      }
+      .mob-theme-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 14px 4px 4px;
+      }
+      .mob-theme-lbl {
+        font-size: 13px;
+        font-weight: 500;
+        color: var(--muted);
+      }
 
-/* ── PAGES ── */
-.page{display:none}
-.page.active{display:block}
+      /* ── PAGES ── */
+      .page {
+        display: none;
+      }
+      .page.active {
+        display: block;
+      }
 
-/* ── PAGE BANNER ── */
-.page-banner{
-  background:linear-gradient(160deg,var(--surface),var(--bg));
-  border-bottom:1px solid var(--border);
-  padding:64px 24px 52px;text-align:center;
-  position:relative;overflow:hidden;
-}
-.page-banner::before{
-  content:'';position:absolute;inset:0;
-  background:radial-gradient(ellipse 60% 80% at 50% 0%,rgba(232,184,75,0.07),transparent 70%);
-}
-.page-banner h1{
-  font-family:'Playfair Display',serif;
-  font-size:clamp(2rem,4vw,3rem);color:var(--white);
-  margin-bottom:10px;position:relative;z-index:1;
-}
-.page-banner p{color:var(--muted);position:relative;z-index:1;font-size:1rem}
+      /* ── PAGE BANNER ── */
+      .page-banner {
+        background: linear-gradient(160deg, var(--surface), var(--bg));
+        border-bottom: 1px solid var(--border);
+        padding: 64px 24px 52px;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+      .page-banner::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(
+          ellipse 60% 80% at 50% 0%,
+          rgba(232, 184, 75, 0.07),
+          transparent 70%
+        );
+      }
+      .page-banner h1 {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(2rem, 4vw, 3rem);
+        color: var(--white);
+        margin-bottom: 10px;
+        position: relative;
+        z-index: 1;
+      }
+      .page-banner p {
+        color: var(--muted);
+        position: relative;
+        z-index: 1;
+        font-size: 1rem;
+      }
 
-/* ── HERO ── */
-.hero{
-  min-height:100vh;display:flex;align-items:center;
-  background:var(--bg);position:relative;overflow:hidden;
-}
-.hero-bg{
-  position:absolute;inset:0;
-  background:
-    radial-gradient(ellipse 50% 70% at 80% 50%,var(--hero-grad1),transparent 60%),
-    radial-gradient(ellipse 40% 60% at 10% 30%,var(--hero-grad2),transparent 50%);
-  pointer-events:none;
-}
-.hero-grid{
-  position:absolute;inset:0;
-  background-image:
-    linear-gradient(var(--border) 1px,transparent 1px),
-    linear-gradient(90deg,var(--border) 1px,transparent 1px);
-  background-size:64px 64px;pointer-events:none;
-}
-.hero-inner{
-  max-width:1300px;margin:auto;padding:90px 24px;
-  display:grid;grid-template-columns:1fr 1fr;
-  gap:72px;align-items:center;position:relative;z-index:2;
-}
-.eyebrow{
-  display:inline-flex;align-items:center;gap:8px;
-  background:rgba(232,184,75,0.1);
-  border:1px solid rgba(232,184,75,0.28);
-  color:var(--gold);font-size:11px;font-weight:700;
-  letter-spacing:2.5px;text-transform:uppercase;
-  padding:6px 16px;border-radius:100px;margin-bottom:22px;
-  font-family:'JetBrains Mono',monospace;
-}
-.eyebrow-dot{width:6px;height:6px;border-radius:50%;background:var(--gold);animation:blink 2s ease-in-out infinite}
-@keyframes blink{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.3;transform:scale(0.6)}}
-.hero h1{
-  font-family:'Playfair Display',serif;
-  font-size:clamp(2.4rem,5.5vw,4.2rem);
-  line-height:1.1;color:var(--white);margin-bottom:18px;font-weight:700;
-}
-.hero h1 .acc{color:var(--gold);font-style:italic}
-.hero-desc{color:var(--muted);font-size:1.05rem;max-width:480px;margin-bottom:32px;line-height:1.8}
-.hero-btns{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:40px}
-.btn-primary{
-  background:var(--gold);color:#0a0c10;
-  padding:13px 28px;border-radius:10px;font-weight:700;font-size:14px;
-  border:none;cursor:pointer;transition:all 0.2s;
-  text-decoration:none;display:inline-block;font-family:'Outfit',sans-serif;
-}
-.btn-primary:hover{background:var(--gold2);transform:translateY(-2px);box-shadow:0 8px 24px rgba(232,184,75,0.3)}
-.btn-outline{
-  background:transparent;color:var(--white);
-  padding:13px 28px;border-radius:10px;font-weight:600;font-size:14px;
-  border:1px solid var(--border2);cursor:pointer;transition:all 0.2s;
-  text-decoration:none;display:inline-block;font-family:'Outfit',sans-serif;
-}
-.btn-outline:hover{border-color:var(--gold);color:var(--gold)}
-.hero-tags{display:flex;gap:8px;flex-wrap:wrap}
-.tag{
-  background:var(--surface2);border:1px solid var(--border);
-  color:var(--muted);font-size:11px;font-weight:600;
-  padding:5px 12px;border-radius:6px;font-family:'JetBrains Mono',monospace;
-}
+      /* ── HERO ── */
+      .hero {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        background: var(--bg);
+        position: relative;
+        overflow: hidden;
+      }
+      .hero-bg {
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(
+            ellipse 50% 70% at 80% 50%,
+            var(--hero-grad1),
+            transparent 60%
+          ),
+          radial-gradient(
+            ellipse 40% 60% at 10% 30%,
+            var(--hero-grad2),
+            transparent 50%
+          );
+        pointer-events: none;
+      }
+      .hero-grid {
+        position: absolute;
+        inset: 0;
+        background-image:
+          linear-gradient(var(--border) 1px, transparent 1px),
+          linear-gradient(90deg, var(--border) 1px, transparent 1px);
+        background-size: 64px 64px;
+        pointer-events: none;
+      }
+      .hero-inner {
+        max-width: 1300px;
+        margin: auto;
+        padding: 90px 24px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 72px;
+        align-items: center;
+        position: relative;
+        z-index: 2;
+      }
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: rgba(232, 184, 75, 0.1);
+        border: 1px solid rgba(232, 184, 75, 0.28);
+        color: var(--gold);
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 2.5px;
+        text-transform: uppercase;
+        padding: 6px 16px;
+        border-radius: 100px;
+        margin-bottom: 22px;
+        font-family: "JetBrains Mono", monospace;
+      }
+      .eyebrow-dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--gold);
+        animation: blink 2s ease-in-out infinite;
+      }
+      @keyframes blink {
+        0%,
+        100% {
+          opacity: 1;
+          transform: scale(1);
+        }
+        50% {
+          opacity: 0.3;
+          transform: scale(0.6);
+        }
+      }
+      .hero h1 {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(2.4rem, 5.5vw, 4.2rem);
+        line-height: 1.1;
+        color: var(--white);
+        margin-bottom: 18px;
+        font-weight: 700;
+      }
+      .hero h1 .acc {
+        color: var(--gold);
+        font-style: italic;
+      }
+      .hero-desc {
+        color: var(--muted);
+        font-size: 1.05rem;
+        max-width: 480px;
+        margin-bottom: 32px;
+        line-height: 1.8;
+      }
+      .hero-btns {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin-bottom: 40px;
+      }
+      .btn-primary {
+        background: var(--gold);
+        color: #0a0c10;
+        padding: 13px 28px;
+        border-radius: 10px;
+        font-weight: 700;
+        font-size: 14px;
+        border: none;
+        cursor: pointer;
+        transition: all 0.2s;
+        text-decoration: none;
+        display: inline-block;
+        font-family: "Outfit", sans-serif;
+      }
+      .btn-primary:hover {
+        background: var(--gold2);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 24px rgba(232, 184, 75, 0.3);
+      }
+      .btn-outline {
+        background: transparent;
+        color: var(--white);
+        padding: 13px 28px;
+        border-radius: 10px;
+        font-weight: 600;
+        font-size: 14px;
+        border: 1px solid var(--border2);
+        cursor: pointer;
+        transition: all 0.2s;
+        text-decoration: none;
+        display: inline-block;
+        font-family: "Outfit", sans-serif;
+      }
+      .btn-outline:hover {
+        border-color: var(--gold);
+        color: var(--gold);
+      }
+      .hero-tags {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+      .tag {
+        background: var(--surface2);
+        border: 1px solid var(--border);
+        color: var(--muted);
+        font-size: 11px;
+        font-weight: 600;
+        padding: 5px 12px;
+        border-radius: 6px;
+        font-family: "JetBrains Mono", monospace;
+      }
 
-/* Hero right */
-.hero-right{display:flex;flex-direction:column;gap:14px}
-.stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.stat-box{
-  background:var(--surface);border:1px solid var(--border);
-  border-radius:14px;padding:22px 18px;transition:all 0.3s;
-  position:relative;overflow:hidden;
-}
-.stat-box::before{
-  content:'';position:absolute;top:0;left:0;right:0;height:2px;
-  background:linear-gradient(90deg,var(--gold),transparent);
-  opacity:0;transition:opacity 0.3s;
-}
-.stat-box:hover{border-color:rgba(232,184,75,0.25);transform:translateY(-3px)}
-.stat-box:hover::before{opacity:1}
-.stat-num{font-family:'Playfair Display',serif;font-size:2.1rem;color:var(--gold);line-height:1;margin-bottom:4px}
-.stat-lbl{color:var(--muted);font-size:13px;font-weight:500}
-.feat-card{
-  background:var(--surface);border:1px solid var(--border);
-  border-radius:14px;padding:20px 22px;display:flex;align-items:center;gap:14px;
-}
-.feat-icon{
-  width:44px;height:44px;border-radius:10px;flex-shrink:0;
-  background:linear-gradient(135deg,rgba(232,184,75,0.13),rgba(62,207,178,0.09));
-  display:flex;align-items:center;justify-content:center;font-size:20px;
-}
-.feat-text h4{font-size:14px;font-weight:600;margin-bottom:2px;color:var(--white)}
-.feat-text p{font-size:12px;color:var(--muted)}
+      /* Hero right */
+      .hero-right {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+      }
+      .stat-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+      .stat-box {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        padding: 22px 18px;
+        transition: all 0.3s;
+        position: relative;
+        overflow: hidden;
+      }
+      .stat-box::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: linear-gradient(90deg, var(--gold), transparent);
+        opacity: 0;
+        transition: opacity 0.3s;
+      }
+      .stat-box:hover {
+        border-color: rgba(232, 184, 75, 0.25);
+        transform: translateY(-3px);
+      }
+      .stat-box:hover::before {
+        opacity: 1;
+      }
+      .stat-num {
+        font-family: "Playfair Display", serif;
+        font-size: 2.1rem;
+        color: var(--gold);
+        line-height: 1;
+        margin-bottom: 4px;
+      }
+      .stat-lbl {
+        color: var(--muted);
+        font-size: 13px;
+        font-weight: 500;
+      }
+      .feat-card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        padding: 20px 22px;
+        display: flex;
+        align-items: center;
+        gap: 14px;
+      }
+      .feat-icon {
+        width: 44px;
+        height: 44px;
+        border-radius: 10px;
+        flex-shrink: 0;
+        background: linear-gradient(
+          135deg,
+          rgba(232, 184, 75, 0.13),
+          rgba(62, 207, 178, 0.09)
+        );
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+      }
+      .feat-text h4 {
+        font-size: 14px;
+        font-weight: 600;
+        margin-bottom: 2px;
+        color: var(--white);
+      }
+      .feat-text p {
+        font-size: 12px;
+        color: var(--muted);
+      }
 
-/* ── SECTIONS ── */
-.section{padding:80px 24px}
-.section-inner{max-width:1300px;margin:auto}
-.sec-tag{
-  display:inline-block;font-family:'JetBrains Mono',monospace;
-  font-size:11px;font-weight:700;letter-spacing:2px;
-  text-transform:uppercase;color:var(--teal);margin-bottom:10px;
-}
-.sec-title{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,3.5vw,2.5rem);color:var(--white);margin-bottom:10px}
-.sec-sub{color:var(--muted);font-size:1rem;max-width:520px}
-.sec-center{text-align:center;margin-bottom:48px}
-.sec-center .sec-sub{margin:0 auto}
+      /* ── SECTIONS ── */
+      .section {
+        padding: 80px 24px;
+      }
+      .section-inner {
+        max-width: 1300px;
+        margin: auto;
+      }
+      .sec-tag {
+        display: inline-block;
+        font-family: "JetBrains Mono", monospace;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: var(--teal);
+        margin-bottom: 10px;
+      }
+      .sec-title {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+        color: var(--white);
+        margin-bottom: 10px;
+      }
+      .sec-sub {
+        color: var(--muted);
+        font-size: 1rem;
+        max-width: 520px;
+      }
+      .sec-center {
+        text-align: center;
+        margin-bottom: 48px;
+      }
+      .sec-center .sec-sub {
+        margin: 0 auto;
+      }
 
-/* ── ABOUT ── */
-.about-wrap{background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
-.about-inner{
-  max-width:1300px;margin:auto;padding:80px 24px;
-  display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center;
-}
-.about-inner h2{font-family:'Playfair Display',serif;font-size:clamp(1.9rem,3.5vw,2.7rem);margin-bottom:18px}
-.about-inner h2 em{color:var(--gold);font-style:italic}
-.about-inner p{color:var(--muted);margin-bottom:14px;line-height:1.8}
-.hl-list{display:flex;flex-direction:column;gap:12px}
-.hl{
-  display:flex;gap:14px;align-items:flex-start;
-  background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:16px 18px;
-}
-.hl-num{font-family:'Playfair Display',serif;font-size:1.7rem;color:var(--gold);line-height:1;flex-shrink:0;min-width:52px}
-.hl-text h4{font-weight:600;font-size:14px;margin-bottom:2px;color:var(--white)}
-.hl-text p{color:var(--muted);font-size:13px;line-height:1.5}
+      /* ── ABOUT ── */
+      .about-wrap {
+        background: var(--surface);
+        border-top: 1px solid var(--border);
+        border-bottom: 1px solid var(--border);
+      }
+      .about-inner {
+        max-width: 1300px;
+        margin: auto;
+        padding: 80px 24px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 72px;
+        align-items: center;
+      }
+      .about-inner h2 {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(1.9rem, 3.5vw, 2.7rem);
+        margin-bottom: 18px;
+      }
+      .about-inner h2 em {
+        color: var(--gold);
+        font-style: italic;
+      }
+      .about-inner p {
+        color: var(--muted);
+        margin-bottom: 14px;
+        line-height: 1.8;
+      }
+      .hl-list {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+      .hl {
+        display: flex;
+        gap: 14px;
+        align-items: flex-start;
+        background: var(--bg);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 16px 18px;
+      }
+      .hl-num {
+        font-family: "Playfair Display", serif;
+        font-size: 1.7rem;
+        color: var(--gold);
+        line-height: 1;
+        flex-shrink: 0;
+        min-width: 52px;
+      }
+      .hl-text h4 {
+        font-weight: 600;
+        font-size: 14px;
+        margin-bottom: 2px;
+        color: var(--white);
+      }
+      .hl-text p {
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.5;
+      }
 
-/* ── SERVICES ── */
-.srv-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:18px}
-.srv-card{
-  background:var(--surface);border:1px solid var(--border);
-  border-radius:16px;padding:30px 26px;transition:all 0.3s;
-  position:relative;overflow:hidden;
-}
-.srv-card::after{
-  content:'';position:absolute;bottom:0;left:0;right:0;height:2px;
-  background:var(--cc,var(--gold));transform:scaleX(0);
-  transform-origin:left;transition:transform 0.3s;
-}
-.srv-card:hover{transform:translateY(-4px);box-shadow:0 18px 44px var(--shadow);border-color:var(--border2)}
-.srv-card:hover::after{transform:scaleX(1)}
-.srv-icon{width:50px;height:50px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:18px}
-.srv-card h3{font-size:17px;font-weight:600;margin-bottom:8px;color:var(--white)}
-.srv-card p{color:var(--muted);font-size:14px;line-height:1.7}
+      /* ── SERVICES ── */
+      .srv-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+        gap: 18px;
+      }
+      .srv-card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 30px 26px;
+        transition: all 0.3s;
+        position: relative;
+        overflow: hidden;
+      }
+      .srv-card::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: var(--cc, var(--gold));
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.3s;
+      }
+      .srv-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 18px 44px var(--shadow);
+        border-color: var(--border2);
+      }
+      .srv-card:hover::after {
+        transform: scaleX(1);
+      }
+      .srv-icon {
+        width: 50px;
+        height: 50px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        margin-bottom: 18px;
+      }
+      .srv-card h3 {
+        font-size: 17px;
+        font-weight: 600;
+        margin-bottom: 8px;
+        color: var(--white);
+      }
+      .srv-card p {
+        color: var(--muted);
+        font-size: 14px;
+        line-height: 1.7;
+      }
 
-/* ── MEMBERSHIP CTA ── */
-.mc-wrap{
-  background:linear-gradient(135deg,
-    var(--bg2) 0%,
-    color-mix(in srgb,var(--bg2) 80%,#3d1205) 45%,
-    color-mix(in srgb,var(--bg2) 90%,#1e0822) 100%);
-  border:1px solid rgba(208,77,12,0.3);border-radius:24px;
-  padding:56px 48px;display:grid;grid-template-columns:1fr 290px;
-  gap:48px;align-items:center;position:relative;overflow:hidden;
-}
-.mc-glow1{position:absolute;width:340px;height:340px;top:-100px;left:-80px;background:rgba(208,77,12,0.12);border-radius:50%;filter:blur(70px);pointer-events:none}
-.mc-glow2{position:absolute;width:280px;height:280px;bottom:-80px;right:240px;background:rgba(208,77,12,0.07);border-radius:50%;filter:blur(60px);pointer-events:none}
-.mc-badge{
-  display:inline-block;background:rgba(208,77,12,0.16);
-  border:1px solid rgba(208,77,12,0.45);color:#ff7a3c;
-  font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;
-  padding:6px 16px;border-radius:100px;margin-bottom:18px;
-  font-family:'JetBrains Mono',monospace;
-}
-.mc-title{font-family:'Playfair Display',serif;font-size:clamp(1.6rem,2.8vw,2.2rem);color:var(--white);line-height:1.25;margin-bottom:12px}
-.mc-price-line{display:block;color:var(--orange);font-size:clamp(1.8rem,3vw,2.5rem);margin-top:4px}
-.mc-price-line small{font-size:0.5em;color:#e87845;font-weight:500}
-.mc-desc{color:var(--muted);font-size:15px;line-height:1.75;max-width:440px;margin-bottom:26px}
-.mc-perks{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.mc-perk{display:flex;align-items:center;gap:9px;font-size:13px;font-weight:600;color:var(--muted2)}
-.mc-dot{width:8px;height:8px;border-radius:50%;background:var(--orange);box-shadow:0 0 8px rgba(208,77,12,0.6);flex-shrink:0}
-.mc-card{
-  background:rgba(255,255,255,0.03);border:1px solid rgba(208,77,12,0.28);
-  border-radius:18px;padding:34px 26px;text-align:center;
-  position:relative;z-index:2;backdrop-filter:blur(12px);
-  box-shadow:0 8px 48px rgba(208,77,12,0.1),inset 0 1px 0 rgba(255,255,255,0.04);
-}
-.mc-card-lbl{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:#ff7a3c;margin-bottom:10px}
-.mc-card-price{font-family:'Playfair Display',serif;font-size:3.2rem;color:var(--orange);line-height:1;margin-bottom:4px;text-shadow:0 0 28px rgba(208,77,12,0.35)}
-.mc-card-per{font-size:12px;color:var(--muted);margin-bottom:24px;font-weight:500}
-.mc-btn1{
-  display:block;background:var(--orange);color:#fff;
-  padding:13px 18px;border-radius:10px;font-weight:700;font-size:15px;
-  text-decoration:none;margin-bottom:10px;transition:all 0.2s;
-  box-shadow:0 4px 18px rgba(208,77,12,0.35);cursor:pointer;
-  border:none;width:100%;text-align:center;font-family:'Outfit',sans-serif;
-}
-.mc-btn1:hover{background:var(--orange2);transform:translateY(-2px);box-shadow:0 8px 28px rgba(208,77,12,0.5)}
-.mc-btn2{
-  display:block;background:transparent;color:var(--muted2);
-  padding:11px 18px;border-radius:10px;font-weight:600;font-size:14px;
-  text-decoration:none;border:1px solid var(--border);transition:all 0.2s;
-  margin-bottom:16px;cursor:pointer;width:100%;text-align:center;
-  font-family:'Outfit',sans-serif;
-}
-.mc-btn2:hover{border-color:rgba(208,77,12,0.4);color:#ff7a3c}
-.mc-note{font-size:11px;color:var(--muted);font-family:'JetBrains Mono',monospace}
+      /* ── MEMBERSHIP CTA ── */
+      .mc-wrap {
+        background: linear-gradient(
+          135deg,
+          var(--bg2) 0%,
+          color-mix(in srgb, var(--bg2) 80%, #3d1205) 45%,
+          color-mix(in srgb, var(--bg2) 90%, #1e0822) 100%
+        );
+        border: 1px solid rgba(208, 77, 12, 0.3);
+        border-radius: 24px;
+        padding: 56px 48px;
+        display: grid;
+        grid-template-columns: 1fr 290px;
+        gap: 48px;
+        align-items: center;
+        position: relative;
+        overflow: hidden;
+      }
+      .mc-glow1 {
+        position: absolute;
+        width: 340px;
+        height: 340px;
+        top: -100px;
+        left: -80px;
+        background: rgba(208, 77, 12, 0.12);
+        border-radius: 50%;
+        filter: blur(70px);
+        pointer-events: none;
+      }
+      .mc-glow2 {
+        position: absolute;
+        width: 280px;
+        height: 280px;
+        bottom: -80px;
+        right: 240px;
+        background: rgba(208, 77, 12, 0.07);
+        border-radius: 50%;
+        filter: blur(60px);
+        pointer-events: none;
+      }
+      .mc-badge {
+        display: inline-block;
+        background: rgba(208, 77, 12, 0.16);
+        border: 1px solid rgba(208, 77, 12, 0.45);
+        color: #ff7a3c;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        padding: 6px 16px;
+        border-radius: 100px;
+        margin-bottom: 18px;
+        font-family: "JetBrains Mono", monospace;
+      }
+      .mc-title {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(1.6rem, 2.8vw, 2.2rem);
+        color: var(--white);
+        line-height: 1.25;
+        margin-bottom: 12px;
+      }
+      .mc-price-line {
+        display: block;
+        color: var(--orange);
+        font-size: clamp(1.8rem, 3vw, 2.5rem);
+        margin-top: 4px;
+      }
+      .mc-price-line small {
+        font-size: 0.5em;
+        color: #e87845;
+        font-weight: 500;
+      }
+      .mc-desc {
+        color: var(--muted);
+        font-size: 15px;
+        line-height: 1.75;
+        max-width: 440px;
+        margin-bottom: 26px;
+      }
+      .mc-perks {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+      }
+      .mc-perk {
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--muted2);
+      }
+      .mc-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--orange);
+        box-shadow: 0 0 8px rgba(208, 77, 12, 0.6);
+        flex-shrink: 0;
+      }
+      .mc-card {
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(208, 77, 12, 0.28);
+        border-radius: 18px;
+        padding: 34px 26px;
+        text-align: center;
+        position: relative;
+        z-index: 2;
+        backdrop-filter: blur(12px);
+        box-shadow:
+          0 8px 48px rgba(208, 77, 12, 0.1),
+          inset 0 1px 0 rgba(255, 255, 255, 0.04);
+      }
+      .mc-card-lbl {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 2.5px;
+        text-transform: uppercase;
+        color: #ff7a3c;
+        margin-bottom: 10px;
+      }
+      .mc-card-price {
+        font-family: "Playfair Display", serif;
+        font-size: 3.2rem;
+        color: var(--orange);
+        line-height: 1;
+        margin-bottom: 4px;
+        text-shadow: 0 0 28px rgba(208, 77, 12, 0.35);
+      }
+      .mc-card-per {
+        font-size: 12px;
+        color: var(--muted);
+        margin-bottom: 24px;
+        font-weight: 500;
+      }
+      .mc-btn1 {
+        display: block;
+        background: var(--orange);
+        color: #fff;
+        padding: 13px 18px;
+        border-radius: 10px;
+        font-weight: 700;
+        font-size: 15px;
+        text-decoration: none;
+        margin-bottom: 10px;
+        transition: all 0.2s;
+        box-shadow: 0 4px 18px rgba(208, 77, 12, 0.35);
+        cursor: pointer;
+        border: none;
+        width: 100%;
+        text-align: center;
+        font-family: "Outfit", sans-serif;
+      }
+      .mc-btn1:hover {
+        background: var(--orange2);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 28px rgba(208, 77, 12, 0.5);
+      }
+      .mc-btn2 {
+        display: block;
+        background: transparent;
+        color: var(--muted2);
+        padding: 11px 18px;
+        border-radius: 10px;
+        font-weight: 600;
+        font-size: 14px;
+        text-decoration: none;
+        border: 1px solid var(--border);
+        transition: all 0.2s;
+        margin-bottom: 16px;
+        cursor: pointer;
+        width: 100%;
+        text-align: center;
+        font-family: "Outfit", sans-serif;
+      }
+      .mc-btn2:hover {
+        border-color: rgba(208, 77, 12, 0.4);
+        color: #ff7a3c;
+      }
+      .mc-note {
+        font-size: 11px;
+        color: var(--muted);
+        font-family: "JetBrains Mono", monospace;
+      }
 
-/* ── GALLERY ── */
-.g-filters{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:32px}
-.g-btn{
-  background:var(--surface);border:1px solid var(--border);
-  color:var(--muted);font-size:13px;font-weight:600;
-  padding:8px 18px;border-radius:8px;cursor:pointer;
-  transition:all 0.2s;font-family:'Outfit',sans-serif;
-}
-.g-btn:hover,.g-btn.active{background:var(--gold);border-color:var(--gold);color:#0a0c10}
-.g-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:16px}
-.g-item{
-  border-radius:12px;overflow:hidden;position:relative;
-  aspect-ratio:4/3;cursor:pointer;transition:transform 0.3s,box-shadow 0.3s;
-}
-.g-item:hover{transform:scale(1.03);box-shadow:0 14px 36px var(--shadow);z-index:2}
-.g-thumb{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:3rem;border:1px solid var(--border)}
-.g-overlay{
-  position:absolute;inset:0;
-  background:linear-gradient(to top,rgba(10,12,16,0.92) 0%,transparent 55%);
-  opacity:0;transition:opacity 0.3s;display:flex;align-items:flex-end;padding:16px;
-}
-.g-item:hover .g-overlay{opacity:1}
-.g-cap strong{display:block;font-size:15px;font-weight:600;margin-bottom:3px;color:#fff}
-.g-cap span{font-size:12px;color:rgba(255,255,255,0.6)}
+      /* ── GALLERY ── */
+      .g-filters {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-bottom: 32px;
+      }
+      .g-btn {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        color: var(--muted);
+        font-size: 13px;
+        font-weight: 600;
+        padding: 8px 18px;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.2s;
+        font-family: "Outfit", sans-serif;
+      }
+      .g-btn:hover,
+      .g-btn.active {
+        background: var(--gold);
+        border-color: var(--gold);
+        color: #0a0c10;
+      }
+      .g-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+        gap: 16px;
+      }
+      .g-item {
+        border-radius: 12px;
+        overflow: hidden;
+        position: relative;
+        aspect-ratio: 4/3;
+        cursor: pointer;
+        transition:
+          transform 0.3s,
+          box-shadow 0.3s;
+      }
+      .g-item:hover {
+        transform: scale(1.03);
+        box-shadow: 0 14px 36px var(--shadow);
+        z-index: 2;
+      }
+      .g-thumb {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 3rem;
+        border: 1px solid var(--border);
+      }
+      .g-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          to top,
+          rgba(10, 12, 16, 0.92) 0%,
+          transparent 55%
+        );
+        opacity: 0;
+        transition: opacity 0.3s;
+        display: flex;
+        align-items: flex-end;
+        padding: 16px;
+      }
+      .g-item:hover .g-overlay {
+        opacity: 1;
+      }
+      .g-cap strong {
+        display: block;
+        font-size: 15px;
+        font-weight: 600;
+        margin-bottom: 3px;
+        color: #fff;
+      }
+      .g-cap span {
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.6);
+      }
 
-/* ── FORMS ── */
-.form-box{
-  max-width:740px;margin:auto;
-  background:var(--surface);border:1px solid var(--border);
-  border-radius:20px;padding:48px 44px;
-}
-.f2{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:18px}
-.fg{display:flex;flex-direction:column;gap:6px;margin-bottom:18px}
-.fg label{
-  font-size:11px;font-weight:700;letter-spacing:1.5px;
-  text-transform:uppercase;color:var(--muted);
-  font-family:'JetBrains Mono',monospace;
-}
-.fg input,.fg select,.fg textarea{
-  background:var(--bg);border:1px solid var(--border);
-  border-radius:10px;padding:12px 15px;
-  font-family:'Outfit',sans-serif;font-size:15px;color:var(--white);
-  outline:none;transition:border-color 0.2s,box-shadow 0.2s;
-  -webkit-appearance:none;width:100%;
-}
-.fg input:focus,.fg select:focus,.fg textarea:focus{
-  border-color:var(--gold);box-shadow:0 0 0 3px rgba(232,184,75,0.1);
-}
-.fg select option{background:var(--bg);color:var(--white)}
-.fg textarea{resize:vertical;min-height:120px}
-.f-btn{
-  width:100%;background:var(--gold);color:#0a0c10;
-  border:none;padding:15px;border-radius:10px;
-  font-weight:700;font-size:15px;cursor:pointer;
-  transition:all 0.2s;font-family:'Outfit',sans-serif;
-}
-.f-btn:hover{background:var(--gold2);transform:translateY(-1px)}
-.f-btn:disabled{opacity:0.6;cursor:not-allowed;transform:none}
-.ok-box{
-  display:none;background:rgba(62,207,178,0.1);
-  border:1px solid rgba(62,207,178,0.3);color:var(--teal);
-  padding:14px 20px;border-radius:10px;margin-top:14px;
-  text-align:center;font-weight:600;font-size:14px;
-}
-.err-box{
-  display:none;background:rgba(232,92,75,0.1);
-  border:1px solid rgba(232,92,75,0.3);color:var(--red);
-  padding:14px 20px;border-radius:10px;margin-top:14px;
-  text-align:center;font-weight:600;font-size:14px;
-}
+      /* ── FORMS ── */
+      .form-box {
+        max-width: 740px;
+        margin: auto;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 20px;
+        padding: 48px 44px;
+      }
+      .f2 {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 18px;
+        margin-bottom: 18px;
+      }
+      .fg {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        margin-bottom: 18px;
+      }
+      .fg label {
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        color: var(--muted);
+        font-family: "JetBrains Mono", monospace;
+      }
+      .fg input,
+      .fg select,
+      .fg textarea {
+        background: var(--bg);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 12px 15px;
+        font-family: "Outfit", sans-serif;
+        font-size: 15px;
+        color: var(--white);
+        outline: none;
+        transition:
+          border-color 0.2s,
+          box-shadow 0.2s;
+        -webkit-appearance: none;
+        width: 100%;
+      }
+      .fg input:focus,
+      .fg select:focus,
+      .fg textarea:focus {
+        border-color: var(--gold);
+        box-shadow: 0 0 0 3px rgba(232, 184, 75, 0.1);
+      }
+      .fg select option {
+        background: var(--bg);
+        color: var(--white);
+      }
+      .fg textarea {
+        resize: vertical;
+        min-height: 120px;
+      }
+      .f-btn {
+        width: 100%;
+        background: var(--gold);
+        color: #0a0c10;
+        border: none;
+        padding: 15px;
+        border-radius: 10px;
+        font-weight: 700;
+        font-size: 15px;
+        cursor: pointer;
+        transition: all 0.2s;
+        font-family: "Outfit", sans-serif;
+      }
+      .f-btn:hover {
+        background: var(--gold2);
+        transform: translateY(-1px);
+      }
+      .f-btn:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+        transform: none;
+      }
+      .ok-box {
+        display: none;
+        background: rgba(62, 207, 178, 0.1);
+        border: 1px solid rgba(62, 207, 178, 0.3);
+        color: var(--teal);
+        padding: 14px 20px;
+        border-radius: 10px;
+        margin-top: 14px;
+        text-align: center;
+        font-weight: 600;
+        font-size: 14px;
+      }
+      .err-box {
+        display: none;
+        background: rgba(232, 92, 75, 0.1);
+        border: 1px solid rgba(232, 92, 75, 0.3);
+        color: var(--red);
+        padding: 14px 20px;
+        border-radius: 10px;
+        margin-top: 14px;
+        text-align: center;
+        font-weight: 600;
+        font-size: 14px;
+      }
 
-/* ── NOTIFICATIONS ── */
-.notif-list{display:flex;flex-direction:column;gap:12px;max-width:880px;margin:auto}
-.n-card{
-  background:var(--surface);border:1px solid var(--border);
-  border-radius:14px;padding:20px 24px;display:flex;gap:16px;
-  align-items:flex-start;transition:border-color 0.2s;
-}
-.n-card.n-new{border-left:3px solid var(--gold)}
-.n-card:hover{border-color:rgba(232,184,75,0.3)}
-.n-ico{font-size:24px;flex-shrink:0;margin-top:2px}
-.n-title{font-size:15px;font-weight:600;margin-bottom:5px;color:var(--white)}
-.n-body{color:var(--muted);font-size:14px;line-height:1.6;margin-bottom:8px}
-.n-time{
-  font-size:11px;color:var(--muted);font-family:'JetBrains Mono',monospace;
-  background:var(--surface2);padding:3px 10px;border-radius:4px;display:inline-block;
-}
-.n-badge{
-  display:inline-block;background:var(--gold);color:#0a0c10;
-  font-size:9px;font-weight:800;letter-spacing:1px;
-  padding:2px 8px;border-radius:4px;margin-left:8px;
-  vertical-align:middle;font-family:'JetBrains Mono',monospace;
-}
+      /* ── NOTIFICATIONS ── */
+      .notif-list {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        max-width: 880px;
+        margin: auto;
+      }
+      .n-card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        padding: 20px 24px;
+        display: flex;
+        gap: 16px;
+        align-items: flex-start;
+        transition: border-color 0.2s;
+      }
+      .n-card.n-new {
+        border-left: 3px solid var(--gold);
+      }
+      .n-card:hover {
+        border-color: rgba(232, 184, 75, 0.3);
+      }
+      .n-ico {
+        font-size: 24px;
+        flex-shrink: 0;
+        margin-top: 2px;
+      }
+      .n-title {
+        font-size: 15px;
+        font-weight: 600;
+        margin-bottom: 5px;
+        color: var(--white);
+      }
+      .n-body {
+        color: var(--muted);
+        font-size: 14px;
+        line-height: 1.6;
+        margin-bottom: 8px;
+      }
+      .n-time {
+        font-size: 11px;
+        color: var(--muted);
+        font-family: "JetBrains Mono", monospace;
+        background: var(--surface2);
+        padding: 3px 10px;
+        border-radius: 4px;
+        display: inline-block;
+      }
+      .n-badge {
+        display: inline-block;
+        background: var(--gold);
+        color: #0a0c10;
+        font-size: 9px;
+        font-weight: 800;
+        letter-spacing: 1px;
+        padding: 2px 8px;
+        border-radius: 4px;
+        margin-left: 8px;
+        vertical-align: middle;
+        font-family: "JetBrains Mono", monospace;
+      }
 
-/* ── CONTACT ── */
-.c-grid{display:grid;grid-template-columns:1fr 1.5fr;gap:52px;align-items:start}
-.c-card{
-  background:var(--surface);border:1px solid var(--border);
-  border-radius:14px;padding:22px 26px;margin-bottom:14px;
-  display:flex;gap:16px;align-items:flex-start;transition:border-color 0.2s;
-}
-.c-card:hover{border-color:rgba(232,184,75,0.2)}
-.c-ico{
-  width:44px;height:44px;border-radius:10px;flex-shrink:0;
-  background:linear-gradient(135deg,rgba(232,184,75,0.1),rgba(62,207,178,0.07));
-  display:flex;align-items:center;justify-content:center;font-size:19px;
-}
-.c-lbl{font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:4px;font-family:'JetBrains Mono',monospace}
-.c-val{font-size:14px;color:var(--white);line-height:1.6}
-.hours-box{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:22px 26px}
-.hours-box h4{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--teal);margin-bottom:14px;font-family:'JetBrains Mono',monospace}
-.h-row{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border);font-size:14px}
-.h-row:last-child{border-bottom:none}
-.h-row .day{color:var(--muted)}
-.h-row .time{color:var(--white);font-weight:600}
-.h-row .closed{color:var(--red)}
+      /* ── CONTACT ── */
+      .c-grid {
+        display: grid;
+        grid-template-columns: 1fr 1.5fr;
+        gap: 52px;
+        align-items: start;
+      }
+      .c-card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        padding: 22px 26px;
+        margin-bottom: 14px;
+        display: flex;
+        gap: 16px;
+        align-items: flex-start;
+        transition: border-color 0.2s;
+      }
+      .c-card:hover {
+        border-color: rgba(232, 184, 75, 0.2);
+      }
+      .c-ico {
+        width: 44px;
+        height: 44px;
+        border-radius: 10px;
+        flex-shrink: 0;
+        background: linear-gradient(
+          135deg,
+          rgba(232, 184, 75, 0.1),
+          rgba(62, 207, 178, 0.07)
+        );
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 19px;
+      }
+      .c-lbl {
+        font-size: 10px;
+        font-weight: 700;
+        color: var(--muted);
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        margin-bottom: 4px;
+        font-family: "JetBrains Mono", monospace;
+      }
+      .c-val {
+        font-size: 14px;
+        color: var(--white);
+        line-height: 1.6;
+      }
+      .hours-box {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        padding: 22px 26px;
+      }
+      .hours-box h4 {
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: var(--teal);
+        margin-bottom: 14px;
+        font-family: "JetBrains Mono", monospace;
+      }
+      .h-row {
+        display: flex;
+        justify-content: space-between;
+        padding: 8px 0;
+        border-bottom: 1px solid var(--border);
+        font-size: 14px;
+      }
+      .h-row:last-child {
+        border-bottom: none;
+      }
+      .h-row .day {
+        color: var(--muted);
+      }
+      .h-row .time {
+        color: var(--white);
+        font-weight: 600;
+      }
+      .h-row .closed {
+        color: var(--red);
+      }
 
-/* ── FOOTER ── */
-footer{background:var(--surface);border-top:1px solid var(--border);padding:60px 24px 26px}
-.f-inner{max-width:1300px;margin:auto}
-.f-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:44px}
-.f-about p{color:var(--muted);font-size:14px;margin-top:14px;line-height:1.8;max-width:290px}
-.f-col h4{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:16px;font-family:'JetBrains Mono',monospace}
-.f-col a{display:block;color:var(--muted);text-decoration:none;font-size:14px;margin-bottom:9px;transition:color 0.2s;font-weight:500;cursor:pointer}
-.f-col a:hover{color:var(--white)}
-.f-bottom{border-top:1px solid var(--border);padding-top:22px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
-.f-bottom p{font-size:13px;color:var(--muted)}
-.f-motto{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--gold)}
-.soc-row{display:flex;gap:10px;margin-top:14px}
-.soc-btn{width:36px;height:36px;border-radius:8px;background:var(--bg);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:16px;cursor:pointer;transition:all 0.2s;text-decoration:none}
-.soc-btn:hover{border-color:var(--gold);transform:translateY(-2px)}
+      /* ── FOOTER ── */
+      footer {
+        background: var(--surface);
+        border-top: 1px solid var(--border);
+        padding: 60px 24px 26px;
+      }
+      .f-inner {
+        max-width: 1300px;
+        margin: auto;
+      }
+      .f-grid {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr 1fr;
+        gap: 40px;
+        margin-bottom: 44px;
+      }
+      .f-about p {
+        color: var(--muted);
+        font-size: 14px;
+        margin-top: 14px;
+        line-height: 1.8;
+        max-width: 290px;
+      }
+      .f-col h4 {
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: var(--gold);
+        margin-bottom: 16px;
+        font-family: "JetBrains Mono", monospace;
+      }
+      .f-col a {
+        display: block;
+        color: var(--muted);
+        text-decoration: none;
+        font-size: 14px;
+        margin-bottom: 9px;
+        transition: color 0.2s;
+        font-weight: 500;
+        cursor: pointer;
+      }
+      .f-col a:hover {
+        color: var(--white);
+      }
+      .f-bottom {
+        border-top: 1px solid var(--border);
+        padding-top: 22px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+      .f-bottom p {
+        font-size: 13px;
+        color: var(--muted);
+      }
+      .f-motto {
+        font-family: "JetBrains Mono", monospace;
+        font-size: 11px;
+        color: var(--gold);
+      }
+      .soc-row {
+        display: flex;
+        gap: 10px;
+        margin-top: 14px;
+      }
+      .soc-btn {
+        width: 36px;
+        height: 36px;
+        border-radius: 8px;
+        background: var(--bg);
+        border: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+        cursor: pointer;
+        transition: all 0.2s;
+        text-decoration: none;
+      }
+      .soc-btn:hover {
+        border-color: var(--gold);
+        transform: translateY(-2px);
+      }
 
-/* ── TOAST ── */
-#toast{
-  position:fixed;bottom:24px;right:24px;z-index:99999;
-  background:var(--surface2);color:var(--white);
-  border:1px solid var(--border);border-left:3px solid var(--teal);
-  padding:14px 22px;border-radius:12px;font-size:14px;font-weight:600;
-  box-shadow:0 10px 40px var(--shadow);
-  transform:translateY(80px);opacity:0;transition:all 0.35s ease;
-  max-width:320px;pointer-events:none;
-}
-#toast.show{transform:translateY(0);opacity:1}
+      /* ── TOAST ── */
+      #toast {
+        position: fixed;
+        bottom: 24px;
+        right: 24px;
+        z-index: 99999;
+        background: var(--surface2);
+        color: var(--white);
+        border: 1px solid var(--border);
+        border-left: 3px solid var(--teal);
+        padding: 14px 22px;
+        border-radius: 12px;
+        font-size: 14px;
+        font-weight: 600;
+        box-shadow: 0 10px 40px var(--shadow);
+        transform: translateY(80px);
+        opacity: 0;
+        transition: all 0.35s ease;
+        max-width: 320px;
+        pointer-events: none;
+      }
+      #toast.show {
+        transform: translateY(0);
+        opacity: 1;
+      }
 
-/* ── SPINNER ── */
-.spinner{display:inline-block;width:16px;height:16px;border:2px solid rgba(0,0,0,0.3);border-top-color:#0a0c10;border-radius:50%;animation:spin 0.7s linear infinite;vertical-align:middle;margin-right:8px}
-@keyframes spin{to{transform:rotate(360deg)}}
+      /* ── SPINNER ── */
+      .spinner {
+        display: inline-block;
+        width: 16px;
+        height: 16px;
+        border: 2px solid rgba(0, 0, 0, 0.3);
+        border-top-color: #0a0c10;
+        border-radius: 50%;
+        animation: spin 0.7s linear infinite;
+        vertical-align: middle;
+        margin-right: 8px;
+      }
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
 
-/* ── ANIMATIONS ── */
-@keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
-.fu{opacity:0;animation:fadeUp 0.6s ease forwards}
-.d1{animation-delay:0.1s}.d2{animation-delay:0.2s}.d3{animation-delay:0.3s}.d4{animation-delay:0.45s}
+      /* ── ANIMATIONS ── */
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(22px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .fu {
+        opacity: 0;
+        animation: fadeUp 0.6s ease forwards;
+      }
+      .d1 {
+        animation-delay: 0.1s;
+      }
+      .d2 {
+        animation-delay: 0.2s;
+      }
+      .d3 {
+        animation-delay: 0.3s;
+      }
+      .d4 {
+        animation-delay: 0.45s;
+      }
 
-/* ── RESPONSIVE ── */
-@media(max-width:1024px){
-  .hero-inner{grid-template-columns:1fr;gap:44px}
-  .hero-right{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-  .stat-grid{grid-template-columns:repeat(4,1fr)}
-  .about-inner{grid-template-columns:1fr;gap:36px}
-  .c-grid{grid-template-columns:1fr}
-  .f-grid{grid-template-columns:1fr 1fr}
-  .mc-wrap{grid-template-columns:1fr;gap:28px;padding:40px 32px}
-  .mc-card{max-width:380px;width:100%}
-}
-@media(max-width:768px){
-  .nav-list,.nav-join{display:none}
-  .hamburger{display:block}
-  .hero-inner{padding:60px 20px}
-  .hero-right{grid-template-columns:1fr 1fr}
-  .stat-grid{grid-template-columns:1fr 1fr}
-  .f2{grid-template-columns:1fr}
-  .form-box{padding:28px 18px}
-  .f-grid{grid-template-columns:1fr}
-  .f-bottom{flex-direction:column;text-align:center}
-  .g-grid{grid-template-columns:repeat(auto-fill,minmax(200px,1fr))}
-  .mc-wrap{padding:28px 18px;border-radius:16px}
-  .mc-perks{grid-template-columns:1fr}
-  .mc-card{max-width:100%}
-}
-@media(max-width:480px){
-  .hero-btns{flex-direction:column}
-  .hero-right{grid-template-columns:1fr}
-}
-</style>
-</head>
-<body>
+      /* ── RESPONSIVE ── */
+      @media (max-width: 1024px) {
+        .hero-inner {
+          grid-template-columns: 1fr;
+          gap: 44px;
+        }
+        .hero-right {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 12px;
+        }
+        .stat-grid {
+          grid-template-columns: repeat(4, 1fr);
+        }
+        .about-inner {
+          grid-template-columns: 1fr;
+          gap: 36px;
+        }
+        .c-grid {
+          grid-template-columns: 1fr;
+        }
+        .f-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+        .mc-wrap {
+          grid-template-columns: 1fr;
+          gap: 28px;
+          padding: 40px 32px;
+        }
+        .mc-card {
+          max-width: 380px;
+          width: 100%;
+        }
+      }
+      @media (max-width: 768px) {
+        .nav-list,
+        .nav-join {
+          display: none;
+        }
+        .hamburger {
+          display: block;
+        }
+        .hero-inner {
+          padding: 60px 20px;
+        }
+        .hero-right {
+          grid-template-columns: 1fr 1fr;
+        }
+        .stat-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+        .f2 {
+          grid-template-columns: 1fr;
+        }
+        .form-box {
+          padding: 28px 18px;
+        }
+        .f-grid {
+          grid-template-columns: 1fr;
+        }
+        .f-bottom {
+          flex-direction: column;
+          text-align: center;
+        }
+        .g-grid {
+          grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        }
+        .mc-wrap {
+          padding: 28px 18px;
+          border-radius: 16px;
+        }
+        .mc-perks {
+          grid-template-columns: 1fr;
+        }
+        .mc-card {
+          max-width: 100%;
+        }
+      }
+      @media (max-width: 480px) {
+        .hero-btns {
+          flex-direction: column;
+        }
+        .hero-right {
+          grid-template-columns: 1fr;
+        }
+      }
+      /* codewithsps */
+      .logo-mark {
+        display: flex;
+        align-items: center;
+      }
 
-<!-- TICKER -->
-<div id="ticker-bar">
-  <span id="ticker-inner">🔥 UPSC Study Zone launched — 200+ IAS books added &nbsp;&nbsp;|&nbsp;&nbsp; 📅 Free Competitive Exam Seminar — 5 March 2026, 5PM &nbsp;&nbsp;|&nbsp;&nbsp; 🎓 12th Board reading hall open 7AM–10PM &nbsp;&nbsp;|&nbsp;&nbsp; 💻 1Gbps Wi-Fi upgraded across all floors &nbsp;&nbsp;|&nbsp;&nbsp; 📚 Annual membership at just ₹499 — Register now! &nbsp;&nbsp;|&nbsp;&nbsp; 🏆 47 members cleared UPSC 2025! &nbsp;&nbsp;|&nbsp;&nbsp;</span>
-  <button id="btn-close-ticker" onclick="document.getElementById('ticker-bar').style.display='none'">✕</button>
+      .logo-mark img {
+        max-width: 100%;
+        height: auto;
+        width: 180px;
+      }
+
+      /* Tablet View */
+      @media (max-width: 768px) {
+        .logo-mark img {
+          width: 140px;
+        }
+      }
+
+      /* Mobile View */
+      @media (max-width: 480px) {
+        .logo-mark img {
+          width: 110px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- TICKER -->
+    <div id="ticker-bar">
+      <span id="ticker-inner">
+        🕒 24×7 Library Access Available &nbsp;&nbsp;|&nbsp;&nbsp; ❄️ Fully
+        Air-Conditioned Reading Environment &nbsp;&nbsp;|&nbsp;&nbsp; 💻
+        Unlimted High-Speed Wi-Fi Upgraded Across All Floors
+        &nbsp;&nbsp;|&nbsp;&nbsp; 📚 Monthly Membership at Just ₹1200 — Register
+        Now! &nbsp;&nbsp;|&nbsp;&nbsp;
+      </span>
+      <button
+        id="btn-close-ticker"
+        onclick="document.getElementById('ticker-bar').style.display = 'none'"
+      >
+        ✕
+      </button>
+    </div>
+
+    <!-- NAVBAR -->
+    <nav>
+      <div class="nav-wrap">
+        <div class="logo" onclick="goTo('home')">
+          <div class="logo-mark"><img src="studyhub.png" alt="" /></div>
+          <div>
+            <div class="logo-name">Study Hub Library</div>
+            <span class="logo-sub">Lucknow · Est. 2026</span>
+          </div>
+        </div>
+        <div class="nav-right">
+          <ul class="nav-list" id="desktop-nav">
+            <li>
+              <a id="nav-home" class="active" onclick="goTo('home')">Home</a>
+            </li>
+            <li><a id="nav-gallery" onclick="goTo('gallery')">Gallery</a></li>
+            <li>
+              <a id="nav-suggest" onclick="goTo('suggest')">Suggest a Book</a>
+            </li>
+            <li>
+              <a id="nav-notifications" onclick="goTo('notifications')"
+                >Notifications</a
+              >
+            </li>
+            <li><a id="nav-contact" onclick="goTo('contact')">Contact</a></li>
+          </ul>
+          <button
+            class="theme-btn"
+            id="theme-toggle"
+            onclick="toggleTheme()"
+            title="Toggle theme"
+          >
+            🌙
+          </button>
+          <button class="nav-join" onclick="goTo('suggest')">Join Free</button>
+          <button class="hamburger" id="ham-btn" onclick="openMob()">☰</button>
+        </div>
+      </div>
+
+      <!-- Mobile Nav -->
+      <div class="mob-nav" id="mob-nav">
+        <a
+          onclick="
+            goTo('home');
+            closeMob();
+          "
+          >🏠&nbsp; Home</a
+        >
+        <a
+          onclick="
+            goTo('gallery');
+            closeMob();
+          "
+          >🖼️&nbsp; Gallery</a
+        >
+        <a
+          onclick="
+            goTo('suggest');
+            closeMob();
+          "
+          >💡&nbsp; Suggest a Book</a
+        >
+        <a
+          onclick="
+            goTo('notifications');
+            closeMob();
+          "
+          >🔔&nbsp; Notifications</a
+        >
+        <a
+          onclick="
+            goTo('contact');
+            closeMob();
+          "
+          >📬&nbsp; Contact</a
+        >
+      </div>
+    </nav>
+
+    <div id="toast"></div>
+
+    <!-- ═══════ HOME ═══════ -->
+    <div class="page active" id="page-home">
+      <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-grid"></div>
+        <div class="hero-inner">
+          <div>
+            <div class="eyebrow fu">
+              <span class="eyebrow-dot"></span>Lucknow's Modern Study Library
+              2026
+            </div>
+            <h1 class="fu d1">
+              Your Path to<br /><span class="acc">Success</span> Starts Here.
+            </h1>
+            <p class="hero-desc fu d2">
+              Study Hub Library — Lucknow's most advanced learning space. From
+              UPSC prep to board exams, we give every student the environment,
+              resources and community to excel.
+            </p>
+            <div class="hero-btns fu d3">
+              <button class="btn-primary" onclick="goTo('gallery')">
+                Explore Library
+              </button>
+              <button class="btn-outline" onclick="goTo('contact')">
+                Visit Us Today
+              </button>
+            </div>
+            <div class="hero-tags fu d4">
+              <span class="tag">#UPSC Ready</span>
+              <span class="tag">#AC Study Halls</span>
+              <span class="tag">#Wi-Fi Enabled</span>
+              <span class="tag">#Board Exams</span>
+              <span class="tag">#Open Daily</span>
+            </div>
+          </div>
+          <div class="hero-right fu d2">
+            <div class="stat-grid">
+              <div class="stat-box">
+                <div class="stat-num">1K+</div>
+                <div class="stat-lbl">Books Available</div>
+              </div>
+              <div class="stat-box">
+                <div class="stat-num">75+</div>
+                <div class="stat-lbl">Active Members</div>
+              </div>
+              <div class="stat-box">
+                <div class="stat-num">5</div>
+                <div class="stat-lbl">Study Halls</div>
+              </div>
+              <div class="stat-box">
+                <div class="stat-num">1+</div>
+                <div class="stat-lbl">Years of Trust</div>
+              </div>
+            </div>
+            <div class="feat-card">
+              <div class="feat-icon">🏆</div>
+              <div class="feat-text">
+                <h4>Ranked #1 Study Library in Lucknow</h4>
+                <p>Voted by students & educators — UP Education Review 2025</p>
+              </div>
+            </div>
+            <div class="feat-card">
+              <div class="feat-icon">⚡</div>
+              <div class="feat-text">
+                <h4>24×7 Open — 7 Days a Week</h4>
+                <p>Extended hours during board exam seasons</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="about-wrap">
+        <div class="about-inner">
+          <div>
+            <p class="sec-tag">Who We Are</p>
+            <h2>Lucknow's <em>Smartest</em> Study Space</h2>
+            <p>
+              Study Hub Library is not just a place to read — it's a complete
+              academic ecosystem built for students who are serious about their
+              goals. Located in the heart of Lucknow, we blend heritage with
+              modern learning.
+            </p>
+            <p>
+              Whether you're preparing for UPSC, SSC, NEET, JEE, board exams or
+              simply looking for a focused place to grow — Study Hub is your
+              home.
+            </p>
+            <button
+              class="btn-primary"
+              style="margin-top: 12px"
+              onclick="goTo('contact')"
+            >
+              Get Membership →
+            </button>
+          </div>
+          <div class="hl-list">
+            <div class="hl">
+              <div class="hl-num">01</div>
+              <div class="hl-text">
+                <h4>Curated Study Collections</h4>
+                <p>
+                  Subject-specific shelves for UPSC, SSC, banking, engineering,
+                  medicine, literature and more.
+                </p>
+              </div>
+            </div>
+            <div class="hl">
+              <div class="hl-num">02</div>
+              <div class="hl-text">
+                <h4>Expert-Led Seminars</h4>
+                <p>
+                  Monthly free sessions by IAS officers, professors and subject
+                  matter experts for members.
+                </p>
+              </div>
+            </div>
+            <div class="hl">
+              <div class="hl-num">03</div>
+              <div class="hl-text">
+                <h4>Silence Guaranteed</h4>
+                <p>
+                  Dedicated silent zones and group discussion rooms — you choose
+                  your study mode.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <section class="section" id="services">
+        <div class="section-inner">
+          <div class="sec-center">
+            <p class="sec-tag">What We Offer</p>
+            <h2 class="sec-title">Everything a Serious Student Needs</h2>
+            <p class="sec-sub">
+              Designed to eliminate every excuse and help you focus on what
+              matters — learning.
+            </p>
+          </div>
+          <div class="srv-grid">
+            <div class="srv-card" style="--cc: var(--gold)">
+              <div class="srv-icon" style="background: rgba(232, 184, 75, 0.1)">
+                📚
+              </div>
+              <h3>1k+ Book Collection</h3>
+              <p>
+                Competitive exams, academics, Hindi literature, science, history
+                — updated quarterly.
+              </p>
+            </div>
+            <div class="srv-card" style="--cc: var(--teal)">
+              <div class="srv-icon" style="background: rgba(62, 207, 178, 0.1)">
+                🏛️
+              </div>
+              <h3>AC Study Halls</h3>
+              <p>
+                8 air-conditioned halls with ergonomic seating, individual
+                lamps, and power sockets. 400+ seats.
+              </p>
+            </div>
+            <div class="srv-card" style="--cc: var(--accent)">
+              <div class="srv-icon" style="background: rgba(91, 126, 255, 0.1)">
+                💻
+              </div>
+              <h3>Digital Resources Hub</h3>
+              <p>
+                High-speed Wi-Fi, 60 workstations, NCERT, Drishti IAS, Unacademy
+                & 15,000+ digital journals.
+              </p>
+            </div>
+            <div class="srv-card" style="--cc: #e85c4b">
+              <div class="srv-icon" style="background: rgba(232, 92, 75, 0.1)">
+                🎓
+              </div>
+              <h3>UPSC & Competitive Zone</h3>
+              <p>
+                IAS/IPS section with curated books, previous year papers, answer
+                writing material & current affairs.
+              </p>
+            </div>
+            <div class="srv-card" style="--cc: #b48aff">
+              <div
+                class="srv-icon"
+                style="background: rgba(180, 138, 255, 0.1)"
+              >
+                📖
+              </div>
+              <h3>Book Lending Service</h3>
+              <p>
+                Borrow up to 3 books for 14 days. Online renewals via member
+                portal. No fine on first renewal.
+              </p>
+            </div>
+            <div class="srv-card" style="--cc: var(--teal)">
+              <div class="srv-icon" style="background: rgba(62, 207, 178, 0.1)">
+                ☕
+              </div>
+              <h3>Reader's Café</h3>
+              <p>
+                Chai, coffee and light snacks — because great study sessions
+                deserve great fuel. Open 7AM–9PM.
+              </p>
+            </div>
+
+            <div class="srv-card" style="--cc: var(--accent)">
+              <div class="srv-icon" style="background: rgba(91, 126, 255, 0.1)">
+                🗞️
+              </div>
+              <h3>Newspaper & Magazine Wall</h3>
+              <p>
+                15+ daily newspapers — The Hindu, Hindustan, Dainik Jagran — and
+                30+ magazines.
+              </p>
+            </div>
+            <div class="srv-card" style="--cc: #e85c4b">
+              <div class="srv-icon" style="background: rgba(232, 92, 75, 0.1)">
+                🖨️
+              </div>
+              <h3>Print, Scan & Photocopy</h3>
+              <p>
+                Self-service stations available at affordable rates on all
+                floors of the library.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" style="padding-top: 0">
+        <div class="section-inner">
+          <div class="mc-wrap">
+            <div class="mc-glow1"></div>
+            <div class="mc-glow2"></div>
+            <div style="position: relative; z-index: 2">
+              <span class="mc-badge">🔥 Membership 2026</span>
+              <h2 class="mc-title">
+                Join Study Hub Today —<span class="mc-price-line"
+                  >Just ₹1199<small>/monthly</small></span
+                >
+              </h2>
+              <p class="mc-desc">
+                Unlimited library access, free event entry, digital resources,
+                book lending privileges, study hall priority booking and much
+                more.
+              </p>
+              <div class="mc-perks">
+                <div class="mc-perk">
+                  <span class="mc-dot"></span>Unlimited Book Borrowing
+                </div>
+                <div class="mc-perk">
+                  <span class="mc-dot"></span>Free Seminar Entry
+                </div>
+                <div class="mc-perk">
+                  <span class="mc-dot"></span>Digital Resources Access
+                </div>
+                <div class="mc-perk">
+                  <span class="mc-dot"></span>Priority Hall Booking
+                </div>
+              </div>
+            </div>
+            <div>
+              <div class="mc-card">
+                <div class="mc-card-lbl">Monthly Plan</div>
+                <div class="mc-card-price">₹1199</div>
+                <div class="mc-card-per">per month · all inclusive</div>
+                <button class="mc-btn1" onclick="goTo('contact')">
+                  Register Now →
+                </button>
+                <button class="mc-btn2" onclick="goTo('contact')">
+                  Know More
+                </button>
+                <div class="mc-note">✓ No hidden charges · Cancel anytime</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- ═══════ GALLERY ═══════ -->
+    <div class="page" id="page-gallery">
+      <div class="page-banner">
+        <h1 class="fu">Library Gallery</h1>
+        <p class="fu d1">
+          Take a visual tour of Study Hub's world-class facilities and spaces
+        </p>
+      </div>
+      <section class="section">
+        <div class="section-inner">
+          <div class="g-filters">
+            <button class="g-btn active" onclick="filterGallery('all', this)">
+              All Photos
+            </button>
+            <button class="g-btn" onclick="filterGallery('halls', this)">
+              Study Halls
+            </button>
+            <button class="g-btn" onclick="filterGallery('collection', this)">
+              Collections
+            </button>
+            <button class="g-btn" onclick="filterGallery('digital', this)">
+              Digital Zone
+            </button>
+            <button class="g-btn" onclick="filterGallery('events', this)">
+              Events
+            </button>
+            <button class="g-btn" onclick="filterGallery('facilities', this)">
+              Facilities
+            </button>
+          </div>
+
+          <div class="g-item" data-cat="halls">
+  <div class="g-thumb">
+    <img src="images/grand-hall.jpg" alt="Grand Study Hall">
+  </div>
+  <div class="g-overlay">
+    <div class="g-cap">
+      <strong>Grand Study Hall — Floor 1</strong>
+      <span>Capacity: 75 students | AC + Lamps</span>
+    </div>
+  </div>
 </div>
-
-<!-- NAVBAR -->
-<nav>
-  <div class="nav-wrap">
-    <div class="logo" onclick="goTo('home')">
-      <div class="logo-mark">📚</div>
-      <div>
-        <div class="logo-name">Study Hub Library</div>
-        <span class="logo-sub">Lucknow · Est. 2016</span>
-      </div>
-    </div>
-    <div class="nav-right">
-      <ul class="nav-list" id="desktop-nav">
-        <li><a id="nav-home" class="active" onclick="goTo('home')">Home</a></li>
-        <li><a id="nav-gallery" onclick="goTo('gallery')">Gallery</a></li>
-        <li><a id="nav-suggest" onclick="goTo('suggest')">Suggest a Book</a></li>
-        <li><a id="nav-notifications" onclick="goTo('notifications')">Notifications</a></li>
-        <li><a id="nav-contact" onclick="goTo('contact')">Contact</a></li>
-      </ul>
-      <button class="theme-btn" id="theme-toggle" onclick="toggleTheme()" title="Toggle theme">🌙</button>
-      <button class="nav-join" onclick="goTo('suggest')">Join Free</button>
-      <button class="hamburger" id="ham-btn" onclick="openMob()">☰</button>
-    </div>
-  </div>
-
-  <!-- Mobile Nav -->
-  <div class="mob-nav" id="mob-nav">
-    <div class="mob-nav-header">
-      <span class="mob-nav-title">Navigation</span>
-      <button class="mob-close-btn" onclick="closeMob()" title="Close menu">✕</button>
-    </div>
-    <a onclick="goTo('home');closeMob()">🏠&nbsp; Home</a>
-    <a onclick="goTo('gallery');closeMob()">🖼️&nbsp; Gallery</a>
-    <a onclick="goTo('suggest');closeMob()">💡&nbsp; Suggest a Book</a>
-    <a onclick="goTo('notifications');closeMob()">🔔&nbsp; Notifications</a>
-    <a onclick="goTo('contact');closeMob()">📬&nbsp; Contact</a>
-    <div class="mob-theme-row">
-      <span class="mob-theme-lbl">Switch Theme</span>
-      <button class="theme-btn" onclick="toggleTheme()" id="mob-theme-btn">🌙</button>
-    </div>
-  </div>
-</nav>
-
-<div id="toast"></div>
-
-<!-- ═══════ HOME ═══════ -->
-<div class="page active" id="page-home">
-  <section class="hero">
-    <div class="hero-bg"></div>
-    <div class="hero-grid"></div>
-    <div class="hero-inner">
-      <div>
-        <div class="eyebrow fu"><span class="eyebrow-dot"></span>Lucknow's Modern Study Library 2026</div>
-        <h1 class="fu d1">Your Path to<br><span class="acc">Success</span> Starts Here.</h1>
-        <p class="hero-desc fu d2">Study Hub Library — Lucknow's most advanced learning space. From UPSC prep to board exams, we give every student the environment, resources and community to excel.</p>
-        <div class="hero-btns fu d3">
-          <button class="btn-primary" onclick="goTo('gallery')">Explore Library</button>
-          <button class="btn-outline" onclick="goTo('contact')">Visit Us Today</button>
+          <!-- <div class="g-grid" id="g-grid">
+            <div class="g-item" data-cat="halls">
+              <div
+                class="g-thumb"
+                style="background: linear-gradient(135deg, #1e3a2f, #2d5a42)"
+              >
+                🏛️
+              </div>
+              <div class="g-overlay">
+                <div class="g-cap">
+                  <strong>Grand Study Hall — Floor 1</strong
+                  ><span>Capacity: 75 students | AC + Lamps</span>
+                </div>
+              </div>
+            </div>
+            <div class="g-item" data-cat="halls">
+              <div
+                class="g-thumb"
+                style="background: linear-gradient(135deg, #1a1a2e, #16213e)"
+              >
+                🌙
+              </div>
+              <div class="g-overlay">
+                <div class="g-cap">
+                  <strong>Night Study Hall</strong
+                  ><span>Open till midnight during exam seasons</span>
+                </div>
+              </div>
+            </div>
+            <div class="g-item" data-cat="collection">
+              <div
+                class="g-thumb"
+                style="background: linear-gradient(135deg, #3d2b1f, #7a4a2e)"
+              >
+                📚
+              </div>
+              <div class="g-overlay">
+                <div class="g-cap">
+                  <strong>UPSC & Civil Services Wing</strong
+                  ><span>2,000+ curated IAS prep books</span>
+                </div>
+              </div>
+            </div>
+            <div class="g-item" data-cat="collection">
+              <div
+                class="g-thumb"
+                style="background: linear-gradient(135deg, #1b5e20, #2e7d32)"
+              >
+                🌿
+              </div>
+              <div class="g-overlay">
+                <div class="g-cap">
+                  <strong>Hindi & Urdu Literature</strong
+                  ><span>Rare books & modern prose collections</span>
+                </div>
+              </div>
+            </div>
+            <div class="g-item" data-cat="digital">
+              <div
+                class="g-thumb"
+                style="background: linear-gradient(135deg, #0d47a1, #1565c0)"
+              >
+                💻
+              </div>
+              <div class="g-overlay">
+                <div class="g-cap">
+                  <strong>Digital Workstations</strong
+                  ><span>60 high-speed computers — free for members</span>
+                </div>
+              </div>
+            </div>
+            <div class="g-item" data-cat="digital">
+              <div
+                class="g-thumb"
+                style="background: linear-gradient(135deg, #004d40, #00695c)"
+              >
+                📡
+              </div>
+              <div class="g-overlay">
+                <div class="g-cap">
+                  <strong>Wi-Fi Zone</strong
+                  ><span>1 Gbps fibre — blazing fast throughout</span>
+                </div>
+              </div>
+            </div>
+            <div class="g-item" data-cat="events">
+              <div
+                class="g-thumb"
+                style="background: linear-gradient(135deg, #b71c1c, #c62828)"
+              >
+                🎭
+              </div>
+              <div class="g-overlay">
+                <div class="g-cap">
+                  <strong>IAS Seminar — Jan 2026</strong
+                  ><span>200+ students attended the free session</span>
+                </div>
+              </div>
+            </div>
+            <div class="g-item" data-cat="events">
+              <div
+                class="g-thumb"
+                style="background: linear-gradient(135deg, #e65100, #f57c00)"
+              >
+                🏆
+              </div>
+              <div class="g-overlay">
+                <div class="g-cap">
+                  <strong>Annual Results Celebration 2025</strong
+                  ><span>47 UPSC selections felicitated</span>
+                </div>
+              </div>
+            </div>
+            <div class="g-item" data-cat="facilities">
+              <div
+                class="g-thumb"
+                style="background: linear-gradient(135deg, #4a148c, #6a1b9a)"
+              >
+                ☕
+              </div>
+              <div class="g-overlay">
+                <div class="g-cap">
+                  <strong>Reader's Café</strong
+                  ><span>Chai, coffee & snacks — open 7AM–9PM</span>
+                </div>
+              </div>
+            </div>
+            <div class="g-item" data-cat="facilities">
+              <div
+                class="g-thumb"
+                style="background: linear-gradient(135deg, #37474f, #546e7a)"
+              >
+                🖨️
+              </div>
+              <div class="g-overlay">
+                <div class="g-cap">
+                  <strong>Print & Copy Centre</strong
+                  ><span>Self-service at affordable rates</span>
+                </div>
+              </div>
+            </div>
+            <div class="g-item" data-cat="halls">
+              <div
+                class="g-thumb"
+                style="background: linear-gradient(135deg, #e8b84b, #b8860b)"
+              >
+                👥
+              </div>
+              <div class="g-overlay">
+                <div class="g-cap">
+                  <strong>Group Discussion Rooms</strong
+                  ><span>6 soundproof rooms — booking available</span>
+                </div>
+              </div>
+            </div>
+            <div class="g-item" data-cat="facilities">
+              <div
+                class="g-thumb"
+                style="background: linear-gradient(135deg, #880e4f, #ad1457)"
+              >
+                👧
+              </div>
+              <div class="g-overlay">
+                <div class="g-cap">
+                  <strong>Children's Learning Corner</strong
+                  ><span>Bright, colourful space for kids 4–14</span>
+                </div>
+              </div>
+            </div>
+          </div> -->
         </div>
-        <div class="hero-tags fu d4">
-          <span class="tag">#UPSC Ready</span>
-          <span class="tag">#AC Study Halls</span>
-          <span class="tag">#Wi-Fi Enabled</span>
-          <span class="tag">#Board Exams</span>
-          <span class="tag">#Open Daily</span>
-        </div>
-      </div>
-      <div class="hero-right fu d2">
-        <div class="stat-grid">
-          <div class="stat-box"><div class="stat-num">50K+</div><div class="stat-lbl">Books Available</div></div>
-          <div class="stat-box"><div class="stat-num">3,200+</div><div class="stat-lbl">Active Members</div></div>
-          <div class="stat-box"><div class="stat-num">8</div><div class="stat-lbl">Study Halls</div></div>
-          <div class="stat-box"><div class="stat-num">9+</div><div class="stat-lbl">Years of Trust</div></div>
-        </div>
-        <div class="feat-card">
-          <div class="feat-icon">🏆</div>
-          <div class="feat-text"><h4>Ranked #1 Study Library in Lucknow</h4><p>Voted by students & educators — UP Education Review 2025</p></div>
-        </div>
-        <div class="feat-card">
-          <div class="feat-icon">⚡</div>
-          <div class="feat-text"><h4>Open from 6 AM — 7 days a week</h4><p>Extended hours during board exam seasons</p></div>
-        </div>
-      </div>
+      </section>
     </div>
-  </section>
 
-  <div class="about-wrap">
-    <div class="about-inner">
-      <div>
-        <p class="sec-tag">Who We Are</p>
-        <h2>Lucknow's <em>Smartest</em> Study Space</h2>
-        <p>Study Hub Library is not just a place to read — it's a complete academic ecosystem built for students who are serious about their goals. Located in the heart of Lucknow, we blend heritage with modern learning.</p>
-        <p>Whether you're preparing for UPSC, SSC, NEET, JEE, board exams or simply looking for a focused place to grow — Study Hub is your home.</p>
-        <button class="btn-primary" style="margin-top:12px" onclick="goTo('contact')">Get Membership →</button>
+    <!-- ═══════ SUGGEST ═══════ -->
+    <div class="page" id="page-suggest">
+      <div class="page-banner">
+        <h1 class="fu">Suggest a Book</h1>
+        <p class="fu d1">
+          Help us build the best study library in Lucknow — your voice shapes
+          our collection
+        </p>
       </div>
-      <div class="hl-list">
-        <div class="hl"><div class="hl-num">01</div><div class="hl-text"><h4>Curated Study Collections</h4><p>Subject-specific shelves for UPSC, SSC, banking, engineering, medicine, literature and more.</p></div></div>
-        <div class="hl"><div class="hl-num">02</div><div class="hl-text"><h4>Expert-Led Seminars</h4><p>Monthly free sessions by IAS officers, professors and subject matter experts for members.</p></div></div>
-        <div class="hl"><div class="hl-num">03</div><div class="hl-text"><h4>Silence Guaranteed</h4><p>Dedicated silent zones and group discussion rooms — you choose your study mode.</p></div></div>
-      </div>
-    </div>
-  </div>
-
-  <section class="section">
-    <div class="section-inner">
-      <div class="sec-center">
-        <p class="sec-tag">What We Offer</p>
-        <h2 class="sec-title">Everything a Serious Student Needs</h2>
-        <p class="sec-sub">Designed to eliminate every excuse and help you focus on what matters — learning.</p>
-      </div>
-      <div class="srv-grid">
-        <div class="srv-card" style="--cc:var(--gold)"><div class="srv-icon" style="background:rgba(232,184,75,0.1)">📚</div><h3>50,000+ Book Collection</h3><p>Competitive exams, academics, Urdu & Hindi literature, science, history — updated quarterly.</p></div>
-        <div class="srv-card" style="--cc:var(--teal)"><div class="srv-icon" style="background:rgba(62,207,178,0.1)">🏛️</div><h3>AC Study Halls</h3><p>8 air-conditioned halls with ergonomic seating, individual lamps, and power sockets. 400+ seats.</p></div>
-        <div class="srv-card" style="--cc:var(--accent)"><div class="srv-icon" style="background:rgba(91,126,255,0.1)">💻</div><h3>Digital Resources Hub</h3><p>High-speed Wi-Fi, 60 workstations, NCERT, Drishti IAS, Unacademy & 15,000+ digital journals.</p></div>
-        <div class="srv-card" style="--cc:#e85c4b"><div class="srv-icon" style="background:rgba(232,92,75,0.1)">🎓</div><h3>UPSC & Competitive Zone</h3><p>IAS/IPS section with curated books, previous year papers, answer writing material & current affairs.</p></div>
-        <div class="srv-card" style="--cc:#b48aff"><div class="srv-icon" style="background:rgba(180,138,255,0.1)">📖</div><h3>Book Lending Service</h3><p>Borrow up to 3 books for 14 days. Online renewals via member portal. No fine on first renewal.</p></div>
-        <div class="srv-card" style="--cc:var(--teal)"><div class="srv-icon" style="background:rgba(62,207,178,0.1)">☕</div><h3>Reader's Café</h3><p>Chai, coffee and light snacks — because great study sessions deserve great fuel. Open 7AM–9PM.</p></div>
-        <div class="srv-card" style="--cc:var(--gold)"><div class="srv-icon" style="background:rgba(232,184,75,0.1)">👧</div><h3>Children's Learning Corner</h3><p>A bright section for kids aged 4–14 with story books, activity kits and weekend reading events.</p></div>
-        <div class="srv-card" style="--cc:var(--accent)"><div class="srv-icon" style="background:rgba(91,126,255,0.1)">🗞️</div><h3>Newspaper & Magazine Wall</h3><p>15+ daily newspapers — The Hindu, Hindustan, Dainik Jagran — and 30+ magazines.</p></div>
-        <div class="srv-card" style="--cc:#e85c4b"><div class="srv-icon" style="background:rgba(232,92,75,0.1)">🖨️</div><h3>Print, Scan & Photocopy</h3><p>Self-service stations available at affordable rates on all floors of the library.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" style="padding-top:0">
-    <div class="section-inner">
-      <div class="mc-wrap">
-        <div class="mc-glow1"></div>
-        <div class="mc-glow2"></div>
-        <div style="position:relative;z-index:2">
-          <span class="mc-badge">🔥 Membership 2026</span>
-          <h2 class="mc-title">Join Study Hub Today —<span class="mc-price-line">Just ₹499<small>/year</small></span></h2>
-          <p class="mc-desc">Unlimited library access, free event entry, digital resources, book lending privileges, study hall priority booking and much more.</p>
-          <div class="mc-perks">
-            <div class="mc-perk"><span class="mc-dot"></span>Unlimited Book Borrowing</div>
-            <div class="mc-perk"><span class="mc-dot"></span>Free Seminar Entry</div>
-            <div class="mc-perk"><span class="mc-dot"></span>Digital Resources Access</div>
-            <div class="mc-perk"><span class="mc-dot"></span>Priority Hall Booking</div>
+      <section class="section">
+        <div class="section-inner">
+          <div class="sec-center">
+            <p class="sec-tag">Reader's Voice</p>
+            <h2 class="sec-title">We Listen to Our Readers</h2>
+            <p class="sec-sub">
+              Can't find a book for your studies? Suggest it — we review all
+              submissions within 7 working days.
+            </p>
           </div>
-        </div>
-        <div>
-          <div class="mc-card">
-            <div class="mc-card-lbl">Annual Plan</div>
-            <div class="mc-card-price">₹499</div>
-            <div class="mc-card-per">per year · all inclusive</div>
-            <button class="mc-btn1" onclick="goTo('suggest')">Register Now →</button>
-            <button class="mc-btn2" onclick="goTo('contact')">Know More</button>
-            <div class="mc-note">✓ No hidden charges · Cancel anytime</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-</div>
-
-<!-- ═══════ GALLERY ═══════ -->
-<div class="page" id="page-gallery">
-  <div class="page-banner">
-    <h1 class="fu">Library Gallery</h1>
-    <p class="fu d1">Take a visual tour of Study Hub's world-class facilities and spaces</p>
-  </div>
-  <section class="section">
-    <div class="section-inner">
-      <div class="g-filters">
-        <button class="g-btn active" onclick="filterGallery('all',this)">All Photos</button>
-        <button class="g-btn" onclick="filterGallery('halls',this)">Study Halls</button>
-        <button class="g-btn" onclick="filterGallery('collection',this)">Collections</button>
-        <button class="g-btn" onclick="filterGallery('digital',this)">Digital Zone</button>
-        <button class="g-btn" onclick="filterGallery('events',this)">Events</button>
-        <button class="g-btn" onclick="filterGallery('facilities',this)">Facilities</button>
-      </div>
-      <div class="g-grid" id="g-grid">
-        <div class="g-item" data-cat="halls"><div class="g-thumb" style="background:linear-gradient(135deg,#1e3a2f,#2d5a42)">🏛️</div><div class="g-overlay"><div class="g-cap"><strong>Grand Study Hall — Floor 1</strong><span>Capacity: 120 students | AC + Lamps</span></div></div></div>
-        <div class="g-item" data-cat="halls"><div class="g-thumb" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">🌙</div><div class="g-overlay"><div class="g-cap"><strong>Night Study Hall</strong><span>Open till midnight during exam seasons</span></div></div></div>
-        <div class="g-item" data-cat="collection"><div class="g-thumb" style="background:linear-gradient(135deg,#3d2b1f,#7a4a2e)">📚</div><div class="g-overlay"><div class="g-cap"><strong>UPSC & Civil Services Wing</strong><span>2,000+ curated IAS prep books</span></div></div></div>
-        <div class="g-item" data-cat="collection"><div class="g-thumb" style="background:linear-gradient(135deg,#1b5e20,#2e7d32)">🌿</div><div class="g-overlay"><div class="g-cap"><strong>Hindi & Urdu Literature</strong><span>Rare books & modern prose collections</span></div></div></div>
-        <div class="g-item" data-cat="digital"><div class="g-thumb" style="background:linear-gradient(135deg,#0d47a1,#1565c0)">💻</div><div class="g-overlay"><div class="g-cap"><strong>Digital Workstations</strong><span>60 high-speed computers — free for members</span></div></div></div>
-        <div class="g-item" data-cat="digital"><div class="g-thumb" style="background:linear-gradient(135deg,#004d40,#00695c)">📡</div><div class="g-overlay"><div class="g-cap"><strong>Wi-Fi Zone</strong><span>1 Gbps fibre — blazing fast throughout</span></div></div></div>
-        <div class="g-item" data-cat="events"><div class="g-thumb" style="background:linear-gradient(135deg,#b71c1c,#c62828)">🎭</div><div class="g-overlay"><div class="g-cap"><strong>IAS Seminar — Jan 2026</strong><span>200+ students attended the free session</span></div></div></div>
-        <div class="g-item" data-cat="events"><div class="g-thumb" style="background:linear-gradient(135deg,#e65100,#f57c00)">🏆</div><div class="g-overlay"><div class="g-cap"><strong>Annual Results Celebration 2025</strong><span>47 UPSC selections felicitated</span></div></div></div>
-        <div class="g-item" data-cat="facilities"><div class="g-thumb" style="background:linear-gradient(135deg,#4a148c,#6a1b9a)">☕</div><div class="g-overlay"><div class="g-cap"><strong>Reader's Café</strong><span>Chai, coffee & snacks — open 7AM–9PM</span></div></div></div>
-        <div class="g-item" data-cat="facilities"><div class="g-thumb" style="background:linear-gradient(135deg,#37474f,#546e7a)">🖨️</div><div class="g-overlay"><div class="g-cap"><strong>Print & Copy Centre</strong><span>Self-service at affordable rates</span></div></div></div>
-        <div class="g-item" data-cat="halls"><div class="g-thumb" style="background:linear-gradient(135deg,#e8b84b,#b8860b)">👥</div><div class="g-overlay"><div class="g-cap"><strong>Group Discussion Rooms</strong><span>6 soundproof rooms — booking available</span></div></div></div>
-        <div class="g-item" data-cat="facilities"><div class="g-thumb" style="background:linear-gradient(135deg,#880e4f,#ad1457)">👧</div><div class="g-overlay"><div class="g-cap"><strong>Children's Learning Corner</strong><span>Bright, colourful space for kids 4–14</span></div></div></div>
-      </div>
-    </div>
-  </section>
-</div>
-
-<!-- ═══════ SUGGEST ═══════ -->
-<div class="page" id="page-suggest">
-  <div class="page-banner">
-    <h1 class="fu">Suggest a Book</h1>
-    <p class="fu d1">Help us build the best study library in Lucknow — your voice shapes our collection</p>
-  </div>
-  <section class="section">
-    <div class="section-inner">
-      <div class="sec-center">
-        <p class="sec-tag">Reader's Voice</p>
-        <h2 class="sec-title">We Listen to Our Readers</h2>
-        <p class="sec-sub">Can't find a book for your studies? Suggest it — we review all submissions within 7 working days.</p>
-      </div>
-      <div class="form-box">
-        <form id="sug-form" onsubmit="submitForm(event,'sug')">
-          <!-- Hidden web3forms fields -->
-          <input type="hidden" name="access_key" value="f5a5bc32-5674-4c8a-be19-2ea447aa4c21">
-          <input type="hidden" name="subject" value="📚 New Book Suggestion — Study Hub Library">
-          <input type="hidden" name="from_name" value="Study Hub Library Website">
-          <input type="checkbox" name="botcheck" style="display:none">
-
-          <div class="f2">
-            <div class="fg"><label>Your Name *</label><input type="text" name="name" placeholder="Aarav Sharma" required></div>
-            <div class="fg"><label>Mobile / Email</label><input type="text" name="contact" placeholder="+91 98765 43210"></div>
-          </div>
-          <div class="f2">
-            <div class="fg"><label>Book Title *</label><input type="text" name="book_title" placeholder="Enter full book title" required></div>
-            <div class="fg"><label>Author Name</label><input type="text" name="author" placeholder="Author's name"></div>
-          </div>
-          <div class="f2">
-            <div class="fg"><label>Language</label><select name="language"><option>Hindi</option><option>English</option><option>Urdu</option><option>Sanskrit</option><option>Other</option></select></div>
-            <div class="fg"><label>Category / Purpose</label><select name="category"><option>UPSC / Civil Services</option><option>SSC / Banking Exams</option><option>NEET / Medical</option><option>JEE / Engineering</option><option>Board Exams (10th/12th)</option><option>Hindi Literature</option><option>Urdu Poetry & Prose</option><option>General Knowledge</option><option>Children's Books</option><option>Self-Help / Motivation</option><option>History & Culture</option><option>Other</option></select></div>
-          </div>
-          <div class="fg"><label>Why should we add this? (Optional)</label><textarea name="reason" placeholder="Tell us how this book will help students at Study Hub Library..."></textarea></div>
-          <button type="submit" class="f-btn" id="sug-btn">Submit Suggestion ✦</button>
-          <div class="ok-box" id="sug-ok">🎉 Thank you! Your suggestion has been submitted and will be reviewed within 7 working days.</div>
-          <div class="err-box" id="sug-err">⚠️ Something went wrong. Please try again or contact us directly.</div>
-        </form>
-      </div>
-    </div>
-  </section>
-</div>
-
-<!-- ═══════ NOTIFICATIONS ═══════ -->
-<div class="page" id="page-notifications">
-  <div class="page-banner">
-    <h1 class="fu">Notifications</h1>
-    <p class="fu d1">Important updates, reminders and announcements from Study Hub Library</p>
-  </div>
-  <section class="section">
-    <div class="section-inner">
-      <div class="notif-list">
-        <div class="n-card n-new">
-          <div class="n-ico">📢</div>
-          <div><div class="n-title">UPSC Study Zone Now Open on All Floors <span class="n-badge">NEW</span></div><div class="n-body">We have expanded our UPSC/Civil Services section to all 3 floors. New additions include NCERT compilations, Laxmikant latest edition, Vision IAS materials and complete sets of previous year papers from 1998–2025.</div><span class="n-time">Today, 8:00 AM</span></div>
-        </div>
-        <div class="n-card n-new">
-          <div class="n-ico">🎓</div>
-          <div><div class="n-title">Free Seminar: "How to Crack UPSC 2026" — 5 March <span class="n-badge">NEW</span></div><div class="n-body">Join us on 5th March 2026 at 5:00 PM for a free seminar by IPS Officer Rajeev Srivastava (2018 batch) on strategy, time management and booklist for UPSC 2026. Limited seats — confirm at reception.</div><span class="n-time">Yesterday, 6:00 PM</span></div>
-        </div>
-        <div class="n-card">
-          <div class="n-ico">⏰</div>
-          <div><div class="n-title">Extended Hours During Board Season — Feb to April</div><div class="n-body">Study Hub Library will remain open from 6:00 AM to 11:00 PM Monday to Saturday and 8:00 AM to 8:00 PM on Sundays throughout the board exam season (February to April 2026).</div><span class="n-time">22 Feb 2026</span></div>
-        </div>
-        <div class="n-card">
-          <div class="n-ico">💻</div>
-          <div><div class="n-title">Wi-Fi Speed Upgraded to 1 Gbps Fibre</div><div class="n-body">We have completed the upgrade to 1 Gbps fibre connectivity across all floors and the café. Members can now access digital resources, stream lectures and download study material at full speed.</div><span class="n-time">18 Feb 2026</span></div>
-        </div>
-        <div class="n-card">
-          <div class="n-ico">🏆</div>
-          <div><div class="n-title">47 Study Hub Members Cleared UPSC 2025</div><div class="n-body">We are proud to announce that 47 of our registered members successfully cleared UPSC Prelims 2025 and 12 made it to the final list. A felicitation ceremony was held on 10 Feb 2026 at the library premises.</div><span class="n-time">10 Feb 2026</span></div>
-        </div>
-        <div class="n-card">
-          <div class="n-ico">📚</div>
-          <div><div class="n-title">1,200 New Books Added — January 2026 Batch</div><div class="n-body">Our latest acquisition includes 1,200 new titles across competitive exam prep, Hindi fiction, UP Board curriculum books, science textbooks and motivational literature. Check the New Arrivals shelf near the entrance.</div><span class="n-time">5 Feb 2026</span></div>
-        </div>
-        <div class="n-card">
-          <div class="n-ico">💳</div>
-          <div><div class="n-title">2026 Membership Renewal Open — ₹499 Only</div><div class="n-body">Renew your Study Hub membership for 2026 at just ₹499/year. Early renewals before 28 February will receive a free monthly magazine subscription and priority study hall booking for the next 3 months.</div><span class="n-time">1 Feb 2026</span></div>
-        </div>
-      </div>
-    </div>
-  </section>
-</div>
-
-<!-- ═══════ CONTACT ═══════ -->
-<div class="page" id="page-contact">
-  <div class="page-banner">
-    <h1 class="fu">Contact Us</h1>
-    <p class="fu d1">We're always here to help — come visit or reach out anytime</p>
-  </div>
-  <section class="section">
-    <div class="section-inner">
-      <div class="c-grid">
-        <div>
-          <p class="sec-tag" style="margin-bottom:20px">Find Us</p>
-          <div class="c-card"><div class="c-ico">📍</div><div><div class="c-lbl">Address</div><div class="c-val">22-A, Sahara Estate, Near Lekhraj Metro<br>Indira Nagar, Lucknow — 226016<br><small style="color:var(--muted)">Also near Hazratganj & Gomti Nagar</small></div></div></div>
-          <div class="c-card"><div class="c-ico">📞</div><div><div class="c-lbl">Phone</div><div class="c-val">+91-98390-45678<br>+91-522-4089001</div></div></div>
-          <div class="c-card"><div class="c-ico">✉️</div><div><div class="c-lbl">Email</div><div class="c-val">hello@studyhublko.in<br>membership@studyhublko.in</div></div></div>
-          <div class="hours-box">
-            <h4>Opening Hours</h4>
-            <div class="h-row"><span class="day">Monday – Friday</span><span class="time">6:00 AM – 10:00 PM</span></div>
-            <div class="h-row"><span class="day">Saturday</span><span class="time">6:00 AM – 10:00 PM</span></div>
-            <div class="h-row"><span class="day">Sunday</span><span class="time">8:00 AM – 8:00 PM</span></div>
-            <div class="h-row"><span class="day">Public Holidays</span><span class="closed">Closed</span></div>
-            <div class="h-row"><span class="day">Board Exam Season</span><span class="time" style="color:var(--teal)">6:00 AM – 11:00 PM</span></div>
-          </div>
-        </div>
-        <div>
-          <div class="form-box" style="padding:38px 34px">
-            <p class="sec-tag" style="margin-bottom:6px">Send a Message</p>
-            <h2 style="font-family:'Playfair Display',serif;font-size:1.75rem;margin-bottom:24px;color:var(--white)">We'll reply in 24 hours</h2>
-            <form id="con-form" onsubmit="submitForm(event,'con')">
+          <div class="form-box">
+            <form id="sug-form" onsubmit="submitForm(event, 'sug')">
               <!-- Hidden web3forms fields -->
-              <input type="hidden" name="access_key" value="f5a5bc32-5674-4c8a-be19-2ea447aa4c21">
-              <input type="hidden" name="subject" value="📬 New Contact Message — Study Hub Library">
-              <input type="hidden" name="from_name" value="Study Hub Library Website">
-              <input type="checkbox" name="botcheck" style="display:none">
+              <input
+                type="hidden"
+                name="access_key"
+                value="f5a5bc32-5674-4c8a-be19-2ea447aa4c21"
+              />
+              <input
+                type="hidden"
+                name="subject"
+                value="📚 New Book Suggestion — Study Hub Library"
+              />
+              <input
+                type="hidden"
+                name="from_name"
+                value="Study Hub Library Website"
+              />
+              <input type="checkbox" name="botcheck" style="display: none" />
 
               <div class="f2">
-                <div class="fg"><label>Full Name *</label><input type="text" name="name" placeholder="Your name" required></div>
-                <div class="fg"><label>Phone Number</label><input type="tel" name="phone" placeholder="+91 XXXXX XXXXX"></div>
+                <div class="fg">
+                  <label>Your Name *</label
+                  ><input
+                    type="text"
+                    name="name"
+                    placeholder="Utkarsh Singh"
+                    required
+                  />
+                </div>
+                <div class="fg">
+                  <label>Mobile / Email</label
+                  ><input
+                    type="text"
+                    name="contact"
+                    placeholder="+91 8934914999"
+                  />
+                </div>
               </div>
-              <div class="fg"><label>Email Address *</label><input type="email" name="email" placeholder="you@gmail.com" required></div>
-              <div class="fg"><label>Subject</label><select name="subject_type"><option>Membership Enquiry</option><option>Book Enquiry</option><option>Study Hall Booking</option><option>Event Registration</option><option>Book Donation</option><option>General Feedback</option><option>Complaint</option></select></div>
-              <div class="fg"><label>Message *</label><textarea name="message" placeholder="How can we help you today?" required></textarea></div>
-              <button type="submit" class="f-btn" id="con-btn">Send Message →</button>
-              <div class="ok-box" id="con-ok">✅ Message received! Our team will reply within 24 hours.</div>
-              <div class="err-box" id="con-err">⚠️ Something went wrong. Please try again or call us directly.</div>
+              <div class="f2">
+                <div class="fg">
+                  <label>Book Title *</label
+                  ><input
+                    type="text"
+                    name="book_title"
+                    placeholder="Enter full book title"
+                    required
+                  />
+                </div>
+                <div class="fg">
+                  <label>Author Name</label
+                  ><input
+                    type="text"
+                    name="author"
+                    placeholder="Author's name"
+                  />
+                </div>
+              </div>
+              <div class="f2">
+                <div class="fg">
+                  <label>Language</label
+                  ><select name="language">
+                    <option>Hindi</option>
+                    <option>English</option>
+                    <option>Other</option>
+                  </select>
+                </div>
+                <div class="fg">
+                  <label>Category / Purpose</label
+                  ><select name="category">
+                    <option>UPSC / Civil Services</option>
+                    <option>SSC / Banking Exams</option>
+                    <option>NEET / Medical</option>
+                    <option>JEE / Engineering</option>
+                    <option>Board Exams (10th/12th)</option>
+                    <option>Hindi Literature</option>
+                    <option>General Knowledge</option>
+                    <option>Children's Books</option>
+                    <option>History & Culture</option>
+                    <option>Other</option>
+                  </select>
+                </div>
+              </div>
+              <div class="fg">
+                <label>Why should we add this? (Optional)</label
+                ><textarea
+                  name="reason"
+                  placeholder="Tell us how this book will help students at Study Hub Library..."
+                ></textarea>
+              </div>
+              <button type="submit" class="f-btn" id="sug-btn">
+                Submit Suggestion ✦
+              </button>
+              <div class="ok-box" id="sug-ok">
+                🎉 Thank you! Your suggestion has been submitted and will be
+                reviewed within 7 working days.
+              </div>
+              <div class="err-box" id="sug-err">
+                ⚠️ Something went wrong. Please try again or contact us
+                directly.
+              </div>
             </form>
           </div>
         </div>
-      </div>
+      </section>
     </div>
-  </section>
-</div>
 
-<!-- FOOTER -->
-<footer>
-  <div class="f-inner">
-    <div class="f-grid">
-      <div class="f-about">
-        <div class="logo">
-          <div class="logo-mark">📚</div>
-          <div><div class="logo-name">Study Hub Library</div><span class="logo-sub">Lucknow · Est. 2016</span></div>
+    <!-- ═══════ NOTIFICATIONS ═══════ -->
+    <div class="page" id="page-notifications">
+      <div class="page-banner">
+        <h1 class="fu">Notifications</h1>
+        <p class="fu d1">
+          Important updates, reminders and announcements from Study Hub Library
+        </p>
+      </div>
+      <section class="section">
+        <div class="section-inner">
+          <div class="notif-list">
+            <!-- <div class="n-card n-new">
+          <div class="n-ico">📢</div>
+          <div><div class="n-title">UPSC Study Zone Now Open on All Floors <span class="n-badge">NEW</span></div><div class="n-body">We have expanded our UPSC/Civil Services section to all 3 floors. New additions include NCERT compilations, Laxmikant latest edition, Vision IAS materials and complete sets of previous year papers from 1998–2025.</div><span class="n-time">Today, 8:00 AM</span></div>
+        </div> -->
+            <!-- <div class="n-card n-new">
+          <div class="n-ico">🎓</div>
+          <div><div class="n-title">Free Seminar: "How to Crack UPSC 2026" — 5 March <span class="n-badge">NEW</span></div><div class="n-body">Join us on 5th March 2026 at 5:00 PM for a free seminar by IPS Officer Rajeev Srivastava (2018 batch) on strategy, time management and booklist for UPSC 2026. Limited seats — confirm at reception.</div><span class="n-time">Yesterday, 6:00 PM</span></div>
+        </div> -->
+            <!-- <div class="n-card">
+          <div class="n-ico">⏰</div>
+          <div><div class="n-title">Extended Hours During Board Season — Feb to April</div><div class="n-body">Study Hub Library will remain open from 6:00 AM to 11:00 PM Monday to Saturday and 8:00 AM to 8:00 PM on Sundays throughout the board exam season (February to April 2026).</div><span class="n-time">22 Feb 2026</span></div>
+        </div> -->
+            <!-- <div class="n-card">
+          <div class="n-ico">💻</div>
+          <div><div class="n-title">Wi-Fi Speed Upgraded to 1 Gbps Fibre</div><div class="n-body">We have completed the upgrade to 1 Gbps fibre connectivity across all floors and the café. Members can now access digital resources, stream lectures and download study material at full speed.</div><span class="n-time">18 Feb 2026</span></div>
+        </div> -->
+            <!-- <div class="n-card">
+          <div class="n-ico">🏆</div>
+          <div><div class="n-title">47 Study Hub Members Cleared UPSC 2025</div><div class="n-body">We are proud to announce that 47 of our registered members successfully cleared UPSC Prelims 2025 and 12 made it to the final list. A felicitation ceremony was held on 10 Feb 2026 at the library premises.</div><span class="n-time">10 Feb 2026</span></div>
+        </div> -->
+            <!-- <div class="n-card">
+          <div class="n-ico">📚</div>
+          <div><div class="n-title">1,200 New Books Added — January 2026 Batch</div><div class="n-body">Our latest acquisition includes 1,200 new titles across competitive exam prep, Hindi fiction, UP Board curriculum books, science textbooks and motivational literature. Check the New Arrivals shelf near the entrance.</div><span class="n-time">5 Feb 2026</span></div>
+        </div> -->
+            <div class="n-card">
+              <div class="n-ico">💳</div>
+              <div>
+                <div class="n-title">
+                  2026 Membership Renewal Open — ₹1199 Only
+                  <span class="n-badge">NEW</span>
+                </div>
+                <div class="n-body">
+                  Renew your Study Hub membership for 2026 at just ₹1199/monthly.
+                  Early renewals before 28 February will receive a free monthly
+                  magazine subscription and priority study hall booking for the
+                  next 3 months.
+                </div>
+                <span class="n-time">1 March 2026</span>
+              </div>
+            </div>
+          </div>
         </div>
-        <p>Lucknow's premier modern study library. We exist to give every student access to world-class learning resources and a focused environment to achieve their goals.</p>
-        <div class="soc-row">
-          <a class="soc-btn" href="#">📘</a>
-          <a class="soc-btn" href="#">📸</a>
-          <a class="soc-btn" href="#">▶️</a>
-          <a class="soc-btn" href="#">🐦</a>
+      </section>
+    </div>
+
+    <!-- ═══════ CONTACT ═══════ -->
+    <div class="page" id="page-contact">
+      <div class="page-banner">
+        <h1 class="fu">Contact Us</h1>
+        <p class="fu d1">
+          We're always here to help — come visit or reach out anytime
+        </p>
+      </div>
+      <section class="section">
+        <div class="section-inner">
+          <div class="c-grid">
+            <div>
+              <p class="sec-tag" style="margin-bottom: 20px">Find Us</p>
+              <div class="c-card">
+                <div class="c-ico">📍</div>
+                <div>
+                  <div class="c-lbl">Address</div>
+                  <div class="c-val">
+                    Sector F, Kapoorthala Road, beside Paramount coaching,
+                    <br />
+                    Lucknow, Uttar Pradesh 226024<br /><small
+                      style="color: var(--muted)"
+                      >Near Hazratganj & Gomti Nagar — Opening Soon</small
+                    >
+                  </div>
+                </div>
+              </div>
+              <div class="c-card">
+                <div class="c-ico">📞</div>
+                <div>
+                  <div class="c-lbl">Phone</div>
+                  <div class="c-val">+91-8934914999<br /></div>
+                </div>
+              </div>
+              <div class="c-card">
+                <div class="c-ico">✉️</div>
+                <div>
+                  <div class="c-lbl">Email</div>
+                  <div class="c-val">studyhubkapoorthala@gmail.com<br /></div>
+                </div>
+              </div>
+              <div class="hours-box">
+                <h4>Opening Hours</h4>
+                <div class="h-row">
+                  <span class="day">Monday – Saturday</span>
+                  <span class="time">Always Open — 24×7</span>
+                </div>
+                <!-- <div class="h-row"><span class="day">Saturday</span><span class="time">6:00 AM – 10:00 PM</span></div> -->
+                <div class="h-row">
+                  <span class="day">Sunday</span>
+                  <span class="time">Closes at 10:00 PM</span>
+                </div>
+                <div class="h-row">
+                  <span class="day">Public Holidays</span
+                  ><span class="closed">Closed</span>
+                </div>
+                <!-- <div class="h-row"><span class="day">Board Exam Season</span><span class="time" style="color:var(--teal)">6:00 AM – 11:00 PM</span></div> -->
+              </div>
+            </div>
+            <div>
+              <div class="form-box" style="padding: 38px 34px">
+                <p class="sec-tag" style="margin-bottom: 6px">Send a Message</p>
+                <h2
+                  style="
+                    font-family: &quot;Playfair Display&quot;, serif;
+                    font-size: 1.75rem;
+                    margin-bottom: 24px;
+                    color: var(--white);
+                  "
+                >
+                  We'll reply in 24 hours
+                </h2>
+                <form id="con-form" onsubmit="submitForm(event, 'con')">
+                  <!-- Hidden web3forms fields -->
+                  <input
+                    type="hidden"
+                    name="access_key"
+                    value="f5a5bc32-5674-4c8a-be19-2ea447aa4c21"
+                  />
+                  <input
+                    type="hidden"
+                    name="subject"
+                    value="📬 New Contact Message — Study Hub Library"
+                  />
+                  <input
+                    type="hidden"
+                    name="from_name"
+                    value="Study Hub Library Website"
+                  />
+                  <input
+                    type="checkbox"
+                    name="botcheck"
+                    style="display: none"
+                  />
+
+                  <div class="f2">
+                    <div class="fg">
+                      <label>Full Name *</label
+                      ><input
+                        type="text"
+                        name="name"
+                        placeholder="Utkarsh Singh"
+                        required
+                      />
+                    </div>
+                    <div class="fg">
+                      <label>Phone Number</label
+                      ><input
+                        type="tel"
+                        name="phone"
+                        placeholder="+91 8934914999"
+                      />
+                    </div>
+                  </div>
+                  <div class="fg">
+                    <label>Email Address *</label
+                    ><input
+                      type="email"
+                      name="email"
+                      placeholder="utkarshsingh@gmail.com"
+                      required
+                    />
+                  </div>
+                  <div class="fg">
+                    <label>Subject</label
+                    ><select name="subject_type">
+                      <option>Membership Enquiry</option>
+                      <option>Book Enquiry</option>
+                      <option>Event Registration</option>
+                      <option>Book Donation</option>
+                      <option>General Feedback</option>
+                      <option>Complaint</option>
+                    </select>
+                  </div>
+                  <div class="fg">
+                    <label>Message *</label
+                    ><textarea
+                      name="message"
+                      placeholder="How can we help you today?"
+                      required
+                    ></textarea>
+                  </div>
+                  <button type="submit" class="f-btn" id="con-btn">
+                    Send Message →
+                  </button>
+                  <div class="ok-box" id="con-ok">
+                    ✅ Message received! Our team will reply within 24 hours.
+                  </div>
+                  <div class="err-box" id="con-err">
+                    ⚠️ Something went wrong. Please try again or call us
+                    directly.
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="f-inner">
+        <div class="f-grid">
+          <div class="f-about">
+            <div class="logo">
+              <div class="logo-mark">📚</div>
+              <div>
+                <div class="logo-name">Study Hub Library</div>
+                <span class="logo-sub">Lucknow · Est. 2026</span>
+              </div>
+            </div>
+            <p>
+              Lucknow's premier modern study library. We exist to give every
+              student access to world-class learning resources and a focused
+              environment to achieve their goals.
+            </p>
+            <div class="soc-row" >
+              <a class="soc-btn" href="#"
+                ><i class="fa-brands fa-facebook-f" style="color: #e8b84b;"></i
+              ></a>
+              <a class="soc-btn" href="#"
+                ><i class="fa-brands fa-instagram" style="color: #e8b84b;"></i
+              ></a>
+              <a class="soc-btn" href="#"
+                ><i class="fa-brands fa-youtube" style="color: #e8b84b;"></i
+              ></a>
+              <a class="soc-btn" href="#"
+                ><i class="fa-brands fa-x-twitter" style="color: #e8b84b;"></i
+              ></a>
+            </div>
+          </div>
+          <div class="f-col">
+            <h4>Quick Links</h4>
+            <a onclick="goTo('home')">Home</a>
+            <a onclick="goTo('gallery')">Gallery</a>
+            <a onclick="goTo('suggest')">Suggest a Book</a>
+            <a onclick="goTo('notifications')">Notifications</a>
+            <a onclick="goTo('contact')">Contact</a>
+          </div>
+          <div class="f-col">
+            <h4>Services</h4>
+            <a href="#services">Book Lending</a>
+            <a href="#services">UPSC Study Zone</a>
+            <a href="#services">Digital Resources</a>
+            <a href="#services">AC Study Halls</a>
+            <a href="#services">Reader's Café</a>
+          </div>
+          <div class="f-col">
+            <h4>Contact</h4>
+            <a href="https://maps.app.goo.gl/xptuDaD3Dju1qedc7"
+              >📍 Sector F, Kapoorthala Road, beside Paramount coaching,
+              Lucknow, Uttar Pradesh 226024</a
+            >
+            <a href="tel:+918934914999">📞 +91-8934914999</a>
+            <a href="mailto:studyhubkapoorthala@gmail.com"
+              >✉️ studyhubkapoorthala@gmail.com</a
+            >
+          </div>
+        </div>
+        <div class="f-bottom">
+          <p>© 2026 Study Hub Library, Lucknow. All rights reserved.</p>
+          <p class="f-motto">ज्ञान ही शक्ति है — Knowledge is Power</p>
         </div>
       </div>
-      <div class="f-col">
-        <h4>Quick Links</h4>
-        <a onclick="goTo('home')">Home</a>
-        <a onclick="goTo('gallery')">Gallery</a>
-        <a onclick="goTo('suggest')">Suggest a Book</a>
-        <a onclick="goTo('notifications')">Notifications</a>
-        <a onclick="goTo('contact')">Contact</a>
-      </div>
-      <div class="f-col">
-        <h4>Services</h4>
-        <a href="#">Book Lending</a>
-        <a href="#">UPSC Study Zone</a>
-        <a href="#">Digital Resources</a>
-        <a href="#">AC Study Halls</a>
-        <a href="#">Reader's Café</a>
-        <a href="#">Children's Corner</a>
-      </div>
-      <div class="f-col">
-        <h4>Contact</h4>
-        <a href="#">📍 Indira Nagar, Lucknow</a>
-        <a href="#">📞 +91-98390-45678</a>
-        <a href="#">✉️ hello@studyhublko.in</a>
-        <a href="#">🕐 Mon–Sat: 6AM–10PM</a>
-        <a href="#">🌐 www.studyhublko.in</a>
-      </div>
-    </div>
-    <div class="f-bottom">
-      <p>© 2026 Study Hub Library, Lucknow. All rights reserved.</p>
-      <p class="f-motto">ज्ञान ही शक्ति है — Knowledge is Power</p>
-    </div>
-  </div>
-</footer>
+    </footer>
 
-<script>
-// ── NAVIGATION ──
-function goTo(name) {
-  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-  var target = document.getElementById('page-' + name);
-  if (target) target.classList.add('active');
-  document.querySelectorAll('.nav-list li a').forEach(a => a.classList.remove('active'));
-  var activeLink = document.getElementById('nav-' + name);
-  if (activeLink) activeLink.classList.add('active');
-  window.scrollTo(0, 0);
-}
+    <script>
+      // ── NAVIGATION ──
+      function goTo(name) {
+        document
+          .querySelectorAll(".page")
+          .forEach((p) => p.classList.remove("active"));
+        var target = document.getElementById("page-" + name);
+        if (target) target.classList.add("active");
+        document
+          .querySelectorAll(".nav-list li a")
+          .forEach((a) => a.classList.remove("active"));
+        var activeLink = document.getElementById("nav-" + name);
+        if (activeLink) activeLink.classList.add("active");
+        window.scrollTo(0, 0);
+      }
 
-// ── MOBILE NAV ──
-var mobOpen = false;
-function openMob() {
-  var mob = document.getElementById('mob-nav');
-  mobOpen = !mobOpen;
-  mob.style.display = mobOpen ? 'block' : 'none';
-  document.getElementById('ham-btn').textContent = mobOpen ? '✕' : '☰';
-}
-function closeMob() {
-  mobOpen = false;
-  document.getElementById('mob-nav').style.display = 'none';
-  document.getElementById('ham-btn').textContent = '☰';
-}
+      // ── MOBILE NAV ──
+      var mobOpen = false;
+      function openMob() {
+        var mob = document.getElementById("mob-nav");
+        mobOpen = !mobOpen;
+        mob.style.display = mobOpen ? "block" : "none";
+        document.getElementById("ham-btn").textContent = mobOpen ? "✕" : "☰";
+      }
+      function closeMob() {
+        mobOpen = false;
+        document.getElementById("mob-nav").style.display = "none";
+        document.getElementById("ham-btn").textContent = "☰";
+      }
 
-// ── DARK / LIGHT MODE ──
-var isDark = true;
-function toggleTheme() {
-  isDark = !isDark;
-  var html = document.documentElement;
-  html.setAttribute('data-theme', isDark ? 'dark' : 'light');
-  var icon = isDark ? '🌙' : '☀️';
-  document.getElementById('theme-toggle').textContent = icon;
-  var mobBtn = document.getElementById('mob-theme-btn');
-  if (mobBtn) mobBtn.textContent = icon;
-  showToast(isDark ? '🌙 Dark mode enabled' : '☀️ Light mode enabled');
-  try { localStorage.setItem('studyhub-theme', isDark ? 'dark' : 'light'); } catch(e){}
-}
+      // ── DARK / LIGHT MODE ──
+      var isDark = true;
+      function toggleTheme() {
+        isDark = !isDark;
+        var html = document.documentElement;
+        html.setAttribute("data-theme", isDark ? "dark" : "light");
+        var icon = isDark ? "🌙" : "☀️";
+        document.getElementById("theme-toggle").textContent = icon;
+        var mobBtn = document.getElementById("mob-theme-btn");
+        if (mobBtn) mobBtn.textContent = icon;
+        showToast(isDark ? "🌙 Dark mode enabled" : "☀️ Light mode enabled");
+        try {
+          localStorage.setItem("studyhub-theme", isDark ? "dark" : "light");
+        } catch (e) {}
+      }
 
-// Load saved theme
-(function(){
-  try {
-    var saved = localStorage.getItem('studyhub-theme');
-    if (saved === 'light') {
-      isDark = false;
-      document.documentElement.setAttribute('data-theme','light');
-      document.addEventListener('DOMContentLoaded', function(){
-        var btn = document.getElementById('theme-toggle');
-        if(btn) btn.textContent = '☀️';
-        var mob = document.getElementById('mob-theme-btn');
-        if(mob) mob.textContent = '☀️';
+      // Load saved theme
+      (function () {
+        try {
+          var saved = localStorage.getItem("studyhub-theme");
+          if (saved === "light") {
+            isDark = false;
+            document.documentElement.setAttribute("data-theme", "light");
+            document.addEventListener("DOMContentLoaded", function () {
+              var btn = document.getElementById("theme-toggle");
+              if (btn) btn.textContent = "☀️";
+              var mob = document.getElementById("mob-theme-btn");
+              if (mob) mob.textContent = "☀️";
+            });
+          }
+        } catch (e) {}
+      })();
+
+      // ── GALLERY FILTER ──
+      function filterGallery(cat, btn) {
+        document
+          .querySelectorAll(".g-btn")
+          .forEach((b) => b.classList.remove("active"));
+        btn.classList.add("active");
+        document.querySelectorAll(".g-item").forEach(function (item) {
+          item.style.display =
+            cat === "all" || item.getAttribute("data-cat") === cat
+              ? ""
+              : "none";
+        });
+      }
+
+      // ── FORM SUBMIT WITH WEB3FORMS API ──
+      async function submitForm(e, prefix) {
+        e.preventDefault();
+        var form = e.target;
+        var btn = document.getElementById(prefix + "-btn");
+        var okBox = document.getElementById(prefix + "-ok");
+        var errBox = document.getElementById(prefix + "-err");
+
+        // Hide previous messages
+        okBox.style.display = "none";
+        errBox.style.display = "none";
+
+        // Show spinner
+        var origText = btn.textContent;
+        btn.disabled = true;
+        btn.innerHTML = '<span class="spinner"></span>Sending...';
+
+        try {
+          var formData = new FormData(form);
+          var response = await fetch("https://api.web3forms.com/submit", {
+            method: "POST",
+            body: formData,
+          });
+          var data = await response.json();
+
+          if (data.success) {
+            okBox.style.display = "block";
+            showToast(
+              prefix === "sug"
+                ? "📚 Book suggestion submitted!"
+                : "✅ Message sent successfully!",
+            );
+            form.reset();
+            setTimeout(function () {
+              okBox.style.display = "none";
+            }, 7000);
+          } else {
+            errBox.style.display = "block";
+            showToast("⚠️ Submission failed. Please try again.");
+            setTimeout(function () {
+              errBox.style.display = "none";
+            }, 6000);
+          }
+        } catch (err) {
+          errBox.style.display = "block";
+          showToast("⚠️ Network error. Please check your connection.");
+          setTimeout(function () {
+            errBox.style.display = "none";
+          }, 6000);
+        }
+
+        // Restore button
+        btn.disabled = false;
+        btn.textContent = origText;
+      }
+
+      // ── TOAST ──
+      function showToast(msg) {
+        var t = document.getElementById("toast");
+        t.textContent = msg;
+        t.classList.add("show");
+        setTimeout(function () {
+          t.classList.remove("show");
+        }, 3500);
+      }
+
+      // ── ANIMATE ON SCROLL ──
+      var observer = new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.style.animationPlayState = "running";
+            }
+          });
+        },
+        { threshold: 0.1 },
+      );
+
+      document.querySelectorAll(".fu").forEach(function (el) {
+        el.style.animationPlayState = "paused";
+        observer.observe(el);
       });
-    }
-  } catch(e){}
-})();
 
-// ── GALLERY FILTER ──
-function filterGallery(cat, btn) {
-  document.querySelectorAll('.g-btn').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  document.querySelectorAll('.g-item').forEach(function(item) {
-    item.style.display = (cat === 'all' || item.getAttribute('data-cat') === cat) ? '' : 'none';
-  });
-}
-
-// ── FORM SUBMIT WITH WEB3FORMS API ──
-async function submitForm(e, prefix) {
-  e.preventDefault();
-  var form = e.target;
-  var btn = document.getElementById(prefix + '-btn');
-  var okBox = document.getElementById(prefix + '-ok');
-  var errBox = document.getElementById(prefix + '-err');
-
-  // Hide previous messages
-  okBox.style.display = 'none';
-  errBox.style.display = 'none';
-
-  // Show spinner
-  var origText = btn.textContent;
-  btn.disabled = true;
-  btn.innerHTML = '<span class="spinner"></span>Sending...';
-
-  try {
-    var formData = new FormData(form);
-    var response = await fetch('https://api.web3forms.com/submit', {
-      method: 'POST',
-      body: formData
-    });
-    var data = await response.json();
-
-    if (data.success) {
-      okBox.style.display = 'block';
-      showToast(prefix === 'sug' ? '📚 Book suggestion submitted!' : '✅ Message sent successfully!');
-      form.reset();
-      setTimeout(function(){ okBox.style.display = 'none'; }, 7000);
-    } else {
-      errBox.style.display = 'block';
-      showToast('⚠️ Submission failed. Please try again.');
-      setTimeout(function(){ errBox.style.display = 'none'; }, 6000);
-    }
-  } catch(err) {
-    errBox.style.display = 'block';
-    showToast('⚠️ Network error. Please check your connection.');
-    setTimeout(function(){ errBox.style.display = 'none'; }, 6000);
-  }
-
-  // Restore button
-  btn.disabled = false;
-  btn.textContent = origText;
-}
-
-// ── TOAST ──
-function showToast(msg) {
-  var t = document.getElementById('toast');
-  t.textContent = msg;
-  t.classList.add('show');
-  setTimeout(function(){ t.classList.remove('show'); }, 3500);
-}
-
-// ── ANIMATE ON SCROLL ──
-var observer = new IntersectionObserver(function(entries) {
-  entries.forEach(function(entry) {
-    if (entry.isIntersecting) {
-      entry.target.style.animationPlayState = 'running';
-    }
-  });
-}, { threshold: 0.1 });
-
-document.querySelectorAll('.fu').forEach(function(el) {
-  el.style.animationPlayState = 'paused';
-  observer.observe(el);
-});
-
-// Close mobile nav when clicking outside
-document.addEventListener('click', function(e) {
-  var mob = document.getElementById('mob-nav');
-  var ham = document.getElementById('ham-btn');
-  if (mobOpen && !mob.contains(e.target) && e.target !== ham) {
-    closeMob();
-  }
-});
-</script>
-</body>
+      // Close mobile nav when clicking outside
+      document.addEventListener("click", function (e) {
+        var mob = document.getElementById("mob-nav");
+        var ham = document.getElementById("ham-btn");
+        if (mobOpen && !mob.contains(e.target) && e.target !== ham) {
+          closeMob();
+        }
+      });
+    </script>
+  </body>
 </html>
