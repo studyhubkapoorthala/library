@@ -4,7 +4,22 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Study Hub Library — Lucknow 2026</title>
+  <title>Study Hub Library — Lucknow </title>
+  <!-- Favicon -->
+<link rel="icon" type="image/png" sizes="32x32" href="img/studyhubfavicon.png">
+<link rel="icon" type="image/png" sizes="16x16" href="img/studyhubfavicon.png">
+<link rel="apple-touch-icon" sizes="180x180" href="img/studyhubfavicon.png">
+<link rel="shortcut icon" href="img/studyhubfavicon.png">
+
+<!-- Theme Color (Browser UI color) -->
+<meta name="theme-color" content="#0a0c10">
+<meta name="msapplication-TileColor" content="#0a0c10">
+
+<!-- Web App Meta -->
+<meta name="application-name" content="Study Hub Library">
+<meta name="apple-mobile-web-app-title" content="Study Hub Library">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <link
     href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap"
     rel="stylesheet" />
@@ -12,27 +27,85 @@
   <style>
     /* REVIEW SECTION */
 
+    /* REVIEW SECTION */
+
+    .review-section {
+      margin-top: 40px;
+    }
+
     .review-section .sec-center {
       margin-bottom: 40px;
     }
 
+
+    /* wrapper */
+
     .review-wrapper {
       display: flex;
       align-items: center;
-      gap: 20px;
+      gap: 16px;
       position: relative;
+      overflow: visible;
     }
+
+
+    /* scroll container */
 
     .review-container {
       display: flex;
       gap: 20px;
-      overflow: hidden;
+      overflow-x: auto;
+      overflow-y: hidden;
       scroll-behavior: smooth;
+      scroll-snap-type: x mandatory;
       width: 100%;
+      padding-top: 10px;
+      padding-bottom: 10px;
     }
 
+
+    /* scrollbar */
+
+    .review-container::-webkit-scrollbar {
+      height: 5px;
+    }
+
+    .review-container::-webkit-scrollbar-thumb {
+      background: var(--gold);
+      border-radius: 4px;
+    }
+
+
+    .review-container {
+      display: flex;
+      gap: 20px;
+      overflow-x: auto;
+      overflow-y: hidden;
+      scroll-behavior: smooth;
+      scroll-snap-type: x mandatory;
+      width: 100%;
+      padding-top: 10px;
+      padding-bottom: 10px;
+
+      /* hide scrollbar */
+      scrollbar-width: none;
+      /* Firefox */
+      -ms-overflow-style: none;
+      /* IE/Edge */
+    }
+
+    /* Chrome / Safari */
+    .review-container::-webkit-scrollbar {
+      display: none;
+    }
+
+
+
+    /* cards */
+
     .review-card {
-      min-width: 300px;
+      flex: 0 0 300px;
+      scroll-snap-align: start;
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: 16px;
@@ -40,15 +113,15 @@
       transition: .3s;
     }
 
+
     .review-card:hover {
-      transform: translateY(-5px);
+      transform: translateY(-3px);
       border-color: var(--gold);
       box-shadow: 0 18px 40px var(--shadow);
     }
 
 
-
-    /* REVIEW HEADER */
+    /* header */
 
     .review-head {
       display: flex;
@@ -58,8 +131,7 @@
     }
 
 
-
-    /* STUDENT PROFILE */
+    /* avatar */
 
     .review-avatar {
       width: 42px;
@@ -70,8 +142,7 @@
     }
 
 
-
-    /* USER TEXT */
+    /* user */
 
     .review-user strong {
       font-size: 14px;
@@ -85,8 +156,7 @@
     }
 
 
-
-    /* STAR RATING */
+    /* stars */
 
     .review-stars {
       color: var(--gold);
@@ -96,8 +166,7 @@
     }
 
 
-
-    /* REVIEW TEXT */
+    /* text */
 
     .review-card p {
       font-size: 14px;
@@ -106,8 +175,7 @@
     }
 
 
-
-    /* NAV BUTTONS */
+    /* navigation arrows */
 
     .review-nav {
       width: 42px;
@@ -129,13 +197,29 @@
 
 
 
-    /* MOBILE RESPONSIVE */
+    /* tablet */
+
+    @media(max-width:900px) {
+
+      .review-card {
+        flex: 0 0 260px;
+        padding: 22px;
+      }
+
+    }
+
+
+
+    /* mobile */
 
     @media(max-width:768px) {
 
+      .review-wrapper {
+        gap: 10px;
+      }
+
       .review-card {
-        min-width: 260px;
-        padding: 22px;
+        flex: 0 0 240px;
       }
 
       .review-avatar {
@@ -149,15 +233,7 @@
 
     }
 
-    @media(max-width:480px) {
-
-      .review-card {
-        min-width: 220px;
-      }
-
-    }
-
-/* review end */
+    /* review end */
 
 
 
@@ -2283,7 +2359,6 @@
       </div>
     </section>
 
-
     <section class="section review-section" style="margin-top: -100px;">
 
       <div class="section-inner">
@@ -2305,11 +2380,13 @@
             <div class="review-card">
 
               <div class="review-head">
-                <img src="https://codewithsps.github.io/sps/images/SP__Singh.png" class="review-avatar">
+                <img src="https://images.pexels.com/photos/2515420/pexels-photo-2515420.jpeg" class="review-avatar">
+
                 <div class="review-user">
-                  <strong>Ankit Mishra</strong>
+                  <strong>Priya Mishra</strong>
                   <span>UPSC Aspirant</span>
                 </div>
+
               </div>
 
               <div class="review-stars">★★★★★</div>
@@ -2320,22 +2397,47 @@
 
             </div>
 
-
-
+           
             <div class="review-card">
 
               <div class="review-head">
-                <img src="https://codewithsps.github.io/sps/images/SP__Singh.png" class="review-avatar">
+                <img src="https://images.pexels.com/photos/11230507/pexels-photo-11230507.jpeg" class="review-avatar">
+
                 <div class="review-user">
-                  <strong>Ritika Singh</strong>
-                  <span>SSC Preparation</span>
+                  <strong>Dipa Gupta</strong>
+                  <span>Cuet Aspirant</span>
                 </div>
+
               </div>
 
               <div class="review-stars">★★★★★</div>
 
               <p>
-                Excellent Wi-Fi and huge book collection. Perfect place for competitive exam preparation.
+               Peaceful environment and comfortable seating. Perfect place for focused study.
+              </p>
+
+            </div>
+
+
+
+            
+            <div class="review-card">
+
+              <div class="review-head">
+                <img src="https://images.pexels.com/photos/20139733/pexels-photo-20139733.jpeg" class="review-avatar">
+
+                <div class="review-user">
+                  <strong>Adya Sharma</strong>
+                  <span>Cuet Aspirant</span>
+                </div>
+
+              </div>
+
+              <div class="review-stars">★★★★★</div>
+
+              <p>
+                Study Hub Library provides a very focused environment. The seating,
+lighting and peaceful atmosphere help students concentrate better.
               </p>
 
             </div>
@@ -2345,11 +2447,13 @@
             <div class="review-card">
 
               <div class="review-head">
-                <img src="https://codewithsps.github.io/sps/images/SP__Singh.png" class="review-avatar">
+                <img src="https://images.pexels.com/photos/60778/pexels-photo-60778.jpeg" class="review-avatar">
+
                 <div class="review-user">
-                  <strong>Aditya Verma</strong>
-                  <span>UPSC Candidate</span>
+                  <strong>Aditya singh</strong>
+                  <span>UPSC Aspirant</span>
                 </div>
+
               </div>
 
               <div class="review-stars">★★★★★</div>
@@ -2365,11 +2469,13 @@
             <div class="review-card">
 
               <div class="review-head">
-                <img src="https://codewithsps.github.io/sps/images/SP__Singh.png" class="review-avatar">
+                <img src="https://images.pexels.com/photos/1987301/pexels-photo-1987301.jpeg" class="review-avatar">
+
                 <div class="review-user">
                   <strong>Sneha Gupta</strong>
                   <span>NEET Student</span>
                 </div>
+
               </div>
 
               <div class="review-stars">★★★★★</div>
@@ -3042,24 +3148,30 @@
         closeMob();
       }
     });
- 
-///review section scroll
+
+    ///review section scroll
     const reviewContainer = document.querySelector(".review-container")
     const nextBtn = document.querySelector(".review-nav.next")
     const prevBtn = document.querySelector(".review-nav.prev")
 
-    nextBtn.onclick = () => {
-      reviewContainer.scrollBy({
-        left: 320,
-        behavior: "smooth"
-      })
-    }
+    const scrollAmount = 320
 
-    prevBtn.onclick = () => {
-      reviewContainer.scrollBy({
-        left: -320,
-        behavior: "smooth"
+    if (nextBtn && prevBtn) {
+
+      nextBtn.addEventListener("click", () => {
+        reviewContainer.scrollBy({
+          left: scrollAmount,
+          behavior: "smooth"
+        })
       })
+
+      prevBtn.addEventListener("click", () => {
+        reviewContainer.scrollBy({
+          left: -scrollAmount,
+          behavior: "smooth"
+        })
+      })
+
     }
   </script>
 </body>
